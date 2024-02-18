@@ -1,0 +1,290 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Statyczne strony internetowe</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">2</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>HTML: projektowanie struktury</li>
+              <li>CSS: nadawanie wyglądu</li>
+              <li>Frameworki: idea i przegląd</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            HTML: projektowanie struktury
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym nie jest HTML?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">HTML</span> przede wszystkim nie jest językiem programowania.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym jest HTML?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">HTML</span> (<span class="italic">HyperText Markup Language</span>) to hipertekstowy język znaczników umożliwiający ustandaryzowane zapisanie struktury strony internetowej.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Za jego pomocą można zbudować podział dokumentu na semantyczne sekcje, ale nie udostępnia praktycznie żadnych funkcji programistycznych znanych z klasycznych języków programowania takich jak deklarowanie zmiennych i przypisywanie im wartości, pętle czy wyrażenia warunkowe.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Niewątpliwą zaletą HTML jest to, że może być edytowany w dowolnym edytorze tekstu, a do jego uruchomienia wystarczy przeglądrka.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Nawet statyczne pliki <code>*.html</code> można uruchomić lokalnie przez wstukanie do niej ścieżki do tegoż pliku.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../images/w02/html.png" class="w-full" alt="Bardzo prosta strona internetowa">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              bardzo prosta strona internetowa: kod, render i schemat
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa domykanego tagu HTML</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">&lt;nazwa <span class="opacity-15">[atrybut-n="wartość-n"]<sup>n</sup></span>&gt;<span class="opacity-15">slot</span>&lt;/nazwa&gt;</span></code>
+            </div>
+
+            <div class="mt-12 text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              Każdy domykany tag HTML:
+              <ul class="block">
+                <li>musi mieć nazwę w tagu otwierającym</li>
+                <li>może mieć dowolną liczbę atrybutów z wartościami</li>
+                <li>może mieć dowolną wartość wpisaną w slot</li>
+              </ul>
+              <ul class="block">
+                <li>w slocie można wpisać inne tagi HTML</li>
+                <li>jeżeli slot jest pusty, można go domknąć slashem</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto flex flex-col gap-4">
+              <div class="text-3xl"><pre class="p-4">&lt;span class="font-bold text-xl" id="hello" title="Hello message"&gt;
+    Hello there!
+&lt;/span&gt;</pre></div>
+            </div>
+
+            <div class="mt-12 text-lg w-2/3 text-left mx-auto flex flex-col gap-4">
+              Przykładowo:
+              <ul class="block">
+                <li>nazwą tagu tutaj jest <span class="italic">span</span></li>
+                <li>tag ma trzy atrybuty:
+                    <ul class="block">
+                        <li>listę klas <span class="italic">class</span> z wartością <span class="italic">font-bold text-xl</span></li>
+                        <li>identyfikator <span class="italic">id</span> z wartością <span class="italic">hello</span></li>
+                        <li>tytuł <span class="italic">title</span> z wartością <span class="italic">Hello message</span></li>
+                    </ul>
+                </li>
+                <li>w slocie zawartością jest napis <span class="italic">Hello there!</span></li>
+              </ul>
+              <p>Wyrenderowana zostanie oczywiście tylko fraza <span class="italic">Hello there!</span>, ale pozostałe informacje są istotne dla silnika przeglądarki, który do tego szkieletu może dodać reguły CSS lub skrypty JS.</p>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa niedomykanego tagu HTML</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">&lt;nazwa <span class="opacity-15">[atrybut-n="wartość-n"]<sup>n</sup></span>&gt;<span class="opacity-15"></span></code>
+            </div>
+
+            <div class="mt-12 text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              Każdy niedomykany tag HTML:
+              <ul class="block">
+                <li>musi mieć nazwę w tagu otwierającym</li>
+                <li>może mieć dowolną liczbę atrybutów z wartościami</li>
+                <li>nie może mieć żadnej wartości wpisanej w slot</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto flex flex-col gap-4">
+              <div class="text-3xl"><pre class="p-4">&lt;img src="./logo.png" class="w-72" alt="Logo"&gt;</pre></div>
+            </div>
+
+            <div class="mt-12 text-lg w-2/3 text-left mx-auto flex flex-col gap-4">
+              Przykładowo:
+              <ul class="block">
+                <li>nazwą tagu tutaj jest <span class="italic">img</span></li>
+                <li>tag ma trzy atrybuty:
+                  <ul class="block">
+                    <li>źródło obrazka <span class="italic">src</span> z wartością <span class="italic">./logo.png</span></li>
+                    <li>listę klas <span class="italic">class</span> z wartością <span class="italic">w-72</span></li>
+                    <li>alternatywny tekst <span class="italic">title</span> z wartością <span class="italic">Logo</span></li>
+                  </ul>
+                </li>
+              </ul>
+              <p>Wyrenderowany zostanie oczywiście tylko obrazek (lub napis <span class="italic">Logo</span> jeżeli obrazka nie można pobrać), ale pozostałe informacje ponownie są istotne dla silnika przeglądarki, który do tego szkieletu może dodać reguły CSS lub skrypty JS.</p>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Każdy tag ma zestaw dostępnych do wykorzystania atrybutów. Przykładowo <span class="italic">src</span> może określić źródło obrazka w <span class="italic">img</span> lub adres URL załączanej strony w <span class="italic">iframe</span>, ale dodane do <span class="italic">span</span> nie za wiele zrobi.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niektóre atrybuty - jak identyfikator <span class="italic">id</span>, zestaw klas <span class="italic">class</span> czy stylowanie <span class="italic">style</span> - są domyślnie dostępne we wszystkich tagach.
+            </div>
+          </section>
+          <section>
+            Szybki przegląd najważniejszych tagów
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Hiperłącza &lt;a&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;a href="https://blumilk.pl/" target="_blank"&gt;
+    Blumilk sp. z o.o.
+&lt;/a&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">a</span> to (niegdyś) podstawa sieci www: tworzy linki, które po kliknięciu przenoszą na stronę określoną w <span class="italic">href</span>; atrybutem <span class="italic">target</span> można sterować zachowaniem przeglądarki po kliknięciu
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kontenery &lt;div&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;div class="flex flex-col lg:flex-row"&gt;
+    &lt;div class="flex-1"&gt;1&lt;/div&gt;
+    &lt;div class="flex-1 flex"&gt;
+      &lt;div class="flex-1"&gt;2&lt;/div&gt;
+      &lt;div class="flex-1"&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">div</span> to podstawa szkieletu stron www: to kontener, który można ostylować i do którego można włożyć kolejne kontenery
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Tabele &lt;table&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;table class="table-auto"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;id&lt;/th&gt;
+        &lt;th&gt;name&lt;/th&gt;
+        &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;Jan Kowalski&lt;/td&gt;
+        &lt;td&gt;
+          &lt;button (...)&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">table</span> służy do tworzenia tabel... i tylko tabel!
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            CSS: nadawanie wyglądu
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Frameworki: idea i przegląd
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://www.w3schools.com/tags/" target="_blank">dokumentacja tagów HTML</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
