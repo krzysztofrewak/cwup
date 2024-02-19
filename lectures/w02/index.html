@@ -236,11 +236,107 @@
               <span class="font-bold">table</span> służy do tworzenia tabel... i tylko tabel!
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl">Formularze &lt;form&gt; i &lt;input&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;form method="post"&gt;
+    &lt;input type="text" name="name"&gt;
+    &lt;input type="email" name="email"&gt;
+    &lt;input type="submit" value="Wyślij"&gt;
+&lt;/form&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">form</span> zbiera pola formularza <span class="font-bold">input</span>
+            </div>
+          </section>
         </section>
 
         <section>
           <section>
             CSS: nadawanie wyglądu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym jest CSS?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">CSS</span> (<span class="italic">Cascading Style Sheets</span>, kaskadowe arkusze stylów) to kolejny język znaczników, tym razem wspomagający budowanie wizualnej warstwy stron internetowych.
+            </div>
+
+            <div class="mt-12 text-lg w-2/3 mx-auto flex flex-col gap-4">
+              Podstawowa idea to tworzenie reguł, które opiszą wygląd poszczególnych elementów renderowanych przez przeglądarkę.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../images/w02/css.png" class="w-full" alt="Bardzo prosta strona internetowa">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              bardzo prosta strona (ale już ładniejsza)  internetowa: kod i render
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa reguły CSS</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor { <span class="opacity-15">[atrybut-n: wartość-n;]<sup>n</sup></span> }</span></code>
+            </div>
+
+            <div class="mt-12 text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              Każda reguła CSS:
+              <ul class="block">
+                <li>musi tyczyć się selektora</li>
+                <li>może mieć dowolną liczbę atrybutów z wartościami</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Selektor bez operatora wybiera tagi HTML o zadanej nazwie. <code>span {}</code> nada styl wszystkim węzłom typu <code>span</code> w HTML-u.
+            </div>
+
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">.selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Selektor kropki wybiera klasy. <code>.text-bold {}</code> nada styl wszystkim węzłom, które w atrybucie <code>class</code> będą miały <code>text-bold</code>.
+            </div>
+
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">#selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Selektor hash wybiera identyfikatory. <code>#logout {}</code> nada styl elementowi, który w atrybucie <code>id</code> będzie miały <code>logout</code>.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor.klasa { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Konkatenacja: <code>span.text-bold {}</code> nada styl wszystkim węzłom typu <code>span</code>, które w atrybucie <code>class</code> będą miały <code>text-bold</code>.
+            </div>
+
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector > selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Bezpośrednie dziecko: <code>ul.sidebar > li {}</code> nada styl wszystkim węzłom typu <code>li</code>, które są bezpośrednimi dziećmi jakiekogolwiek węzła typu <code>ul</code> z klasą <code>sidebar</code>.
+            </div>
+
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Dziecko: <code>ul.sidebar li {}</code> nada styl wszystkim węzłom typu <code>li</code>, które są dziećmi jakiekogolwiek węzła typu <code>ul</code> z klasą <code>sidebar</code>.
+            </div>
           </section>
         </section>
 
