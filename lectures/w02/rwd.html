@@ -1,0 +1,41 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <title>Bardzo prosty przykład responsywności</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-4">
+    <div class="w-[500px] justify-center mx-auto m-4 flex gap-2 text-xs">
+      <span class="px-4 py-1 border border-black rounded-lg sm:bg-lime-100">sm</span>
+      <span class="px-4 py-1 border border-black rounded-lg md:bg-lime-100">md</span>
+      <span class="px-4 py-1 border border-black rounded-lg lg:bg-lime-100">lg</span>
+      <span class="px-4 py-1 border border-black rounded-lg xl:bg-lime-100">xl</span>
+      <span class="px-4 py-1 border border-black rounded-lg 2xl:bg-lime-100">2xl</span>
+    </div>
+
+    <div class="w-full relative bg-lime-200 p-4 rounded-xl flex flex-col gap-4 min-h-[500px]">
+      Application
+      <span class="md:hidden absolute right-0 pr-4">Otwórz menu</span>
+
+      <div class="hidden md:block w-full bg-orange-200 p-4 rounded-xl">Sidebar</div>
+      <div class="flex-1 w-full bg-pink-200 p-4 rounded-xl">
+        Content
+        <div class="w-full flex flex-col md:flex-row gap-4 mt-4">
+          <div class="w-full bg-yellow-200 p-4 rounded-xl">
+            <h1 class="text-xl">Title A</h1>
+            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores atque delectus fuga ipsum iure labore, laborum, nihil numquam optio quidem rem repellendus similique tempore, voluptatibus. Beatae fugiat nam quo!</p>
+          </div>
+          <div class="w-full bg-gray-200 p-4 rounded-xl">
+            <h1 class="text-xl">Title B</h1>
+            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet atque beatae cupiditate dolor doloremque et, ex exercitationem id iste iusto omnis quaerat quidem recusandae rem repellat sapiente sequi sint?</p>
+          </div>
+          <div class="w-full bg-white p-4 rounded-xl">
+            <h1 class="text-xl">Title C</h1>
+            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam nemo nesciunt non quos? Earum eius esse et explicabo harum id, ipsam non odit optio pariatur rem voluptas! Ipsam, voluptates.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w-full bg-sky-200 p-4 rounded-xl">Footer</div>
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@ Strona kursu **Projektowanie i programowanie systemów internetowych** na semest
 Kurs składa się z serii wykładów oraz zajęć projektowych. Zasady zaliczenia projektu znajdują się [tutaj](./projects/ppsi1.md).
 
 1. [Wprowadzenie do systemów internetowych](https://krzysztofrewak.github.io/ppsi/lectures/w01/index.html)
-1. Statyczne strony internetowe
+1. [Statyczne strony internetowe](https://krzysztofrewak.github.io/ppsi/lectures/w02/index.html)
 1. Narzędzia deweloperskie
 1. Środowisko deweloperskie
 1. Protokół HTTP
