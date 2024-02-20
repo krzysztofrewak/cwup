@@ -530,9 +530,7 @@ div.flex { display: flex }</pre></div>
     &lt;meta charset="utf-8"&gt;
     &lt;title&gt;Bardzo prosty formularz (Bootstrap)&lt;/title&gt;
     &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"&gt;
+      rel="stylesheet"&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;div class="w-25 p-3"&gt;
@@ -603,6 +601,40 @@ div.flex { display: flex }</pre></div>
               </div>
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl">Wstęp do responsywności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Responsywność będzie tematem jednego z późniejszych wykładów, ale już tutaj warto wspomnieć, że jedną z największych zalet frameworków CSS jest ułatwienie tworzenia widoków, które dobrze wyglądają na ekranach o różnej rozdzielczości.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dzięki sprytnie zaprojektowanym klasom można budować jeden szkielet w HTML, a dostosowywać go jedynie przez CSS.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl"><span class="opacity-15">class="</span>p-0 md:p-4 lg:p-8 xl:p-10<span class="opacity-15">"</span></span></code>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <div class="mb-4">Kontener będzie miał:</div>
+              <ul>
+                <li>domyślnie (na telefonie?) zerowy wewnętrzny margines,</li>
+                <li>na średnich urządzeniach (od 768px) większy,</li>
+                <li>na dużych (od 1024px) jeszcze większy,</li>
+                <li>a na jeszcze większych (od 1280px) - największy.</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../images/w02/rwd.png" class="w-full" alt="przykład responsywnego designu">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              ten sam szkielet, a różny render dla różnych rozdzielczości
+            </div>
+          </section>
         </section>
 
         <section>
@@ -615,7 +647,10 @@ div.flex { display: flex }</pre></div>
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li></li>
+                <li>HTML pomaga w tworzeniu struktury strony internetowej i dobrze pisać go z głową, aby jedna struktura działała na telefonach i desktopach</li>
+                <li>HTML można sobie wyobrażać jako system pudełek w pudełkach w pudełkach; w JavaScripcie nazwalibyśmy to drzewem DOM</li>
+                <li>CSS pomaga w stylowaniu strony internetowej, a jego reguły opierają się na logice selektorów</li>
+                <li>frameworki CSS to podstawa większości współczesnych aplikacji internetowych</li>
               </ul>
             </div>
           </section>
@@ -625,8 +660,12 @@ div.flex { display: flex }</pre></div>
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li><a href="https://www.w3schools.com/tags/" target="_blank">dokumentacja tagów HTML</a></li>
-                <li><a href="https://stateofcss.com/en-US" target="_blank">state of CSS survey</a></li>
+                <li><a href="https://www.w3schools.com/tags/" target="_blank">rozpiska tagów HTML</a></li>
+                <li><a href="https://selectors.app/" target="_blank">fajna apka do nauki selektorów CSS</a></li>
+                <li><a href="https://stateofcss.com/en-US" target="_blank">wyniki ankiety State of CSS 2023</a></li>
+                <li class="mt-4"><a href="https://tailwindcss.com/" target="_blank">dokumentacja Tailwinda</a></li>
+                <li><a href="https://getbootstrap.com/" target="_blank">dokumentacja Bootstrapa</a></li>
+                <li><a href="https://materializecss.com/" target="_blank">dokumentacja Materialize</a></li>
               </ul>
             </div>
           </section>
