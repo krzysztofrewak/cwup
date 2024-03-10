@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
       code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
     </style>
   </head>
   <body>
@@ -168,6 +169,30 @@
             </div>
           </section>
           <section>
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/deps-0.png" class="w-full" alt="Schemat zależności paczki blumilksoftware/codestyle">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat zależności paczki blumilksoftware/codestyle
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/deps-1.png" class="w-full" alt="Schemat zależności zależności paczki blumilksoftware/codestyle">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat zależności zależności paczki blumilksoftware/codestyle
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/deps.png" class="w-full" alt="Schemat zależności zależności zależności paczki blumilksoftware/codestyle">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat zależności zależności zależności paczki blumilksoftware/codestyle
+            </div>
+          </section>
+          <section>
             <div class="font-bold text-3xl">Zarządzanie zależnościami</div>
             <hr class="border-orange-400 border-opacity-50 my-12">
 
@@ -234,12 +259,94 @@
             <hr class="border-orange-400 border-opacity-50 my-12">
 
             <div class="text-lg w-2/3 mx-auto">
-              Większość menadżerów zależności ma zbudowane takie polecenia jak <code>npm outdated</code> czy <code>composer audit</code>, które sprawdzają czy na liście zależności nie znalazły się m. in. problemy związane z bezpieczeństwem.
+              Większość menadżerów zależności ma wbudowane takie polecenia jak <code>npm outdated</code> czy <code>composer audit</code>, które sprawdzają czy na liście zależności nie znalazły się m. in. problemy związane z bezpieczeństwem.
             </div>
 
             <div class="mt-8 text-lg w-2/3 mx-auto">
               Niemniej jednak warto wiedzieć, że źle zbudowana i zarządzana sieć zależności może być źródłem wielu kłopotów.
             </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zmienne środowiskowe
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Definicja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-3/5 mx-auto">
+              <span class="font-bold">Zmienna środowiskowa</span> (ang. <em>environment variable</em>) – to nazwana wartość, zazwyczaj zawierająca ciąg znaków, przechowywana i zarządzana przez powłokę <span class="opacity-50">[systemową]</span>. <sup><sub>[<a href="https://pl.wikipedia.org/wiki/Zmienna_%C5%9Brodowiskowa" target="_blank">1</a>]</sub></sup>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              Wiele frameworków webowych opiera się mocno na zmiennych środowiskowych. Najczęściej, zamiast wpisywać je faktycznie do systemu, można nimi manipulować poprzez tzw. pliki env.
+            </div>
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Plik <code>.env</code> nie powinien być commitowany w żadnym wypadku do repozytorium! Powinien być tylko i wyłącznie konfiguracją jednego konkretnego środowiska, np. mojego.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              Stąd też w wielu projektach pojawiają się inne pliki env. Najczęściej można spotkać <code>.env.example</code>, który będzie szablonem dla głównego pliku.
+            </div>
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Kolejno <code>.env.ci</code> może być zbudowanym już plikiem na potrzeby CI/CD, <code>.env.testing</code> będzie używany podczas automatycznych testów i tak dalej.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              <code><pre>APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+# (...)</pre></code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Tak może wyglądać plik <code>.env.example</code> projektu w Laravelu.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              Jeżeli w konektor bazy danych skorzysta z <code>$_ENV["DB_PASSWORD"]</code>, nie trzeba będzie hardkodować żadnego hasła do żadnej bazy danych w kodzie.
+            </div>
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Elastyczność tego rozwiązania polega na tym, że w dwuosobowym zespole Janek może mieć hasło <code>password</code>, a Wojtek - <code>NpqJ9%p%jxJ#xNjhbx#KJwJEo0R3AVUq^Fuw</code>. Jeżeli do zespołu dojdzie nowa osoba, może również ustawić własne hasło do bazy zlokalizowanej przecież na swoim komputerze... ale także własne adresy, porty i inne zmienne.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              Jeżeli korzystamy z Vagranta lub Dockera, dobrze jest w pliku <code>.env.example</code> umieścić już gotową konfigurację pod wszystkie zależne usługi. Może to zminimalizować czas potrzebny na stawianie nowego projektu i ułatwić pracę nad takim projektem.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Jedna aplikacja, wiele środowisk
           </section>
         </section>
 
