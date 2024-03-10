@@ -348,6 +348,102 @@ SESSION_LIFETIME=120
           <section>
             Jedna aplikacja, wiele środowisk
           </section>
+          <section>
+            <div class="font-bold text-3xl">Ile razy możemy postawić jedną aplikację?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-3/5 mx-auto">
+              Idealnie byłoby powiedzieć: tyle, ile chcemy.
+            </div>
+
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Z grubsza powinniśmy umieć wymienić trzy główne środowiska, na których uruchamiany jest system internetowy: lokalne, testowe oraz produkcyjne.
+            </div>
+          </section>
+          <section>
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/envs-simple.png" class="w-full" alt="Schemat rozróżnienia środowisk">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat rozróżnienia środowisk: jedno lokalne deweloperskie, jedno testowe na serwerze i jedno produkcyjne
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/envs-no-ci.png" class="w-full" alt="Schemat rozróżnienia środowisk">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat rozróżnienia środowisk: wiele lokalnych deweloperskich, dwa testowe na serwerze i jedno produkcyjne
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/envs-no-local-testing.png" class="w-full" alt="Schemat rozróżnienia środowisk">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat rozróżnienia środowisk: wiele lokalnych deweloperskich, dwa testowe na serwerze, jedno testowe na CI i jedno produkcyjne
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/envs-staging.png" class="w-full" alt="Schemat rozróżnienia środowisk">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat rozróżnienia środowisk: wiele lokalnych deweloperskich (i każde z lokalnym testowym), jedno testowe na serwerze i jedno produkcyjne
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/envs-full.png" class="w-full" alt="Schemat rozróżnienia środowisk">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat rozróżnienia środowisk: wiele lokalnych deweloperskich (i każde z lokalnym testowym), dwa testowe na serwerze, jedno testowe na CI i jedno produkcyjne
+            </div>
+          </section>
+          <section data-transition="none">
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w04/envs-aws.png" class="w-full" alt="Schemat rozróżnienia środowisk">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat rozróżnienia środowisk: wiele lokalnych deweloperskich (i każde z lokalnym testowym), dwa testowe na serwerze, jedno testowe na CI i wiele produkcyjnych
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Siła zmiennych środowiskowych</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-3/5 mx-auto">
+              Już wiemy, że w zmiennych środowiskowych możemy przechowywać hasła do bazy danych czy też konfigurowalne porty do usług.
+            </div>
+
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Wiedząc, że jeden system może zostać uruchomiony w naprawdę wielu środowiskach, możemy wykorzystać potancjał zmiennych środowiskowych, aby ułatwić sobie pracę i zrobić kod bardziej elastycznym.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Testowanie usług</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-3/5 mx-auto">
+              Chcemy podpiąć się do bramki płatniczej, ale nie chcemy wydawać pieniędzy na każdy test procesu zakupowego?
+            </div>
+
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Nic prostszego! Kod w repozytorium zostaje zawsze identyczny - bez względu na którym środowisku go uruchamiamy - ale w zmiennych <code>PAYMENT_PROCESSOR_ENDPOINT</code> i <code>PAYMENT_PROCESSOR_CLIENT_SECRET</code> ustawimy różne wartości w różnych środowiskach i voila!
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przełączanie funkcjonalności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-3/5 mx-auto">
+              Nie chcemy wyświetlać stacktrace'a przy błędach systemu na produkcji? Ale przecież w trybie deweloperskim jest to bardzo przydatne!
+            </div>
+
+            <div class="mt-8 text-lg w-3/5 mx-auto">
+              Łatwizna! Ustawimy <code>APP_ENV = local</code> u siebie i <code>APP_ENV = prod</code> i framework załatwi sprawę za nas.
+            </div>
+          </section>
         </section>
 
         <section>
@@ -360,7 +456,12 @@ SESSION_LIFETIME=120
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li>znalezienie dobrych narzędzi to może nie aż połowa, ale jakaś część sukcesu</li>
+                <li>powinniśmy zawsze zapisywać wersje zależności z jakich korzystamy</li>
+                <li>w miarę możliwości powinniśmy proces instalacji zależności automatyzować</li>
+                <li><em>zależności</em> to zarówno serwisy takie jak bazy danych, jak i biblioteki potrzebne do zbudowania aplikacji</li>
+                <li>zmienne środowiskowe bardzo ułatwiają pracę zespołową oraz wdrażanie systemów</li>
+                <li>nigdy nie powinniśmy dołączać kodu źródłowego zależności ani plików <code>.env</code> do repozytorium!</li>
+                <li>nigdy też nie powinniśmy hardkodować haseł, tokenów, secretów i innych wrażliwych lub konfigurowalnych danych</li>
               </ul>
             </div>
           </section>
@@ -370,7 +471,10 @@ SESSION_LIFETIME=120
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li><a href="https://www.statista.com/statistics/268254/market-share-of-internet-browsers-worldwide-since-2009/" target="_blank">udział przeglądarek w rynku</a></li>
+                <li><a href="https://semver.org/" target="_blank">dokumentacja Semantic Versioning</a></li>
+                <li><a href="https://laravel.com/docs/11.x/configuration" target="_blank">zmienne środowiskowe w Laravelu</a></li>
+                <li><a href="https://github.com/features/actions" target="_blank">GitHub Actions, czyli świetny sposób na automatyzację m. in. testowania aplikacji w zdalnym środowisku testowym</a></li>
+                <li><a href="https://npmgraph.js.org/" target="_blank">fajna wizualizacja drzewa zależności w npm</a> (<a href="https://npmgraph.js.org/?q=%40blumilksoftware%2Feslint-config" target="_blank">przykład</a>)</li>
               </ul>
             </div>
           </section>
