@@ -8,7 +8,7 @@ Kurs składa się z serii wykładów oraz zajęć projektowych. Zasady zaliczeni
 1. [Wprowadzenie do systemów internetowych](https://krzysztofrewak.github.io/ppsi/lectures/w01/index.html)
 1. [Statyczne strony internetowe](https://krzysztofrewak.github.io/ppsi/lectures/w02/index.html)
 1. [Narzędzia deweloperskie](https://krzysztofrewak.github.io/ppsi/lectures/w03/index.html)
-1. Środowisko deweloperskie
+1. [Środowisko deweloperskie](https://krzysztofrewak.github.io/ppsi/lectures/w04/index.html)
 1. Protokół HTTP
 1. Wzorzec architektoniczny MVC
 1. Implementacja domeny

@@ -1,0 +1,283 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Środowiska deweloperskie</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">4</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Wersjonowanie oprogramowania</li>
+              <li>Zarządzanie zależnościami</li>
+              <li>Zmienne środowiskowe</li>
+              <li>Jedna aplikacja, wiele środowisk</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Wersjonowanie oprogramowania
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Po co wersjonujemy oprogramowanie?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Większość oprogramowania na naszych komputerach ma swoje wersje. Czasami mają one barwne nazwy takie jak <em>Sonoma</em>, czasami mają dopiski <em>alpha</em> i <em>beta</em>, ale najczęściej można spotkać wartości liczbowe.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-1/2 mx-auto">
+              przykładowo PHP występuje w wersji:
+            </div>
+            <div class="mt-6 text-lg w-full mx-auto">
+              <code><span class="text-7xl">8.3.3</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              i należy to czytać jako:
+            </div>
+            <div class="mt-6 text-3xl w-1/2 mx-auto">
+              <code>major</code> . <code>minor</code> . <code>patch</code>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-1/2 mx-auto">
+              zmiana wersji <code>major</code> oznacza z reguły brak kompatybilności wstecznej w interfejsach
+            </div>
+            <div class="mt-8 text-lg w-1/2 mx-auto">
+              zmiana wersji <code>minor</code> oznacza zazwyczaj nowe funkcjonalności, które nie łamią zasad kompatybilności
+            </div>
+            <div class="mt-8 text-lg w-1/2 mx-auto">
+              zmiana wersji <code>patch</code> oznacza drobne zmiany, które nie powinny wpłynąć na użytkowanie poprzez interfejsy
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-1/2 mx-auto">
+              Idąc dalej na przykładzie PHP:
+            </div>
+            <div class="mt-8 text-lg w-4/5 mx-auto">
+              <code><span class="text-3xl"><span class="opacity-15">var_dump(</span>(fn(): bool => 0o16 === 16)()<span class="opacity-15">)</span></span></code>
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="mt-8 text-lg w-2/3 text-left mx-auto">
+              PHP 8.3: <code>bool(false)</code>
+            </div>
+            <div class="mt-4 text-lg w-2/3 text-left mx-auto">
+              PHP 8.0: <code>Parse error: syntax error, unexpected identifier "o16" in /test.php on line 3</code>
+            </div>
+            <div class="mt-4 text-lg w-2/3 text-left mx-auto">
+              PHP 7.4: <code>Parse error: syntax error, unexpected 'o16' (T_STRING) in /test.php on line 3</code>
+            </div>
+            <div class="mt-4 text-lg w-2/3 text-left mx-auto">
+              PHP 5.6: <code>Parse error: syntax error, unexpected ':' in /test.php on line 3</code>
+            </div>
+            <div class="mt-4 text-lg w-2/3 text-left mx-auto">
+              PHP 4.0: <code>Parse error: parse error in /test.php on line 3</code>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-1/2 mx-auto">
+              A to przecież tylko interpreter języka, którego głównie się używa poprzez jeden entrypoint, a cała reszta działa "pod spodem".
+            </div>
+            <div class="mt-8 text-lg w-1/2 mx-auto">
+              W przypadku bardziej skomplikowanych API robi się to o wiele bardziej skomplikowane.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Konkretyzujmy wersje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Dlatego dobrą praktyką jest zawsze wypisanie wszystkich wymaganych zależności naszego systemu razem z dokładnymi wersjami.
+            </div>
+
+            <div class="my-8 text-lg w-2/3 mx-auto">
+              I tyczy się to wszystkiego: systemów zarządzania bazami danych, wersji kompilatorów... ale też wykorzystywanych bibliotek.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Manifest zależności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Stąd też popularność rozwiązań takich jak Vagrant czy Docker: dzięki nim można stworzyć pewnego rodzaju manifest zależności, który dodajemy do repozytorium projektu, a dany supervisor już sam doinstaluje wszystkie potrzebne wersje.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zarządzanie zależnościami
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zależności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Za zależności (ang. <em>dependencies</em>) - w kontekście tej części wykładu - będziemy uważać wszelkiej maści biblioteki, pakiety czy paczki dołączane do budowanego przez nas systemu informatycznego. Zależnością będzie też core frameworka, choć tutaj relacje zależności może być bardziej skomplikowana niż przy zwykłej dołączanej bibliotece.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Tylko to, co istotne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Dobrą praktyką jest trzymanie w repozytorium tylko kodu związanego bezpośrednio z projektem. Wszystkie zależności powinny być poza repozytorium (tutaj przydaje się git ignore).
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jeżeli aplikacja napisana w Django składa się z dosłownie trzech widoków, po co dodawać do repozytorium setki plików z kodem źródłowym samego Django? Tym bardziej, że można je łatwo pobrać z internetu w każdym momencie?
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Oczywiście dodawanie listy takich zależności w pliku readme byłoby bardzo ciężkie do obsługi. Tym bardziej, że zależności często mają swoje zależności i może się tego naprodukować bardzo dużo.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zarządzanie zależnościami</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mb-10 text-lg w-2/3 mx-auto">
+              Stąd też praktycznie każdy współczesny język programowania używany przy tworzeniu systemów internetowych ma towarzyszący mu program do zarządzania zależnościami. Należy wymienić:
+            </div>
+
+            <ul class="text-lg  w-1/2 leading-10">
+              <li><strong>npm</strong> dla JavaScriptu</li>
+              <li><strong>Composer</strong> dla PHP</li>
+              <li><strong>pip</strong> dla Pythona</li>
+              <li><strong>NuGet</strong> dla C#</li>
+              <li><strong>Maven</strong> dla Javy</li>
+              <li><strong>RubyGems</strong> dla Ruby</li>
+            </ul>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-7xl">npm install</span></code>
+            </div>
+            <div class="mt-8 text-lg w-1/2 mx-auto">
+              Jedno polecenie i w zasadzie mamy zainstalowane wszystkie zależności naszego projektu.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">composer require blumilksoftware/codestyle</span></code>
+            </div>
+            <div class="mt-8 text-lg w-1/2 mx-auto">
+              Jedno polecenie i mamy dodaną do projektu nową bibliotekę.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-5xl">pip install Django --upgrade</span></code>
+            </div>
+            <div class="mt-8 text-lg w-1/2 mx-auto">
+              Jedno polecenie i mamy zaktualizowaną do najnowszej konkretną zależność.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Pliki manifestu i locki</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mb-10 text-lg w-2/3 mx-auto">
+              Większość systemów zarządzania zależnościami bazuje na dwóch plikach: manifeście właściwym oraz zablokowanym szczegółowym tzw. <em>locku</em>.
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              Np. <code>composer.json</code> przetrzymuje m. in. listę wymaganych dla projektu bibliotek, ale można w nim określić dowolny stopień szczegółowości wersji, nawet tylko wersję <em>major</em>. Jest to plik nadpisywany poleceniami Composera, ale można go też edytować ręcznie.
+            </div>
+          </section>
+          <section>
+            <div class="mb-10 text-lg w-2/3 mx-auto">
+              Z kolei  <code>composer.lock</code> jest już plikiem generowanym przez Composera. Zawiera pełną listę zależności (wraz z ich zależnościami) w dokładnych wersjach. Polecenie <code>composer install</code> instaluje zależności z tego pliku.
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              Dzięki temu repozytoria są szczuplejsze, a zależności zawsze takie same i łatwe do aktualizowania.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Security by design</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Większość menadżerów zależności ma zbudowane takie polecenia jak <code>npm outdated</code> czy <code>composer audit</code>, które sprawdzają czy na liście zależności nie znalazły się m. in. problemy związane z bezpieczeństwem.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niemniej jednak warto wiedzieć, że źle zbudowana i zarządzana sieć zależności może być źródłem wielu kłopotów.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>znalezienie dobrych narzędzi to może nie aż połowa, ale jakaś część sukcesu</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://www.statista.com/statistics/268254/market-share-of-internet-browsers-worldwide-since-2009/" target="_blank">udział przeglądarek w rynku</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
