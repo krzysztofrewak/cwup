@@ -40,10 +40,9 @@
             <hr class="border-orange-400 border-opacity-50 my-12">
 
             <ol class="text-lg leading-10">
-              <li>Protokół HTTP</li>
+              <li>Komunikacja z systemem webowym</li>
               <li>Żądanie i odpowiedź</li>
-              <li>Metody HTTP i Kody statusów</li>
-              <li>Routing</li>
+              <li>Routing aplikacji webowych</li>
               <li>Podsumowanie</li>
             </ol>
           </section>
@@ -51,7 +50,7 @@
 
         <section>
           <section>
-            Protokół HTTP
+            Komunikacja z systemem webowym
           </section>
           <section>
             <div class="font-bold text-3xl">Jak rozmawiać z aplikacją webową?</div>
@@ -164,17 +163,141 @@
           <section>
             Żądanie i odpowiedź
           </section>
-        </section>
-
-        <section>
           <section>
-            Metody HTTP i Kody statusów
+            <div class="font-bold text-3xl">Żądanie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Serwer HTTP nasłuchuje żądań wysyłanych od różnych klientów. Najczęściej wykorzystywane są do tego porty <code>80</code> i <code>443</code>, ale można to oczywiście skonfigurować zgodnie z własnymi potrzebami.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa żądania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto mb-4">
+              Żądanie HTTP składa się z czterech elementów:
+            </div>
+
+            <ul class="text-lg leading-10 w-1/2 mx-auto">
+              <li>wiersza żądania</li>
+              <li>dowolnej liczby nagłówków</li>
+              <li>pustej linii</li>
+              <li>opcjonalnego ciała z wiadomością</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa żądania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <pre><code>
+GET / HTTP/1.1
+Host www.google.com
+Accept-Language: pl
+            </code></pre>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa żądania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <pre><code>
+POST /issues HTTP/1.1
+Host internal.local
+Accept-Language: en
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+{
+    "title": "New issue",
+    "content": "Lorem ipsum"
+}
+            </code></pre>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Metody HTTP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto mb-4">
+              Protokół HTTP definiuje kilka metod, których należy używać przy tworzeniu żądań. Najprostsze systemy będą wykorzystywały dwie podstawowe metody:
+            </div>
+
+            <ul class="text-lg leading-10 w-2/3 mx-auto">
+              <li>najpopularniejsza <code>GET</code> do pobierania danych (ale zostająca w querystringu)</li>
+              <li>i druga w kolejności <code>POST</code> do wysyłania danych</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Metody HTTP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto mb-4">
+              Ale bardziej zaawansowane systemy będą projektowane z myślą o bardziej semantycznie poprawnym wykorzystaniu kontekstu i implementują m. in.:
+            </div>
+
+            <ul class="text-lg leading-10 w-2/3 mx-auto">
+              <li><code>PUT</code> do tworzenia zasobów</li>
+              <li><code>DELETE</code> do ich usuwania</li>
+              <li><code>PATCH</code> do ich aktualizacji</li>
+              <li><code>OPTIONS</code> do technicznego sprawdzania dostępności serwera</li>
+              <li>i inne takie jak <code>CONNECT</code>, <code>HEAD</code> czy <code>TRACE</code></li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wstęp do REST</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto mb-4">
+              Zgodnie z zasadami architektury REST zarządzanie użytkownikami w systemie wystawiającym API może wyglądać tak:
+            </div>
+
+            <ul class="text-lg leading-10 w-2/3 mx-auto">
+              <li><code>GET /users</code> wypisze listę użytkowników</li>
+              <li><code>PUT /users</code> podmieni listę użytkowników</li>
+              <li><code>POST /users</code> doda nowego użytkownika</li>
+              <li><code>DELETE /users</code> usunie użytkowników</li>
+              <li><code>GET /users/1</code> wypisze szczegóły użytkownika o id = 1</li>
+              <li><code>PUT /users/1</code> podmieni dane użytkownika lub go utworzy</li>
+              <li><code>PATCH /users/1</code> podmieni dane użytkownika</li>
+              <li><code>DELETE /users/1</code> usunie użytkownika</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa odpowiedzi</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto mb-4">
+              Odpowiedź HTTP, podobnie jak żądania, składa się z czterech elementów:
+            </div>
+
+            <ul class="text-lg leading-10 w-1/2 mx-auto">
+              <li>wiersza statusu</li>
+              <li>dowolnej liczby nagłówków</li>
+              <li>pustej linii</li>
+              <li>opcjonalnego ciała z wiadomością</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa odpowiedzi</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <pre><code>
+HTTP/1.1 200 OK
+            </code></pre>
+
+            <pre><code>
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+    "id": "5dc1e0ef-0cad-4ef6-9f88-f792bb86fb52",
+    "message": "Issue was not found."
+}
+            </code></pre>
           </section>
         </section>
 
         <section>
           <section>
-            Routing
+            Routing aplikacji webowych
           </section>
         </section>
 
