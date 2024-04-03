@@ -315,6 +315,66 @@ Content-Type: application/json
           <section>
             Routing aplikacji webowych
           </section>
+          <section>
+            <div class="font-bold text-3xl">System plików a routing</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W systemach internetowych starszego typu często można było spotkać się z sytuacją gdzie to system plików rzutował na dostępne akcje systemu.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przykładowo plik <code>contact.php</code> zawierał w sobie cały kod związany z wyświetleniem (i obsługą!) formularza kontaktowego i można było się do niego dostać poprzez adres <code>domena.pl/contact.php</code>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">System plików a routing</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Co do zasady, a szczegółnie przy większych systemach, rozwiązanie to jest przede wszystkim niebezpieczne i trudne w utrzymaniu.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Routing</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Stąd też powstała idea routingu, czyli budowania konfiguracji mówiącej co ma zostać uruchomione na wywołanie jakiego adresu. Wówczas aplikacja jest obsługiwana przez jeden plik wejściowy (<em>entrypoint</em>) i już wewnątrz jej uruchamiane są konkretne akcje.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Adres <code>domena.pl/contact</code> nie będzie tutaj rzutował na to, że gdzieś w aplikacji istnieje plik <code>contact</code>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Routing</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <pre><code>
+Route::get("/random", fn(): int => rand(0, 100));
+            </code></pre>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Deklaracja routingu na przykładzie Laravela.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Routing</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <pre><code>
+Route::get("/", HomeController::class);
+Route::get("/contact", [ContactController::class, "view"]);
+Route::post("/contact", [ContactController::class, "send"]);
+
+Route::get("/{slug}", PageController::class);
+            </code></pre>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Deklaracja routingu na przykładzie Laravela.
+            </div>
+          </section>
         </section>
 
         <section>
@@ -327,7 +387,11 @@ Content-Type: application/json
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li></li>
+                <li>aplikacje webowe bardzo mocno opierają się na komunikacji po protokole HTTP</li>
+                <li>żądanie typu <code>GET</code> należy wykorzystywać tylko i wyłącznie do akcji, które nie zmieniają stanu aplikacji</li>
+                <li>architektura REST jest dobrym rozwiązaniem, ale rzadko bywa wdrażana w 100% zgodnie z dokumentacją</li>
+                <li>warto dbać o kody statusów odpowiedzi HTTP, ale nie można im nigdy ufać w stu procentach</li>
+                <li>routing przewyższa pod wieloma względami strukturę opartą o system plików</li>
               </ul>
             </div>
           </section>
@@ -338,6 +402,9 @@ Content-Type: application/json
             <div class="text-lg w-2/3 mx-auto">
               <ul>
                 <li><a href="https://w3techs.com/technologies/overview/web_server" target="_blank">ranking popularności serwerów HTTP</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank">lista kodów statusów odpowiedzi HTTP</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank">analogiczna lista nagłówków żądań</a></li>
+                <li><a href="https://elements-demo.stoplight.io/#/" target="_blank">ładna dokumentacja przykładowego REST API</a></li>
               </ul>
             </div>
           </section>
