@@ -1,0 +1,33 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <title>Bardzo prosty formularz (Tailwind)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-1/4 p-3">
+      <form class="mb-3" method="get">
+        <label for="text" class="block text-sm font-medium leading-6 text-gray-900">Tekst (GET)</label>
+        <div class="mt-2">
+          <input type="text" name="text" id="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Dowolny tekst">
+        </div>
+      </form>
+    </div>
+    <div class="w-1/4 p-3">
+      <form class="mb-3" method="post">
+        <label for="text-2" class="block text-sm font-medium leading-6 text-gray-900">Tekst (POST)</label>
+        <div class="mt-2">
+          <input type="text" name="text-2" id="text-2" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Dowolny tekst">
+        </div>
+      </form>
+    </div>
+    <div class="w-1/4 p-3">
+      <form class="mb-3" method="delete">
+        <label for="text-3" class="block text-sm font-medium leading-6 text-gray-900">Tekst (DELETE)</label>
+        <div class="mt-2">
+          <input type="text" name="text-3" id="text-3" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Dowolny tekst">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
