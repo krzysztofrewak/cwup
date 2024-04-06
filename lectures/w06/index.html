@@ -1,0 +1,521 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Wzorzec architektoniczny MVC</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">6</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Wzorce architektoniczne i MVP</li>
+              <li>Model</li>
+              <li>Widok</li>
+              <li>Kontroler</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Wzorce architektoniczne i MVP
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym są wzorce?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Świat inżynierii oprogramowania wyróżnia dwa typy <em>wzorców</em>: wzorce projektowe oraz wzorce architektoniczne.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wzorce projektowe tyczą się pojedynczych elementów programu i o nich szerzej porozmawiamy w przyszłym semestrze. Wzorce architektoniczne natomiast obejmują najczęściej cały system informatyczny - stąd też mowa o architekturze aplikacji.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Na szczęście czasy, gdy każdy system informatyczny od strony kodu wyglądał całkowicie inaczej, słusznie minęły. Po latach pracy metodą prób i błędów, wśród inżynierów wykiełkowały tzw. dobre praktyki oraz właśnie wzorce.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              To nie jest tak, że są to konkretne zasady, których nie można łamać. Zarówno dobre praktyki programistyczne, jak i wzorce projektowe czy architektoniczne to sugestie oraz szablony, które dobrze znać i które dobrze umieć identyfikować i używać.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Architektura systemu informatycznego</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W takim kontekście wzorzec architektoniczny to opisany sposób rozwiązania problemów stojących przed projektowanym systemem informatycznym.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wzorce architektoniczne będą sugerowały stosowanie konkretnego nazewnictwa, relacji między zaprojektowanymi klasami czy też ich organizację. Nie będą to natomiast żadnego rodzaju biblioteki czy kawałki kodu.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wzorce to idee.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">MVC</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jednym z popularniejszych wzorców architektonicznych stosowanych przy systemach internetowych jest Model-View-Controller (MVC). Implementuje go w jakimś stopniu większość frameworków webowych, więc warto znać jego założenia.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Tutaj główną ideą jest podział systemu na trzy główne warstwy: wartswę tzw. logiki aplikacji, warstwę interfejsu oraz warstwę komunikacji.
+            </div>
+          </section>
+          <section>
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w06/mvc.png" class="w-full" alt="Schemat przepływu request-response w implementacji wzorca MVC">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat przepływu request-response w implementacji wzorca MVC
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Model
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność modelu</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Model to element warstwy logiki biznesowej. Do zakresu jego obowiązków należy obsługa procesów oraz danych związanych z domeną projektową.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Model powinien odpowiadać na pytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W idealnym projekcie informatycznym model jest tak zaprojektowany, że jego wykorzystanie można czytać prawie jak prozę (wrócimy do tego w VI semestrze podczas omawiania <em>Czystego kodu</em> Roberta Martina).
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Przykładowo, w najgorszym scenariuszu, źle zbudowana aplikacja PHP obsługuje wszystko za pomocą nienazwanych, nieopisanych tablic asocjacyjnych. Czyli: request jest magiczną tablicą, z której wyciąga się <em>jakieś</em> dane, następnie wywołuje na przykład zapytanie bazodanowe, którego wynik znowu jest tablicą; a na koniec robi się <code>echo $data</code> i tak naprawdę tylko autor wie co się tam dzieje.
+            </div>
+
+            <div class="mt-8 w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">$request = [...$_GET, ...$_POST];
+$slug = $request["slug"] ?? $request[0] ?? throw new Exception();
+$query = new Query("SELECT * FROM articles WHERE slug = ?", $slug);
+$results = $query->run();
+
+return $results[0] ?? throw new Exception();</pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Czyż nie lepiej byłoby móc przeczytać to "po angielsku"?
+            </div>
+
+            <div class="mt-8 w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">$request = Request::createFromGlobals();
+$slug = $request->getOrFail("slug");
+
+$article = (new ArticlesQuery())->where("slug", $slug)->firstOrFail();
+
+return $article;</pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              I czyż nie lepiej byłoby jako wynik takiej funkcji otrzymać coś konkretnego?
+            </div>
+
+            <div class="mt-4 w-full mx-auto flex gap-4 mb-8">
+              <div class="flex-1 text-2xl"><pre class="p-4">array(9) {
+  ["id"]=>
+  string(36) "51c868ac-d352-4bdb-b380-08e8aac5f48d"
+  ["title"]=>
+  string(11) "Lorem ipsum"
+  ["slug"]=>
+  string(11) "lorem-ipsum"
+  ["content"]=>
+  string(418) "Lorem ipsum dolor sit amet,
+               consectetur adipiscing elit.
+               Quisque fermentum vel sem
+               vitae eleifend. Aliquam in
+               posuere eros, eget imperdiet
+               tellus. Quisque imperdiet ligula
+                in ullamcorper facilisis. Ut in
+               justo pellentesque, ultricies arcu
+               id, commodo ex. Suspendisse bibendum
+               urna erat, ac molestie nibh congue
+               ac. Pellentesque in enim neque.
+               Phasellus metus sapien, consectetur
+               a fermentum sit amet, aliquam
+               eu velit."
+  ["author_id"]=>
+  string(36) "dc7cdfc7-e050-4287-8652-00210e089249"
+  ["status"]=>
+  int(3)
+  ["created_at"]=>
+  string(19) "2024-04-08 17:00:00"
+  ["updated_at"]=>
+  string(19) "2024-04-08 17:00:00"
+  ["deleted_at"]=>
+  NULL
+}</pre></div>
+              <div class="flex-1 text-2xl"><pre class="p-4">object(Article)#1 (5) {
+  ["id":protected]=>
+  string(36) "51c868ac-d352-4bdb-b380-08e8aac5f48d"
+  ["title":protected]=>
+  string(11) "Lorem ipsum"
+  ["slug":protected]=>
+  string(11) "lorem-ipsum"
+  ["author":protected]=>
+  object(Author)#2 (2) {
+    ["id":protected]=>
+    string(36) "dc7cdfc7-e050-4287-8652-00210e089249"
+    ["fullName":protected]=>
+    string(14) "Matthew Stover"
+  }
+  ["status":protected]=>
+  enum(Status::Active)
+}
+</pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Z innej strony: czasami nawet proste akcje mogą składać się z kilkunastu kroków.
+            </div>
+
+            <div class="mt-4 w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">
+class UserRegistrar
+{
+    public UserRegistrar(Hasher hasher, EventDispatcher dispatcher, CacheManager cache)
+
+    public User register(String email, String password) throws UserAlreadyExistsException
+    {
+        User user = new User()
+        user.setName(email)
+        user.setPassword(hasher.argon(password))
+
+        user.createOrFail()
+        user.notify(new WelcomeMessage(), Channel.Email)
+
+        dispatcher.send(new UserRegistered())
+        cache.refresh(Cache.UserStatistics | Cache.RegisterStatistics)
+    }
+}
+              </pre></div>
+              <div class="text-lg w-2/3 mx-auto">
+                Więc korzystanie z dobrych praktyk programistycznych naprawdę ułatwia pracę. Wyobraźmy sobie jak taki proces rejestracji wyglądałby w <em>spaghetti</em> pomieszany z elementami UI czy obsługą protokołu HTTP.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Do rozważenia odnośnie modelu</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              <ul class="block">
+                <li>klasy modelu najlepiej konstruować tak, aby dało się ich używać wielokrotnie w wielu miejscach oraz testować</li>
+                <li>hermetyzacja, dziedziczenie, interfejsy, abstrakcja - naprawdę pomagają przy modelowaniu świata rzeczywistego</li>
+                <li>model powinien być całkowicie odseparowany od tego, co się dzieje na frontendzie</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Widok
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność widoku</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Widok to element warstwy UI, na którą będą składać się wartswy prezentacji oraz interakcji. Powinien zostać wypełniony danymi pochodzącymi z modelu.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Klasyczne aplikacje webowe vs SPA</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W <em>klasycznym</em> podejściu do budowania aplikacji internetowych często można było spotkać się z silnikami renderującymi na podstawie szablonów. Tak działają Twig, Jinja, Smarty, Blade, Razor i wiele innych. Idea jest prosta: w plikach szablonu można korzystać ze specjalnej składni "ulepszonego" HTML-a.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Obecnie często warstwa widoku jest budowana poza główną aplikacją, a więc wykorzystywane są rozwiązania takie jak React czy Vue.js. Wówczas widokiem w kontekście MVC jest... odpowiedź zawierająca JSON?
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Tak może wyglądać przykładowy plik szablonu w Django:
+            </div>
+
+            <div class="mt-4 w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">{% load static %}
+{% extends 'base.html' %}
+{% block title %} Lista użytkowników {% endblock %}
+
+{% block content %}
+    &lt;table class="table-auto w-full mt-4"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th class="px-4 py-2"&gt;Imię i nazwisko&lt;/th&gt;
+                &lt;th class="px-4 py-2"&gt;Email&lt;/th&gt;
+                &lt;th class="px-4 py-2"&gt;Akcje&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            {% for user in users %}
+                &lt;tr&gt;
+                    &lt;td class="border px-4 py-2"&gt;{{ user.full_name }}&lt;/td&gt;
+                    &lt;td class="border px-4 py-2"&gt;{{ user.email }}&lt;/td&gt;
+                    &lt;td class="border px-4 py-2 text-white font-bold "&gt;
+                        &lt;button class="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded"&gt;Edytuj&lt;/button&gt;
+                        &lt;button class="bg-red-500 hover:bg-red-700 py-2 px-4 rounded"&gt;Usuń&lt;/button&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            {% endfor %}
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+{% endblock %}
+              </pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Silniki szablonów</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Najczęściej w silnikach szablonów można skorzystać z przypisywania zmiennych, instrukcji warunkowych, pętli czy własnych funkcji silnika.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niektóre systemy (m. in. laravelowy Blade) pozwalają na dużo więcej, ale warto mieć na uwadze, że korzystanie z mechanizmów modelu wewnątrz widoku zdecydowanie łamie zasadę separacji warstw wedle MVC. Zresztą niewinnie wyglądające <code>{{ $user->posts()->count() }}</code> w Blade uruchomi... zapytanie bazodanowe prosto z widoku. Ała!
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co przekazywać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Stąd też dobrze jest sobie rozplanować, co chcemy tak naprawdę przyjąć w widoku. Czasami w bazie danych mamy bardzo dużo informacji, ale niektórych nie chcemy, a jeszcze innych nie powinniśmy przekazywać dalej.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Na przykład źle zorganizowane przekazanie listy użytkowników do tabelki z użytkownikami zwróci ich... hasła? a może listy postów? a może coś jeszcze więcej?
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Rozwiązaniem może być wysyłanie do widoku jedynie <em>głupich</em> obiektów, czyli DTO albo Value Objectów.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Do rozważenia odnośnie widoku</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              <ul class="block">
+                <li>widok spełnia dwie role: prezentacji danych oraz interakcji</li>
+                <li>prezentacja tych samych danych dla różnych użytkowników może wyglądać całkowicie inaczej</li>
+                <li>interakcje mogą przebiegać w dowolny sposób i lepiej nie zakładać synchronicznego flow</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Kontroler
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność kontrolera</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Kontroler to element warstwy komunikacji. Do jego obowiązków należy przyjęcie żądania i zwrócenie odpowiedzi, a realizuje to poprzez wywołanie modelu oraz wypełnienie widoku.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Cienki i gruby kontroler</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Istnieją dwie szkoły tworzenia kontrolerów. <em>Cienki kontroler</em> to taki, który jest bardzo krótki i jedynie deleguje akcje do modelu. <em>Gruby kontroler</em> jest zazwyczaj nieco bardziej skomplikowany. Najczęściej wybór między doma podejściami zależy od preferencji lidera lub ogółu programistów w zespole.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Gruby kontroler</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">class ContactController extends Controller
+{
+    public JsonResponse send(Request request)
+    {
+        if(!request.getContext().getUser()) {
+            return (new JsonResponse()).withStatus(401)
+        }
+
+        RequestValidator validator = new RequestValidator
+        validator.setRule("email", "required|min:3|email")
+        validator.setRule("author", "required|min:3")
+        validator.setRule("message", "required|min:20")
+
+        ValidatorStatus status = validator.validate(request)
+
+        if(!status.passed()) {
+            return (new JsonResponse()).withStatus(422).withMessage(status.getMessage())
+        }
+
+        ContactMessageSender sender = new ContactMessageSender()
+        sender.send(request.get("email"), request.get("author"), request.get("message"))
+
+        User administrator = (new UserQuery())->where("admin", true)->first()
+        administrator.notify("new message has been sent")
+
+        return (new JsonResponse()).withStatus(200)
+    }
+}</pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Cienki kontroler</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">class ContactController extends Controller
+{
+    public JsonResponse send(ContactMessageRequest request, ContactMessageSender sender)
+    {
+        sender.send(request.get("email"), request.get("author"), request.get("message"))
+
+        return (new JsonResponse()).withStatus(200)
+    }
+}</pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli dany framework jest wyposażony w ORM typu Active Record (o tym na wykładzie #9), niektórych kusić może bezpośrednie wywoływanie zapytań bazodanowych w kontrolerach.
+            </div>
+
+            <div class="mt-8 w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-2xl"><pre class="p-4">class PageController extends Controller
+{
+    public function __invoke(Request $request, string $slug): JsonResponse
+    {
+        $page = Page::query()
+            ->where("slug", $slug)
+            ->where("is_active", true)
+            ->firstOrFail();
+
+        return response()->json($page);
+    }
+}</pre></div>
+            </div>
+            <div class="text-lg w-2/3 mx-auto">
+              Czy to źle? Ponownie zależy od standardów i upodobań zespołu. W małym projekcie nie powinno to być problemem. W dużym? To już zależy od konwencji i preferencji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Do rozważenia odnośnie kontrolera</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              <ul class="block">
+                <li>obiekty <code>Request</code> i <code>Response</code> nie powinny wychodzić poza warstwę komunikacji; zarówno do modelu, jak i widoku, powinny być przesyłane jak najprostsze i najbardziej konkretne dane</li>
+                <li>wiele rzeczy można usunąć z kontrolera na poziomie dobrze zaprojektowanego routingu, stosowania middlewarów, wydzielonej walidacji żądań czy obsługi zdarzeń i wyjątków</li>
+                <li>większość webowych frameworków MVC ma jeszcze inny entrypoint do aplikacji: polecenia z poziomu CLI; warto to mieć na uwadze projektując kontrolery</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w06/mvc.png" class="w-full" alt="Schemat przepływu request-response w implementacji wzorca MVC">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat przepływu request-response w implementacji wzorca MVC
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>aplikacje webowe bardzo mocno opierają się na komunikacji po protokole HTTP</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://w3techs.com/technologies/overview/web_server" target="_blank">ranking popularności serwerów HTTP</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
