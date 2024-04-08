@@ -412,7 +412,7 @@ class UserRegistrar
         ContactMessageSender sender = new ContactMessageSender()
         sender.send(request.get("email"), request.get("author"), request.get("message"))
 
-        User administrator = (new UserQuery())->where("admin", true)->first()
+        User administrator = (new UserQuery()).where("admin", true).first()
         administrator.notify("new message has been sent")
 
         return (new JsonResponse()).withStatus(200)
