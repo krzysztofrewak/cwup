@@ -214,7 +214,7 @@ Odwet,Krystian Maniecki,2024-04-19
         "Autor": "Yuval Noah Harari",
         "Data przeczytania": "2024-04-19"
     }
-}
+]
       </pre>
             </div>
           </section>
@@ -505,6 +505,83 @@ book.save()</code></pre></div>
               klasyfikacja wedle Wikipedii; zwróćcie uwagę na powtórzenia w kolumnie z przykładami
             </div>
           </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Idea jest jednak wszędzie wspólna: porzucić relacje na rzecz bardziej elastycznego podejścia. Może to zwiększyć zapotrzebowanie na pamięć, może być wolniejsze. Ale nie trzeba będzie trzymać się sztywnych reguł tabelarycznego podejścia.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bazy klucz-wartość</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bazy typu <em>key-value</em>, czyli <em>klucz-wartość</em> to pewnego rodzaju pochodna od prostych kartotek. Wszystkie dane trzymane są pod konkretnymi kluczami, a więc dostęp do pojedynczego rekordu jest bardzo szybki, ale niestety kosztem przeszukiwania bazy.
+            </div>
+          </section>
+          <section>
+            <div class="text-3xl"><pre><code>books:20758dc6-f296-4af2-a66b-7d3ff76ac49b:title  <span class="text-gray-400">=> Operacja Mir</span>
+books:20758dc6-f296-4af2-a66b-7d3ff76ac49b:author <span class="text-gray-400">=> Remigiusz Mróz</span>
+books:20758dc6-f296-4af2-a66b-7d3ff76ac49b:readAt <span class="text-gray-400">=> 2024-04-20</span>
+books:074a507a-6d8d-4707-ad78-497ef354f05b:title  <span class="text-gray-400">=> Odwet</span>
+books:074a507a-6d8d-4707-ad78-497ef354f05b:author <span class="text-gray-400">=> Krystian Maniecki</span>
+books:074a507a-6d8d-4707-ad78-497ef354f05b:readAt <span class="text-gray-400">=> 2024-04-19</span>
+books:fbf856be-b157-48c0-8a58-4e4ae25edde2:title  <span class="text-gray-400">=> 21 lekcji na XXI wiek</span>
+books:fbf856be-b157-48c0-8a58-4e4ae25edde2:author <span class="text-gray-400">=> Yuval Noah Harari</span>
+books:fbf856be-b157-48c0-8a58-4e4ae25edde2:readAt <span class="text-gray-400">=> 2024-04-19</span></code></pre></div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              przykładowy zapis w Redisie
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bazy dokumentowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bazy typu dokumentowego to platformy, które są zoptymalizowane do przetwarzania dokumentów w rozumieniu plików w formacie JSON lub XML. Schemat dokumentu jest najczęściej opcjonalny, dzięki czemu dane mogą przybierać najróżniejsze postaci.
+            </div>
+          </section>
+          <section>
+            <div class="text-xl"><pre><code>[
+    {
+        id: "20758dc6-f296-4af2-a66b-7d3ff76ac49b",
+        title: "Operacja Mir",
+        author: {
+            id: "75ff22b3-b94f-41e3-837b-f73092014809",
+            name: "Remigiusz Mróz"
+        },
+        readAt: "2024-04-20"
+    },
+    {
+        id: "074a507a-6d8d-4707-ad78-497ef354f05b",
+        title: "Odwet",
+        author: {
+            id: "1fa8d3e6-ecb3-4806-b2e5-b4f2c589dae5",
+            name: "Krystian Maniecki"
+        },
+        readAt: "2024-04-19"
+    },
+    {
+        id: "fbf856be-b157-48c0-8a58-4e4ae25edde2",
+        title: "21 lekcji na XXI wiek",
+        author: {
+            id: "573aedb6-ba01-404a-b0f5-c865813d73e7",
+            name: "Yuval Noah Harari"
+        },
+        readAt: "2024-04-19"
+    }
+}</code></pre></div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              przykładowy zapis w MongoDB
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bazy grafowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bazy typu grafowego zoptymalizowane są pod względem szukania najkrótszych (lub sprawdzania istniejących) ścieżek między dwoma zadanymi wierzchołkami. Przydatne wszędzie tam, gdzie chcemy znajdować zależności, wzorce i powiązania - w social mediach, bankowości elektronicznej, robotyce czy szeroko rozumianej nauce.
+            </div>
+          </section>
         </section>
 
         <section>
@@ -517,7 +594,11 @@ book.save()</code></pre></div>
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li>programista zawsze musi wiedzieć, co tak naprawdę programuje: zarówno technicznie, jak i domenowo</li>
+                <li>dobry programista systemów internetowych zna przynajmniej kilka typów baz danych i potrafi dobrać narzędzie do potrzeb (czyli nie poddaje się łatwo <em>hype-driven developmentowi</em>)</li>
+                <li>bazy kartotekowe spotkamy wszędzie: przy plikach do importu, przy raportach, przy integracjach z systemami starszego typu</li>
+                <li>bazy relacyjne to podstawa i warto opanować przynajmniej jedną (i wiedzieć, że niektóre technologie mają swoje preferowane systemy)</li>
+                <li>bazy obiektowe to upadły eksperyment, ale zainspirowały twórców technologii ORM</li>
+                <li>bazy NoSQL mają swoje zastosowania, ale warto trzy razy zastanowić się czy używamy dobrego systemu do konkretnego problemu; tutaj nie ma szwajcarskich scyzoryków</li>
               </ul>
             </div>
           </section>
