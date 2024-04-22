@@ -1,0 +1,630 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Internetowe bazy danych</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">8</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Proste typy baz danych</li>
+              <li>Relacyjne bazy danych</li>
+              <li>Obiektowe bazy danych</li>
+              <li>Nierelacyjne bazy danych</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Proste typy baz danych
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Definicja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Nie ma oczywiście żadnej konkretnej definicji czym mogłaby być baza danych.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wikipedia opisuje bazy danych jako "zbiór danych zapisanych zgodnie z określonymi regułami"... ale także jako "dane cyfrowe gromadzone zgodnie z zasadami przyjętymi dla danego programu komputerowego specjalizowanego w gromadzeniu i przetwarzaniu tych danych".
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">System zarządzania bazą danych</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Warto znać w tym kontekście pojęcie SZBD (ang. <em>Database Management System</em>, DBMS), ponieważ należy rozróżniać samą bazę danych od pewnej warstwy abstrakcji, które pozwala nam na dostęp do tejże bazy i jejże danych.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              W świecie projektowania i wdrażania systemów internetowych najczęściej te pojęcia są tożsame, ale należy rozumieć to jako ogólnie przyjęty skrót myślowy.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Ale zanim przejdziemy do baz i systemów uważanych za najpopularniejsze, musimy zrozumieć, że idea bazy danych nie zawsze wiąże się z SQL-em i zaawansowanym operacjami.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kartotekowe bazy danych</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Kartoteka to najprostsza baza danych złożona z jednej tablicy, którą można przedstawić jako tabelę z wierszami i kolumnami.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              <table class="w-full table-auto text-sm">
+                <thead>
+                  <tr>
+                    <th>Tytuł</th>
+                    <th>Autor</th>
+                    <th>Data przeczytania</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Operacja Mir</td>
+                    <td>Remigiusz Mróz</td>
+                    <td>2024-04-20</td>
+                  </tr>
+                  <tr>
+                    <td>Odwet</td>
+                    <td>Krystian Maniecki</td>
+                    <td>2024-04-19</td>
+                  </tr>
+                  <tr>
+                    <td>21 lekcji na XXI wiek</td>
+                    <td>Yuval Noah Harari</td>
+                    <td>2024-04-19</td>
+                  </tr>
+                  <tr>
+                    <td>Preludium Fundacji</td>
+                    <td>Isaac Asimov</td>
+                    <td>2024-04-10</td>
+                  </tr>
+                  <tr>
+                    <td>Wybór</td>
+                    <td>Anne Applebaum</td>
+                    <td>2024-03-27</td>
+                  </tr>
+                  <tr>
+                    <td>Pan Mercedes</td>
+                    <td>Stephen King</td>
+                    <td>2024-03-21</td>
+                  </tr>
+                  <tr>
+                    <td>Piękna krew</td>
+                    <td>Lucius Shepard</td>
+                    <td>2024-03-06</td>
+                  </tr>
+                  <tr>
+                    <td>Komandosi Republiki. Rozkaz 66</td>
+                    <td>Karen Traviss</td>
+                    <td>2024-03-05</td>
+                  </tr>
+                  <tr>
+                    <td>Lot 202</td>
+                    <td>Remigiusz Mróz</td>
+                    <td>2024-03-04</td>
+                  </tr>
+                  <tr>
+                    <td>Czy da się to przyspieszyć?</td>
+                    <td>Jeremy Clarkson</td>
+                    <td>2024-03-03</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-16 text-base w-4/5 mx-auto">
+              przykładowa kartoteka z listą ostatnio przeczytanych przeze mnie książek
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zalety kartotek</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-sm leading-8 w-1/2 mx-auto">
+              <li>proste do odczytu - można otworzyć nawet w Notatniku</li>
+              <li>proste do zapisu - jak powyżej</li>
+              <li>dane można łatwo zapisać w innych formatach takich jak CSV, XML czy JSON</li>
+              <li>dane można sortować i filtrować - tutaj będzie to zależało od ich struktury</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Proste formaty danych</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-base flex gap-4">
+      <pre class="p-4">Tytuł,Autor,Data przeczytania
+Operacja Mir,Remigiusz Mróz,2024-04-20
+Odwet,Krystian Maniecki,2024-04-19
+21 lekcji na XXI wiek,Yuval Noah Harari,2024-04-19
+      </pre>
+              <pre class="p-4">&lt;?xml version="1.0" ?&gt;
+&lt;ksiazki&gt;
+    &lt;ksiazka&gt;
+        &lt;Tytul&gt;Operacja Mir&lt;/Tytul&gt;
+        &lt;Autor&gt;Remigiusz Mróz&lt;/Autor&gt;
+        &lt;DataPrzeczytania&gt;2024-04-20&lt;/DataPrzeczytania&gt;
+    &lt;/ksiazka&gt;
+    &lt;ksiazka&gt;
+        &lt;Tytul&gt;Odwet&lt;/Tytul&gt;
+        &lt;Autor&gt;Krystian Maniecki&lt;/Autor&gt;
+        &lt;DataPrzeczytania&gt;2024-04-19&lt;/DataPrzeczytania&gt;
+    &lt;/ksiazka&gt;
+    &lt;ksiazka&gt;
+        &lt;Tytul&gt;21 lekcji na XXI wiek&lt;/Tytul&gt;
+        &lt;Autor&gt;Yuval Noah Harari&lt;/Autor&gt;
+        &lt;DataPrzeczytania&gt;2024-04-19&lt;/DataPrzeczytania&gt;
+    &lt;/ksiazka&gt;
+&lt;/ksiazki&gt;
+      </pre>
+              <pre class="p-4">[
+    {
+        "Tytuł": "Operacja Mir",
+        "Autor": "Remigiusz Mróz",
+        "Data przeczytania": "2024-04-20"
+    },
+    {
+        "Tytuł": "Odwet",
+        "Autor": "Krystian Maniecki",
+        "Data przeczytania": "2024-04-19"
+    },
+    {
+        "Tytuł": "21 lekcji na XXI wiek",
+        "Autor": "Yuval Noah Harari",
+        "Data przeczytania": "2024-04-19"
+    }
+]
+      </pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wady kartotek</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-sm leading-8 w-1/2 mx-auto">
+              <li>niedostosowane do trudniejszych danych</li>
+              <li>sortowanie i filtrowanie może być czasochłonne</li>
+              <li>to tylko pliki, więc są bardzo podatne na błędy</li>
+            </ul>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Inne typy baz danych pomagają rozwiązać część z tych problemów. Natomiast w systemach internetowych tak naprawdę będą się liczyły dwa główne typy: bazy relacyjne i nierelacyjne.
+            </div>
+          </section>
+          <section>
+            <div class="w-2/3 mx-auto">
+              <img src="../../images/w08/diagram.png" class="w-full" alt="diagram">
+            </div>
+            <div class="mt-8 text-base w-3/5 mx-auto">
+              najpopularniejsze typy baz danych wedle db-engines.com
+            </div>
+          </section>
+          <section>
+            <div class="w-2/3 mx-auto">
+              <img src="../../images/w08/ranking.png" class="w-full" alt="ranking">
+            </div>
+            <div class="mt-8 text-base w-3/5 mx-auto">
+              najpopularniejsze bazy danych wedle db-engines.com
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Relacyjne bazy danych
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Cała idea relacyjnych baz danych na pewno została szczegółowo przedstawiona na przedmiotach <em>Bazy danych</em> i <em>Projektowanie systemów baz danych</em>.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dziś omówimy jedynie zagadnienia istotne z perspektywy systemów internetowych, a już konkretyzując: wykorzystywanie w pełni relacyjności, migracje i seedowanie oraz kwestię ACID.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../images/w08/books-1.png" class="w-full" alt="schemat relacyjnej bazy danych">
+            </div>
+            <div class="mt-8 text-base w-3/5 mx-auto">
+              schemat relacyjnej bazy danych
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../images/w08/books.png" class="w-full" alt="schemat relacyjnej bazy danych">
+            </div>
+            <div class="mt-8 text-base w-3/5 mx-auto">
+              schemat relacyjnej bazy danych (tak na serio)
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Relacyjność i koherentność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              To, że DBMS nazywa się relacyjnym, nie oznacza, że wszystko zrobione w jego ramach będzie miało poprawnie zbudowane relacje. Nie będzie też oznaczało, że dane wewnątrz mają jakiś sens strukturalny.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Pomyślcie o tym jak o obiektowym paradygmacie w C++, Pythonie czy PHP. Jeżeli ktoś się uprze, jest w stanie programować wszystko strukturalnie w tych trzech językach. Jeżeli nazwie zmienną <code>String myFavouriteNumber</code> to nic nam do tego, że to nie jest tak naprawdę liczba. Z bazami danych jest niestety podobnie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Klucze!</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Żeby zachować sensowną relacyjność i koherentność należy odpowiednio korzystać z funkcjonalności jakie dają nam klucze w relacyjnych bazach danych.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przede wszystkim klucze <code>PRIMARY</code> czy <code>UNIQUE</code> pomogą przy zachowaniu spójności danych. Lepiej aby takie rzeczy sprawdzała sama baza, a nie jej klient.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Klucze <code>FOREIGN</code> zachowają koherencję między tabelami. Nikt już nigdy nie podłączy się do nieistniejącego rekordu, ale warto znać też klauzulę <code>ON DELETE</code>, która pomaga w zarządzaniu tym, co ma się stać po skasowaniu połączonego rekordu.
+            </div>
+          </section>
+          <section>
+            <div class="w-2/3 mx-auto">
+              <img src="../../images/w08/books-2.png" class="w-full" alt="schemat relacyjnej bazy danych z relacjami">
+            </div>
+            <div class="mt-8 text-base w-3/5 mx-auto">
+              schemat relacyjnej bazy danych z relacjami
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Automatyzacja budowania bazy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Czasy, w których do projektu dodawany był plik <code>baza.sql</code> z dumpem produkcyjnej bazy danych, na szczęście odchodzą do lamusa.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Rozwiązaniem obecnie uważanym za standard branżowym są tzw. migracje, które dodaje się do repozytorium, a które są skryptami automatyzującymi tworzenie nowej bazy od zera.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Migracje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Różne frameworki mają różne podejścia, ale idea jest wspólna. W wybranym katalogu repozytorium dodawane są nowe pliki (koniecznie w konkretnej kolejności!), które opisują wszystkie zmiany, które progamista zaplanował w ramach swojej pracy nad systemem.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dzięki temu wszyscy inżynierowie pracujący nad systemem będą mogli łatwo ujednolicić swoje środowiska deweloperskie, często nawet bez potrzeby utraty swoich danych.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Różnice mogą pojawiać się na poziomie tworzenia migracji. Niektóre frameworki (np. Laravel) zachęcają do ręcznego tworzenia migracji, co jest bardziej czasochłonne, ale jednocześnie łatwiejsze w customizacji. Inne (np. Django) posiadają mechanizmy do automatycznego tworzenia plików migracyjnych budowanych na podstawie zmian w plikach modelu.
+            </div>
+          </section>
+          <section>
+            <div class="flex gap-8">
+              <div class="flex-1 text-base">
+                <pre><code>
+return new class() extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(
+            "books",
+            function (Blueprint $table): void {
+                $table->uuid("id")->primary();
+                $table->string("slug", 100)->unique();
+
+                $table->string("title", 100);
+                $table->string("language_id", 36);
+                $table->foreign("language_id")->references("id")->on("languages");
+                $table->integer("pages")->nullable()->default(null);
+                $table->text("description")->nullable()->default(null);
+                $table->string("cover_url", 100)->nullable()->default(null);
+
+                $table->timestamp("started_at")->useCurrent();
+                $table->timestamp("read_at")->nullable()->default(null);
+                $table->boolean("is_repeat")->default(false);
+
+                $table->string("original_title", 100)->nullable()->default(null);
+                $table->string("original_language_id", 100)->nullable()->default(null);
+                $table->string("original_release_year", 100)->nullable()->default(null);
+
+                $table->timestamps();
+            },
+        );
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists("books");
+    }
+};
+                </code></pre>
+              </div>
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              migracja w Laravelu
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Warto odnotować, że większość frameworków pozwala na pełne zarządzanie migracjami. W dowolnym momencie można uruchomić nowe, cofnąć się do konkretnego miejsca w przeszłości czy też zobaczyć, co jeszcze nie zostało zaaplikowane.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dobrą praktyką jest prowadzenie projektu w taki sposób, aby nie zmuszać nikogo nigdzie do resetu bazy danych. Stąd też zazwyczaj nie zaleca się modyfikowania już przesłanych migracji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Seedowanie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Za grzeczność uważa się przygotowanie tzw. seederów, czyli gotowych lub pseudogotowych zestawów danych, które można na przykład uruchomić podczas inicjalizacji projektu w środowisku deweloperskim. Mogą się tam znaleźć takie rzeczy jak konta użytkowników z gotowymi ustawionymi hasłami czy wygenerowane w losowy sposób 100 produktów i 1000 zamówień w sklepie internetowym.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Część danych wręcz koniecznie trzeba zaseedować. Takie rzeczy jak państwa świata, waluty czy języki oczywiście można też wystawić w jakimś CRUD-zie. Ale co z rolami systemowymi albo uprawnieniami?
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Transakcje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Transakcje to często pomijany przez początkujących programistów mechanizm, który zdecydowanie warto znać.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              W bardzo dużym uproszczeniu jest to sposób wymuszenia na systemie zarządzania bazą danych działania atomowego w kontekście transakcji. Jeżeli w jednej transakcji zamknięte zostaną cztery operacje, wszystkie będą musiały się faktycznie wykonać, żeby uznać całość za wykonaną - ze wszystkimi tego konsekwencjami.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">ACID</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              ACID to akronom zbierający cechy gwarantujące poprawne przetwarzanie transakcji w relacyjnych bazach danych:
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul>
+                <li><em>atomicity</em>, niepodzielność akcji w transkacji</li>
+                <li><em>consistency</em>, spójność poprzez wymuszenie zasad integralności</li>
+                <li><em>isolation</em>, izolacja procesów wykonujących transakcje</li>
+                <li><em>durability</em>, trwałość w przypadku awarii</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Obiektowe bazy danych
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Idea</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              O ileż prościej byłoby móc programować na przykład tak:
+            </div>
+
+            <div class="text-3xl"><pre><code>Book book = new Book("Zdrajca", original: "Traitor")
+book.addAuthor(new Author("Matthew", "Stover", Country.USA))
+book.setPages(320)
+book.save()</code></pre></div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Obiektowe bazy danych</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W taki sposób działają właśnie obiektowe bazy danych, np. db4o.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niestety są ekstremalnie niepopularne, ociężałe i powolne oraz na stałe przytwierdzone do swoich technologii, przez co nigdy się nie przebiły do mainstreamu. Zagadnienie jest ciekawe i jego najważniejsze założenia realizowane są obecnie częściej przez systemy mapujące relacje na obiekty (ORM), ale tamże wykorzystywane są klasyczne relacyjne bazy danych.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Nierelacyjne bazy danych
+          </section>
+          <section>
+            <div class="font-bold text-3xl">NoSQL</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Relacyjne bazy danych przez lata królowały właściwie we wszystkich systemach informatycznych. W którymś momencie zaczęto jednak zauważać, że niektóre sposoby ich wykorzystania były tzw. overengineeringiem lub były trudne w utrzymaniu lub skalowaniu.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Czy musimy logi systemowe trzymać w klasycznej bazie danych? A cache produktów w sklepie internetowym? A podpowiedzi do wyszukiwarki internetowej?
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              A może i produkty w tymże sklepie też jednak lepiej trzymać poza klasyczną tablicą z relacyjnej bazy?
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Istnieje kilka różnych sposobów na opisanie nosqlowych baz danych. Najprawdopodbniej najlepiej zapoznać się przynajmniej z bazami <em>key-value</em>, dokumentowymi i grafowymi.
+            </div>
+
+            <div class="w-2/3 mx-auto">
+              <img src="../../images/w08/nosql.png" class="w-full" alt="klasyfikacja noSQL-owych baz danych">
+            </div>
+            <div class="mt-8 text-base w-3/5 mx-auto">
+              klasyfikacja wedle Wikipedii; zwróćcie uwagę na powtórzenia w kolumnie z przykładami
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Idea jest jednak wszędzie wspólna: porzucić relacje na rzecz bardziej elastycznego podejścia. Może to zwiększyć zapotrzebowanie na pamięć, może być wolniejsze. Ale nie trzeba będzie trzymać się sztywnych reguł tabelarycznego podejścia.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bazy klucz-wartość</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bazy typu <em>key-value</em>, czyli <em>klucz-wartość</em> to pewnego rodzaju pochodna od prostych kartotek. Wszystkie dane trzymane są pod konkretnymi kluczami, a więc dostęp do pojedynczego rekordu jest bardzo szybki, ale niestety kosztem przeszukiwania bazy.
+            </div>
+          </section>
+          <section>
+            <div class="text-3xl"><pre><code>books:20758dc6-f296-4af2-a66b-7d3ff76ac49b:title  <span class="text-gray-400">=> Operacja Mir</span>
+books:20758dc6-f296-4af2-a66b-7d3ff76ac49b:author <span class="text-gray-400">=> Remigiusz Mróz</span>
+books:20758dc6-f296-4af2-a66b-7d3ff76ac49b:readAt <span class="text-gray-400">=> 2024-04-20</span>
+books:074a507a-6d8d-4707-ad78-497ef354f05b:title  <span class="text-gray-400">=> Odwet</span>
+books:074a507a-6d8d-4707-ad78-497ef354f05b:author <span class="text-gray-400">=> Krystian Maniecki</span>
+books:074a507a-6d8d-4707-ad78-497ef354f05b:readAt <span class="text-gray-400">=> 2024-04-19</span>
+books:fbf856be-b157-48c0-8a58-4e4ae25edde2:title  <span class="text-gray-400">=> 21 lekcji na XXI wiek</span>
+books:fbf856be-b157-48c0-8a58-4e4ae25edde2:author <span class="text-gray-400">=> Yuval Noah Harari</span>
+books:fbf856be-b157-48c0-8a58-4e4ae25edde2:readAt <span class="text-gray-400">=> 2024-04-19</span></code></pre></div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              przykładowy zapis w Redisie
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bazy dokumentowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bazy typu dokumentowego to platformy, które są zoptymalizowane do przetwarzania dokumentów w rozumieniu plików w formacie JSON lub XML. Schemat dokumentu jest najczęściej opcjonalny, dzięki czemu dane mogą przybierać najróżniejsze postaci.
+            </div>
+          </section>
+          <section>
+            <div class="text-xl"><pre><code>[
+    {
+        id: "20758dc6-f296-4af2-a66b-7d3ff76ac49b",
+        title: "Operacja Mir",
+        author: {
+            id: "75ff22b3-b94f-41e3-837b-f73092014809",
+            name: "Remigiusz Mróz"
+        },
+        readAt: "2024-04-20"
+    },
+    {
+        id: "074a507a-6d8d-4707-ad78-497ef354f05b",
+        title: "Odwet",
+        author: {
+            id: "1fa8d3e6-ecb3-4806-b2e5-b4f2c589dae5",
+            name: "Krystian Maniecki"
+        },
+        readAt: "2024-04-19"
+    },
+    {
+        id: "fbf856be-b157-48c0-8a58-4e4ae25edde2",
+        title: "21 lekcji na XXI wiek",
+        author: {
+            id: "573aedb6-ba01-404a-b0f5-c865813d73e7",
+            name: "Yuval Noah Harari"
+        },
+        readAt: "2024-04-19"
+    }
+}</code></pre></div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              przykładowy zapis w MongoDB
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bazy grafowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bazy typu grafowego zoptymalizowane są pod względem szukania najkrótszych (lub sprawdzania istniejących) ścieżek między dwoma zadanymi wierzchołkami. Przydatne wszędzie tam, gdzie chcemy znajdować zależności, wzorce i powiązania - w social mediach, bankowości elektronicznej, robotyce czy szeroko rozumianej nauce.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>dobry programista systemów internetowych zna przynajmniej kilka typów baz danych i potrafi dobrać narzędzie do potrzeb (czyli nie poddaje się łatwo <em>hype-driven developmentowi</em>)</li>
+                <li>bazy kartotekowe spotkamy wszędzie: przy plikach do importu, przy raportach, przy integracjach z systemami starszego typu</li>
+                <li>bazy relacyjne to podstawa i warto opanować przynajmniej jedną (i wiedzieć, że niektóre technologie mają swoje preferowane systemy)</li>
+                <li>bazy obiektowe to upadły eksperyment, ale zainspirowały twórców technologii ORM</li>
+                <li>bazy NoSQL mają swoje zastosowania, ale warto trzy razy zastanowić się czy używamy dobrego systemu do konkretnego problemu; tutaj nie ma szwajcarskich scyzoryków</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://pl.wikipedia.org/wiki/Baza_danych" target="_blank">Baza danych</a> na Wikipedii</li>
+                <li><a href="https://db-engines.com/en/ranking" target="_blank">ranking baz danych</a> na db-engines.com</li>
+                <li><a href="https://en.wikipedia.org/wiki/NoSQL#Types_and_examples" target="_blank">typy noSQL-owych baz danych</a>, znów na Wikipedii</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

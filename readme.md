@@ -12,7 +12,7 @@ Kurs składa się z serii wykładów oraz zajęć projektowych. Zasady zaliczeni
 1. [Protokół HTTP](https://krzysztofrewak.github.io/ppsi/lectures/w05/index.html)
 1. [Wzorzec architektoniczny MVC](https://krzysztofrewak.github.io/ppsi/lectures/w06/index.html)
 1. [Implementacja domeny](https://krzysztofrewak.github.io/ppsi/lectures/w07/index.html)
-1. Internetowe bazy danych
+1. [Internetowe bazy danych](https://krzysztofrewak.github.io/ppsi/lectures/w08/index.html)
 1. Mapowanie relacyjno-obiektowe
 1. Uwierzytelnianie i autoryzacja użytkowników
 1. Asynchroniczne interakcje z serwerem
