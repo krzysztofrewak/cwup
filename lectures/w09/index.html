@@ -185,6 +185,72 @@ LIMIT 10</code></pre></div>
               schemat działania systemu typu ORM
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl">Budowanie zapytań</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Większość ORM-ów wyposażonych jest w tzw. <em>query builder</em>, czyli obiektowy sposób tworzenia zapytań bazodanowych.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dzięki temu możemy w naszym kodzie tworzyć zapytania w języku aplikacji. Za pomocą łańcucha metod oraz domyślnych konfiguracji możemy zbudować faktycznie zapytania w wybranych dialekcie SQL bez pisania faktycznych kwerend.
+            </div>
+          </section>
+          <section>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>$t = Carbon::now()->subYears(18);
+
+User::query()
+    ->activated()
+    ->with("profile")
+    ->where("profile.birthdate", "<=", $t),
+    ->get();
+                </code></pre>
+              </div>
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>SELECT *
+  FROM users
+  JOIN profiles ON user.id = profile.id
+  LEFT JOIN agreements ON users.id = agreements.user_id
+    AND agreements.consent_type = 'data_processing'
+  WHERE users.activated = 1
+    AND profiles.birthdate <= "2024-04-24"
+    AND banned_at IS NOT NULL
+    AND deleted_at IS NOT NULL
+    AND agreements.id IS NOT NULL
+  ORDER BY users.logged_at DESC
+  LIMIT 50
+                </code></pre>
+              </div>
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Bardzo proste zapytanie w ORM Eloquent może wyprodukować bardziej skomplikowane zapytanie SQL.
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Najważniejszą sprawą do zrozumienia i zapamiętania jest właśnie to, że ORM nie jest obiektową bazą.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              ORM jedynie przekształca obiektowo budowane zapytania na klasyczny SQL i zwraca zbudowane obiekty zamiast prostych typów danych.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Mapowanie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Mapowanie relacji to jedno, ale ORM mapuje również otrzymane z bazy danych dane w konkretne obiekty konkretnych klas (lub ich agregaty). Dzięki temu nie musimy operować na tablicach stringów i liczb, a na konkretnych instancjach klas takich jak <code>User</code>, <code>Attachment</code> czy <code>Company</code>.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Istnieją dwa główne wzorce wedle których jest to realizowane. Są to <em>active record</em> i <em>data mapper</em> i oba omówimy w następnych częściach tego wykładu.
+            </div>
+          </section>
         </section>
 
         <section>
