@@ -409,7 +409,12 @@ $manager->flush();
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li></li>
+                <li>bazę danych dobrze jest traktować jedynie jako bazę danych; cała logika raczej powinna znajdować się w samej aplikacji (choć niektórzy uważają, że powinno być dokładnie odwrotnie)</li>
+                <li>ORM zastępuje obiektowe bazy danych wygodną nakładką na relacyjne bazy</li>
+                <li>Active record i Data mapper to dwa podstawowe sposoby na radzenie sobie z mapowaniem relacyjno-obiektowym</li>
+                <li>Active record mocniej opiera się na połączeniu modelu i bazy danych; model jest aktywnym serwisem i najczęściej dziedziczy po generalnym modelu z frameworka</li>
+                <li>Data mapper większy nacisk kładzie na poprawne biznesowo modelowanie encji, a dopiero na którejś warstwie dokonuje mapowania</li>
+                <li>wszystkie typy ORM-ów mają swoje problemy i warto znać choćby te najpopularniejsze (w tym problem n+1 zapytań)</li>
               </ul>
             </div>
           </section>
