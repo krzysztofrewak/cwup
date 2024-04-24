@@ -42,7 +42,7 @@
             <ol class="text-lg leading-10">
               <li>Wady i zalety zapytań SQL</li>
               <li>Mapowanie relacyjno-obiektowe</li>
-              <li>Active Record i Data Mapper</li>
+              <li>Wzorce mapowania</li>
               <li>Podsumowanie</li>
             </ol>
           </section>
@@ -152,7 +152,6 @@ LIMIT 10</code></pre></div>
           </section>
         </section>
 
-
         <section>
           <section>
             Mapowanie relacyjno-obiektowe
@@ -248,7 +247,154 @@ User::query()
             </div>
 
             <div class="mt-8 text-lg w-2/3 mx-auto">
-              Istnieją dwa główne wzorce wedle których jest to realizowane. Są to <em>active record</em> i <em>data mapper</em> i oba omówimy w następnych częściach tego wykładu.
+              Istnieją dwa główne wzorce, wedle których jest to realizowane. Są to <em>active record</em> i <em>data mapper</em> i oba omówimy w następnych częściach tego wykładu.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Wzorce mapowania
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Active record</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <em>Active record</em> to wzorzec projektowy, który teoretycznie na pierwszy rzut oka łatwiej zrozumieć i wykorzystać w systemie internetowym. Jest on domyślnie wykorzystywany w pehapowym Laravelu, pythonowym Django czy Ruby on Rails.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+                Warto wspomnieć, że jest to sprawa dosyć kontrowersyjna. Wzorzec ten ma tyle samo zwolenników, co krytyków.
+            </div>
+          </section>
+          <section>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>/**
+ * @property string $id
+ * @property string $name
+ * @property int $price
+ * @property Collection&lt;Photo> $photos
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ */
+class Product extends Model
+{
+    use HasUuids;
+
+    public function photos(): HasMany
+    {
+        return $this->hasMany(Photo::class);
+    }
+}
+                </code></pre>
+              </div>
+            </div>
+
+            <div class="mt-4 text-lg w-2/3 mx-auto">
+              Tak może wyglądać model produktu w Laravelu. A tak może wyglądać jego wykorzystanie:
+            </div>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>
+$product = Product::query()->find($id);
+$product->price *= 1.2;
+$product->save();
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Active record</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <em>Active record</em> realizuje wszystkie swoje założenia poprzez <em>modele</em>, czyli klasy dziedziczące po zazwyczaj ogromnej klasie <code>Model</code> pochodzącej z biblioteki ORM-u.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przez to query builder bezpośrednio zwraca obiekty klasy dziedziczącej po modelu. Przykładowo <code>User::query()->first()</code> zwróci nam pierwszego użytkownia wedle założeń opisanych w klasie <code>User</code> i będzie to obiekt klasy... <code>User</code>. Wówczas na obiekcie możemy wywoływać dowolne akcje obiektowo: <code>$user->delete()</code> czy <code>$user->profile->birthdate = "1970-01-01"; $user->profile->save()</code>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kontrowersje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Tutaj też leży źródło wszystkich kontrowersji.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Klasy modeli są bardzo ciężkie, realizują bardzo dużo odpowiedzialności naraz i są trudne w utrzymaniu. Często logika biznesowa musi się naginać do struktury bazy danych. Czasami programiści są kuszeni do budowy "superobiektów", które robią kilkadziesiąt rzeczy naraz.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Uciszanie kontrowersji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niewątpliwą zaletą jest to, że o wiele szybciej można programować połączenie z bazą danych niż przy innych wzorcach czy sposobach. Jeżeli programista umie zachować odpowiednią higienę (jak chociażby mapowanie wyjściowych modeli na prostsze klasy czy też rozmyślne agregowanie zapytań), <em>active record</em> nie powinien być bardzo złym podejściem.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Data mapper</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              W opozycji stoi <em>Data mapper</em>, czyli wzorzec projektowy, który - zgodnie z nazwą - bazuje na mapowaniu danych na obiekty, ale z oddzieleniem warstw biznesowej i tej łączącej się z bazą.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Tak działa Hibernate w Javie, dotnetowy Entity framework, pehapowe Doctine i kilka innych.
+            </div>
+          </section>
+          <section>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>#[Entity]
+class Product extends Model
+{
+    public string $id
+    public string $name
+    public int $price
+
+    #[HasMany(Photo::class)]
+    public Collection $photos
+
+    public Carbon $created_at
+    public Carbon $updated_at
+}
+                </code></pre>
+              </div>
+            </div>
+
+            <div class="mt-4 text-lg w-2/3 mx-auto">
+              Tak może wyglądać model produktu w Symfony. A tak może wyglądać jego wykorzystanie:
+            </div>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>$manager = new Manager();
+
+$product = (new ProductRepository()).getById($id);
+$product->price *= 1.2;
+
+$manager->persist($product);
+$manager->flush();
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Data mapper</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <em>Data mapper</em> oczekuje, że programista sam zbuduje swoje klasy, które będą miały sens domenowy, a nie bazodanowy. Dopiero na warstwie persystencji zapisane dane zostaną zapisane faktycznie do bazy danych.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wszystko jest lżejsze i bardziej związane z domeną, przez co łatwiej tym zarządzać w projekcie. Tutaj "minusem" jest jednak fakt, że wszędzie, gdzie chcemy operować na modelach, trzeba pamiętać o przekazaniu managera łączącego się z bazą... ale może to wcale nie jest minus?
             </div>
           </section>
         </section>
@@ -273,7 +419,9 @@ User::query()
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li><a href="https://pl.wikipedia.org/wiki/Baza_danych" target="_blank">Baza danych</a></li>
+                <li><a href="https://docs.djangoproject.com/en/5.0/topics/db/queries/" target="_blank">dokumentacja Django</a></li>
+                <li><a href="https://martinfowler.com/bliki/OrmHate.html" target="_blank">ORM Hate</a> autorstwa Martina Fowlera</li>
+                <li><a href="https://dev.to/mohamedahmed00/active-record-vs-object-mapper-orm-1gpg" target="_blank">Active record vs Object mapper ORM</a></li>
               </ul>
             </div>
           </section>
