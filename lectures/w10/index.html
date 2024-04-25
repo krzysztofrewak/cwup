@@ -180,6 +180,142 @@ Schema::create('sessions', function (Blueprint $table) {
               </div>
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl">O czym warto pamiętać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>hasło <strong>zawsze</strong> musi być sensownie zahashowane!</li>
+              <li>warto ustawić indeks <code>UNIQUE</code> na kolumny z emailem, jeżeli chcemy zachować jego unikalność</li>
+              <li>jedyna informacja jaką powinien otrzymać użytkownik na temat tego, że rejestracja się nie powiodła, to błędy walidacji</li>
+              <li>wyjątek typu <code>UserAlreadyExistsException</code> lepiej złapać w kontrolerze i wyświetlić ogólny komunikat zamiast błędu, który wskazywałby, że użytkownik faktycznie u nas już jest zarejestrowany</li>
+              <li>warto się zastanowić czy niektóre elementy flow (wysyłanie mejla) zawsze będą potrzebne?</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Potwierdzanie rejestracji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>wiele systemów wymaga potwierdzenia konta (warto zastanowić się, co ma blokować brak tegoż potwierdzenia)</li>
+              <li>najlepiej zrealizować to poprzez wygenerowanie i zapisanie w bazie losowego ciągu znaków (tokenu), który zostanie wysłany w formie linku mejlem; jeżeli ktoś odwiedzi tenże link, aplikacja powinna usunąć token z bazy, a powiązanemu użytkownikowi ustawi flagę "potwierdzony"</li>
+              <li>warto też ustawić maksymalny czas życia takich tokenów</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przypominanie i resetowanie hasła</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>użytkownicy mają tendencje do zapominania haseł, więc zazwyczaj trzeba im udostępnić funkcjonalność resetu hasła</li>
+              <li>raczej odchodzi się od niebezpiecznych podejść w stylu "wpisz swój email, a my prześlemy ci nowe hasło"</li>
+              <li>najlepiej wygenerować token podobny jak przy potwierdzeniu rejestracji i przeprowadzić użytkownika przez proces ustawiania nowego hasła</li>
+              <li>wszystkie takie operacje muszą koniecznie być potwierdzane z poziomu przynajmniej mejla</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Uwierzytelnianie poprzez sesję
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Sesja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Sesja to sposób na przechowywanie informacji na temat interakcji użytkownika z aplikacją internetową w czasie jednego ciągłego połączenia. Najczęściej jest identyfikowana unikalnym ID, które przechowuje się na serwerze.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jeżeli użytkownik poprawnie się uwierzytelni (a więc "zaloguje"), serwer powinien utworzyć sesję i zwrócić jej identyfikator użytkownikowi. Najczęściej realizuje się to przez ciasteczka przyczepione do odpowiedzi HTTP.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zastanówmy się ponownie z jakich komponentów musimy skorzystać, żeby użytkownika zalogować.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Będą to na pewno: połączenie z bazą danych, manager sesji i funkcja sprawdzająca zahaszowane hasło. Znając wzorzec wstrzykiwania zależności, możemy w ten sposób zbudować interfejs dla takiego serwisu:
+            </div>
+
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>interface UserAuthenticator
+{
+    public UserAuthenticator(DatabaseContext database, SessionContext session, Hasher hasher)
+
+    public string authenticate(User user, string password)
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Klasa ta mogłaby wyglądać następująco:
+            </div>
+
+            <div class="mt-8 w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>class UserAuthenticator implements UserAuthenticatorContract
+{
+    public string authenticate(User user, string password)
+    {
+        ?User user = this.database.select(User.class).where("email", email).first()
+
+        if (user === null) {
+            this.hasher.hash(rand())
+            throw new UserNotFoundException()
+        }
+
+        bool result = this.hasher.verify(password, user.password)
+
+        if (!result) {
+            throw new WrongPasswordException()
+        }
+
+        return this.session.registerUser(user).getSessionId()
+    }
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">O czym warto pamiętać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>hasło zawsze powinno być oznaczone jako parametr wrażliwy, więc nigdy nie powinno być nigdzie logowane, zapisywane ani nawet wyświetlane</li>
+              <li>wstrzykiwanie zależności pokazuje nam tak naprawdę jak skomplikowana jest dana klasa w kontekście całego projektu</li>
+              <li>czasami lepszym rozwiązaniem jest trzymanie sesji poza systemem plików - chociaż wygodniej się aplikację wówczas skaluje</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Sprawdzenie uwierzytelnienia</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>informacja o pomyślnie otwartej sesji będzie dodana do komunikacji przez protokół HTTP</li>
+              <li>większość frameworków webowych dostarcza middlewary sprawdzające stan uwierzytelnienia, które można nałożyć na routing, który chcemy chronić przed niezalogowanymi użytkownikami</li>
+              <li>dzięki temu nie musimy ręcznie sprawdzać w każdym kontrolerze czy użytkownik jest zalogowany</li>
+              <li>brak ciastka lub brak zapisanego na serwerze identyfikatora wyrzuci wyjątek i cofnie użytkownika do formularza logowania lub innego widoku na fallbacku</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">I inne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>w dzisiejszych czasach często formularz logowania umożliwia też logowanie się za pomocą zewnętrznych providerów takich jak Google czy Facebook; warto zobaczyć jak to pod spodem wygląda i dlaczego taki proces można raczej bezproblemowo dołączyć do większości aplikacji webowych</li>
+              <li>wylogowanie to po prostu usunięcie identyfikatora sesji; można to zrobić na akcję użytkownika (koniecznie <code>POST</code>!), ale niektórzy cyklicznie usuwają sesje, jeżeli użytkownik dawno z niej nie korzystał</li>
+            </ul>
+          </section>
         </section>
 
         <section>
@@ -192,12 +328,7 @@ Schema::create('sessions', function (Blueprint $table) {
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li>bazę danych dobrze jest traktować jedynie jako bazę danych; cała logika raczej powinna znajdować się w samej aplikacji (choć niektórzy uważają, że powinno być dokładnie odwrotnie)</li>
-                <li>ORM zastępuje obiektowe bazy danych wygodną nakładką na relacyjne bazy</li>
-                <li>Active record i Data mapper to dwa podstawowe sposoby na radzenie sobie z mapowaniem relacyjno-obiektowym</li>
-                <li>Active record mocniej opiera się na połączeniu modelu i bazy danych; model jest aktywnym serwisem i najczęściej dziedziczy po generalnym modelu z frameworka</li>
-                <li>Data mapper większy nacisk kładzie na poprawne biznesowo modelowanie encji, a dopiero na którejś warstwie dokonuje mapowania</li>
-                <li>wszystkie typy ORM-ów mają swoje problemy i warto znać choćby te najpopularniejsze (w tym problem n+1 zapytań)</li>
+                <li></li>
               </ul>
             </div>
           </section>
@@ -208,8 +339,6 @@ Schema::create('sessions', function (Blueprint $table) {
             <div class="text-lg w-2/3 mx-auto">
               <ul>
                 <li><a href="https://docs.djangoproject.com/en/5.0/topics/db/queries/" target="_blank">dokumentacja Django</a></li>
-                <li><a href="https://martinfowler.com/bliki/OrmHate.html" target="_blank">ORM Hate</a> autorstwa Martina Fowlera</li>
-                <li><a href="https://dev.to/mohamedahmed00/active-record-vs-object-mapper-orm-1gpg" target="_blank">Active record vs Object mapper ORM</a></li>
               </ul>
             </div>
           </section>
