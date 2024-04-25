@@ -123,6 +123,63 @@ Schema::create('sessions', function (Blueprint $table) {
               Wiemy już, że lepiej jest wspólne akcje wydzielać do odseparowanych klas. Rejestracja użytkownika może wystąpić w kilku miejscach: po wypełnieniu przez gościa formularza na stronie internetowej, w panelu administracyjnym, poprzez żądanie z innego serwisu przez API, podczas automatycznych testów albo przy pierwszym uruchomieniu systemu, gdy tworzony jest pierwszy administrator.
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zastanówmy się z jakich komponentów musimy skorzystać, żeby użytkownika zarejestrować.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Będą to na pewno: połączenie z bazą danych, serwer mejlowy i funkcja haszująca hasło. Znając wzorzec wstrzykiwania zależności, możemy w ten sposób zbudować interfejs dla takiego serwisu:
+            </div>
+
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>interface UserRegistrar
+{
+    public UserRegistrar(DatabaseContext database, Hasher hasher, Mailer mailer)
+
+    public User register(string email, string password, bool agreementsApproved)
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Pamiętajmy, żeby nie zmuszać serwisu rejestrującego do tego, aby przyjmował obiekt klasy <code>Request</code> czy jakieś ogólne luźne struktury danych. Klasa musi być zdatna do uruchomienia wszędzie i w każdy sposób.
+            </div>
+
+            <div class="mt-8 w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>class UserRegistrar implements UserRegistrarContract
+{
+    public User register(string email, string password, bool agreementsApproved)
+    {
+        if (!agreementsApproved) {
+            throw new AgreementsNotApprovedException()
+        }
+
+        if (this.database.select(User.class).where("email", email).count() > 0) {
+            throw new UserAlreadyExistsException()
+        }
+
+        User user = new User
+        user.email = email
+        user.password = this.hasher.hash(password).toString()
+
+        this.database.commit(user)
+        this.mailer.send(new UserRegistered(user))
+
+        return user
+    }
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section>
