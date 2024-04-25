@@ -1,0 +1,172 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Uwierzytelnianie i autoryzacja użytkowników</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">10</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Kim jest użytkownik?</li>
+              <li>Rejestracja użytkowników</li>
+              <li>Uwierzytelnianie poprzez sesję</li>
+              <li>Uwierzytelnianie bezstanowe</li>
+              <li>Autoryzacja</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Kim jest użytkownik?
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Definicja użytkownika</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Każdy system internetowy może mieć całkowicie odmienną definicję użytkownika i dobrze jest ją sprecyzować już na samym początku naszej pracy nad danym projektem.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Weźmy jako przykład portal informacyjny taki jak onet.pl. Kto tam jest użytkownikiem? Gość przeglądający artykuły? Ktoś, kto jest zalogowany, bo płaci abonament? A może redaktor? A administrator?
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Dlatego warto też rozgraniczyć fakt, że mamy w naszym systemie klasę <code>User</code> od tego, kto naprawdę z niego korzysta.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              W aplikacji webowej użytkownikiem praktycznie może być każdy, kto otwiera stronę... ale czy to oznacza, że użytkownikami są boty i inne serwisy?
+            </div>
+          </section>
+          <section>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>Schema::create('users', function (Blueprint $table) {
+  $table->id();
+  $table->string('name');
+  $table->string('email')->unique();
+  $table->timestamp('email_verified_at')->nullable();
+  $table->string('password');
+  $table->rememberToken();
+  $table->timestamps();
+});
+
+Schema::create('password_reset_tokens', function (Blueprint $table) {
+  $table->string('email')->primary();
+  $table->string('token');
+  $table->timestamp('created_at')->nullable();
+});
+
+Schema::create('sessions', function (Blueprint $table) {
+  $table->string('id')->primary();
+  $table->foreignId('user_id')->nullable()->index();
+  $table->string('ip_address', 45)->nullable();
+  $table->text('user_agent')->nullable();
+  $table->longText('payload');
+  $table->integer('last_activity')->index();
+});
+                </code></pre>
+              </div>
+            </div>
+            <div class="text-lg w-2/3 mx-auto">
+              Tak wygląda seria migracji bazowego modelu użytkownika w Laravelu.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Rejestracja użytkowników
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Serwis rejestrujący użytkowników</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Wiemy już, że lepiej jest wspólne akcje wydzielać do odseparowanych klas. Rejestracja użytkownika może wystąpić w kilku miejscach: po wypełnieniu przez gościa formularza na stronie internetowej, w panelu administracyjnym, poprzez żądanie z innego serwisu przez API, podczas automatycznych testów albo przy pierwszym uruchomieniu systemu, gdy tworzony jest pierwszy administrator.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>bazę danych dobrze jest traktować jedynie jako bazę danych; cała logika raczej powinna znajdować się w samej aplikacji (choć niektórzy uważają, że powinno być dokładnie odwrotnie)</li>
+                <li>ORM zastępuje obiektowe bazy danych wygodną nakładką na relacyjne bazy</li>
+                <li>Active record i Data mapper to dwa podstawowe sposoby na radzenie sobie z mapowaniem relacyjno-obiektowym</li>
+                <li>Active record mocniej opiera się na połączeniu modelu i bazy danych; model jest aktywnym serwisem i najczęściej dziedziczy po generalnym modelu z frameworka</li>
+                <li>Data mapper większy nacisk kładzie na poprawne biznesowo modelowanie encji, a dopiero na którejś warstwie dokonuje mapowania</li>
+                <li>wszystkie typy ORM-ów mają swoje problemy i warto znać choćby te najpopularniejsze (w tym problem n+1 zapytań)</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://docs.djangoproject.com/en/5.0/topics/db/queries/" target="_blank">dokumentacja Django</a></li>
+                <li><a href="https://martinfowler.com/bliki/OrmHate.html" target="_blank">ORM Hate</a> autorstwa Martina Fowlera</li>
+                <li><a href="https://dev.to/mohamedahmed00/active-record-vs-object-mapper-orm-1gpg" target="_blank">Active record vs Object mapper ORM</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
