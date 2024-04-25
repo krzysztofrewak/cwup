@@ -1,0 +1,615 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Uwierzytelnianie i autoryzacja użytkowników</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">10</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Kim jest użytkownik?</li>
+              <li>Rejestracja użytkowników</li>
+              <li>Uwierzytelnianie poprzez sesję</li>
+              <li>Uwierzytelnianie bezstanowe</li>
+              <li>Autoryzacja</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Kim jest użytkownik?
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Definicja użytkownika</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Każdy system internetowy może mieć całkowicie odmienną definicję użytkownika i dobrze jest ją sprecyzować już na samym początku naszej pracy nad danym projektem.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Weźmy jako przykład portal informacyjny taki jak onet.pl. Kto tam jest użytkownikiem? Gość przeglądający artykuły? Ktoś, kto jest zalogowany, bo płaci abonament? A może redaktor? A administrator?
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Dlatego warto też rozgraniczyć fakt, że mamy w naszym systemie klasę <code>User</code> od tego, kto naprawdę z niego korzysta.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              W aplikacji webowej użytkownikiem praktycznie może być każdy, kto otwiera stronę... ale czy to oznacza, że użytkownikami są boty i inne serwisy?
+            </div>
+          </section>
+          <section>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>Schema::create('users', function (Blueprint $table) {
+  $table->id();
+  $table->string('name');
+  $table->string('email')->unique();
+  $table->timestamp('email_verified_at')->nullable();
+  $table->string('password');
+  $table->rememberToken();
+  $table->timestamps();
+});
+
+Schema::create('password_reset_tokens', function (Blueprint $table) {
+  $table->string('email')->primary();
+  $table->string('token');
+  $table->timestamp('created_at')->nullable();
+});
+
+Schema::create('sessions', function (Blueprint $table) {
+  $table->string('id')->primary();
+  $table->foreignId('user_id')->nullable()->index();
+  $table->string('ip_address', 45)->nullable();
+  $table->text('user_agent')->nullable();
+  $table->longText('payload');
+  $table->integer('last_activity')->index();
+});
+                </code></pre>
+              </div>
+            </div>
+            <div class="text-lg w-2/3 mx-auto">
+              Tak wygląda seria migracji bazowego modelu użytkownika w Laravelu.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Rejestracja użytkowników
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Serwis rejestrujący użytkowników</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Wiemy już, że lepiej jest wspólne akcje wydzielać do odseparowanych klas. Rejestracja użytkownika może wystąpić w kilku miejscach: po wypełnieniu przez gościa formularza na stronie internetowej, w panelu administracyjnym, poprzez żądanie z innego serwisu przez API, podczas automatycznych testów albo przy pierwszym uruchomieniu systemu, gdy tworzony jest pierwszy administrator.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zastanówmy się z jakich komponentów musimy skorzystać, żeby użytkownika zarejestrować.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Będą to na pewno: połączenie z bazą danych, serwer mejlowy i funkcja haszująca hasło. Znając wzorzec wstrzykiwania zależności, możemy w ten sposób zbudować interfejs dla takiego serwisu:
+            </div>
+
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>interface UserRegistrar
+{
+    public UserRegistrar(DatabaseContext database, Hasher hasher, Mailer mailer)
+
+    public User register(string email, string password, bool agreementsApproved)
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Pamiętajmy, żeby nie zmuszać serwisu rejestrującego do tego, aby przyjmował obiekt klasy <code>Request</code> czy jakieś ogólne luźne struktury danych. Klasa musi być zdatna do uruchomienia wszędzie i w każdy sposób.
+            </div>
+
+            <div class="mt-8 w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>class UserRegistrar implements UserRegistrarContract
+{
+    public User register(string email, string password, bool agreementsApproved)
+    {
+        if (!agreementsApproved) {
+            throw new AgreementsNotApprovedException()
+        }
+
+        if (this.database.select(User.class).where("email", email).count() > 0) {
+            throw new UserAlreadyExistsException()
+        }
+
+        User user = new User
+        user.email = email
+        user.password = this.hasher.hash(password).toString()
+
+        this.database.commit(user)
+        this.mailer.send(new UserRegistered(user))
+
+        return user
+    }
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">O czym warto pamiętać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>hasło <strong>zawsze</strong> musi być sensownie zahashowane!</li>
+              <li>warto ustawić indeks <code>UNIQUE</code> na kolumny z emailem, jeżeli chcemy zachować jego unikalność</li>
+              <li>jedyna informacja jaką powinien otrzymać użytkownik na temat tego, że rejestracja się nie powiodła, to błędy walidacji</li>
+              <li>wyjątek typu <code>UserAlreadyExistsException</code> lepiej złapać w kontrolerze i wyświetlić ogólny komunikat zamiast błędu, który wskazywałby, że użytkownik faktycznie u nas już jest zarejestrowany</li>
+              <li>warto się zastanowić czy niektóre elementy flow (wysyłanie mejla) zawsze będą potrzebne?</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Potwierdzanie rejestracji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>wiele systemów wymaga potwierdzenia konta (warto zastanowić się, co ma blokować brak tegoż potwierdzenia)</li>
+              <li>najlepiej zrealizować to poprzez wygenerowanie i zapisanie w bazie losowego ciągu znaków (tokenu), który zostanie wysłany w formie linku mejlem; jeżeli ktoś odwiedzi tenże link, aplikacja powinna usunąć token z bazy, a powiązanemu użytkownikowi ustawi flagę "potwierdzony"</li>
+              <li>warto też ustawić maksymalny czas życia takich tokenów</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przypominanie i resetowanie hasła</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>użytkownicy mają tendencje do zapominania haseł, więc zazwyczaj trzeba im udostępnić funkcjonalność resetu hasła</li>
+              <li>raczej odchodzi się od niebezpiecznych podejść w stylu "wpisz swój email, a my prześlemy ci nowe hasło"</li>
+              <li>najlepiej wygenerować token podobny jak przy potwierdzeniu rejestracji i przeprowadzić użytkownika przez proces ustawiania nowego hasła</li>
+              <li>wszystkie takie operacje muszą koniecznie być potwierdzane z poziomu przynajmniej mejla</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Uwierzytelnianie poprzez sesję
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Sesja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Sesja to sposób na przechowywanie informacji na temat interakcji użytkownika z aplikacją internetową w czasie jednego ciągłego połączenia. Najczęściej jest identyfikowana unikalnym ID, które przechowuje się na serwerze.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jeżeli użytkownik poprawnie się uwierzytelni (a więc "zaloguje"), serwer powinien utworzyć sesję i zwrócić jej identyfikator użytkownikowi. Najczęściej realizuje się to przez ciasteczka przyczepione do odpowiedzi HTTP.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zastanówmy się ponownie z jakich komponentów musimy skorzystać, żeby użytkownika zalogować.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Będą to na pewno: połączenie z bazą danych, manager sesji i funkcja sprawdzająca zahaszowane hasło. Znając wzorzec wstrzykiwania zależności, możemy w ten sposób zbudować interfejs dla takiego serwisu:
+            </div>
+
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>interface UserAuthenticator
+{
+    public UserAuthenticator(DatabaseContext database, SessionContext session, Hasher hasher)
+
+    public string authenticate(User user, string password)
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Klasa ta mogłaby wyglądać następująco:
+            </div>
+
+            <div class="mt-8 w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>class UserAuthenticator implements UserAuthenticatorContract
+{
+    public string authenticate(User user, string password)
+    {
+        ?User user = this.database.select(User.class).where("email", email).first()
+
+        if (user === null) {
+            this.hasher.hash(rand())
+            throw new UserNotFoundException()
+        }
+
+        bool result = this.hasher.verify(password, user.password)
+
+        if (!result) {
+            throw new WrongPasswordException()
+        }
+
+        return this.session.registerUser(user).getSessionId()
+    }
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">O czym warto pamiętać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>hasło zawsze powinno być oznaczone jako parametr wrażliwy, więc nigdy nie powinno być nigdzie logowane, zapisywane ani nawet wyświetlane</li>
+              <li>wstrzykiwanie zależności pokazuje nam tak naprawdę jak skomplikowana jest dana klasa w kontekście całego projektu</li>
+              <li>czasami lepszym rozwiązaniem jest trzymanie sesji poza systemem plików - chociaż wygodniej się aplikację wówczas skaluje</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Sprawdzenie uwierzytelnienia</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>informacja o pomyślnie otwartej sesji będzie dodana do komunikacji przez protokół HTTP</li>
+              <li>większość frameworków webowych dostarcza middlewary sprawdzające stan uwierzytelnienia, które można nałożyć na routing, który chcemy chronić przed niezalogowanymi użytkownikami</li>
+              <li>dzięki temu nie musimy ręcznie sprawdzać w każdym kontrolerze czy użytkownik jest zalogowany</li>
+              <li>brak ciastka lub brak zapisanego na serwerze identyfikatora wyrzuci wyjątek i cofnie użytkownika do formularza logowania lub innego widoku na fallbacku</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">I inne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>w dzisiejszych czasach często formularz logowania umożliwia też logowanie się za pomocą zewnętrznych providerów takich jak Google czy Facebook; warto zobaczyć jak to pod spodem wygląda i dlaczego taki proces można raczej bezproblemowo dołączyć do większości aplikacji webowych</li>
+              <li>wylogowanie to po prostu usunięcie identyfikatora sesji; można to zrobić na akcję użytkownika (koniecznie <code>POST</code>!), ale niektórzy cyklicznie usuwają sesje, jeżeli użytkownik dawno z niej nie korzystał</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Uwierzytelnianie bezstanowe
+          </section>
+          <section>
+            <div class="font-bold text-3xl">JSON Web Token</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              JWT to standard przy uwierzytelnianiu bez użycia sesji. Token - w przeciwieństwie do sesji na serwerze - jest przechowywany tylko i wyłącznie po stronie klienta.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Serwer generuje token zamiast identyfikatora sesji. Token ten zawiera w sobie zaszyfrowane dane (o użytkowniku, o sposobie uwierzytelnienia, o jego dacie ważności i inne) oraz jest cyfrowo podpisany.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zastanówmy się jeszcze raz z jakich komponentów musimy skorzystać, żeby użytkownika zalogować.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Będą to na pewno: połączenie z bazą danych, serwis generujący token i funkcja sprawdzająca zahaszowane hasło. Znając wzorzec wstrzykiwania zależności, możemy w ten sposób zbudować interfejs dla takiego serwisu:
+            </div>
+
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>interface UserAuthenticator
+{
+    public UserAuthenticator(DatabaseContext database, JwtService jwt, Hasher hasher)
+
+    public string authenticate(User user, string password)
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Klasa ta mogłaby wyglądać prawie identycznie jak ta do logowania z sesją:
+            </div>
+
+            <div class="mt-8 w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>class UserAuthenticator implements UserAuthenticatorContract
+{
+    public string authenticate(User user, string password)
+    {
+        ?User user = this.database.select(User.class).where("email", email).first()
+
+        if (user === null) {
+            this.hasher.hash(rand())
+            throw new UserNotFoundException()
+        }
+
+        bool result = this.hasher.verify(password, user.password)
+
+        if (!result) {
+            throw new WrongPasswordException()
+        }
+
+        return this.jwt.generateToken(user)
+    }
+}
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co dalej?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>tokeny JWT są podpisane cyfrowo, co zapewnia ich autentyczność i integralność</li>
+              <li>token jest najczęściej zapisywany w pamięci podręcznej przeglądarki i dodawany do nagłówka <code>Authentication</code> jako bearer</li>
+              <li>serwer odczytuje bearer token, weryfikuje jego poprawność i autoryzuje żądanie bez dodatkowego stanu</li>
+              <li>w przeciwieństwie do sesji, serwer nie może zarządzać stanem tokenu JWT; wylogowanie następuje poprzez usunięcie tokenu z przeglądarki po stronie frontendu</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Autoryzacja
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Słownictwo</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Autoryzacja (ang. <em>authorization</em>) to proces nadawania dostępu do zasobów.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Nigdy nie powinno być mylone z uwierzytelnianiem (ang. <em>authentication</em>), które jest potwierdzeniem tożsamości opisanym na poprzednich slajdach. Język polski nie zna słowa <em>autentykacja</em> czy <em>autentyfikacja</em>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Autoryzacja poprzez pojedynczą rolę</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jednym z najprostszych sposobów autoryzacji jest sprawdzenie czy dany użytkownik ma określoną rolę. Rola ta może być flagą w bazie danych, a w najprostszym wydaniu będzie to kolumna <code>is_admin</code> z wartościami zero lub jeden.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Middleware jest oczywiście wygodnym sposodem na sprawdzenie takiego warunku.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Middleware sprawdzający czy użytkownik jest administratorem może wyglądać następująco:
+            </div>
+
+            <div class="mt-8 w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>class OnlyAdminMiddleware:
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if not request.user.is_admin:
+            raise ResourceForbiddenException()
+
+        return self.get_response(request)
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Autoryzacja wielu ról</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Oczywiście bardzo rzadko w świecie spotkamy domenę, gdzie będzie potrzebna tylko jedna rola dla każdego użytkownika. O wiele częściej różni użytkownicy będą mogli nabyć kilka ról.
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jednym z rozwiązań może być wykorzystanie operatora bitowego (choć to raczej rozwiązanie oldschoolowe).
+            </div>
+            <div class="w-full flex gap-8">
+              <div class="flex-1 text-2xl break-normal">
+                <pre><code>enum UserRole: int
+{
+  case Administrator = 1;
+  case Moderator = 2;
+  case Reviewer = 4;
+  case Participant = 8;
+}
+
+<span class="text-gray-400"># (...)</span>
+return (bool)($user->getRoleIndicator() & UserRole::Administrator);</code></pre>
+              </div>
+            </div>
+
+            <div class="w-2/3 mx-auto">
+              <img src="../../images/w10/bitwise.png" alt="Tabela ról wedle operatora bitowego">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              Tabela ról wedle operatora bitowego
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Innym rozwiązaniem, raczej popularniejszym, jest bazodanowa relacja wiele do wielu na linii użytkownik i rola.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Autoryzacja poprzez uprawnienia</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jedną z sensowniejszych alternatyw jest budowa systemu uprawnień. System wówczas przechowuje informacje jaki użytkownik ma dostęp do jakiego typu akcji. Można to przedstawić na przykład następująco:
+            </div>
+            <div class="mt-8 text-lg w-[40%] mx-auto">
+              <table class="w-full table-auto text-sm">
+                <thead>
+                  <tr>
+                    <th>aktor</th>
+                    <th>moduł</th>
+                    <th>akcja</th>
+                    <th>dostęp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>user:1</td>
+                    <td>users</td>
+                    <td>get</td>
+                    <td><code>true</code></td>
+                  </tr>
+                  <tr>
+                    <td>user:1</td>
+                    <td>users</td>
+                    <td>post</td>
+                    <td><code>false</code></td>
+                  </tr>
+                  <tr>
+                    <td>user:1</td>
+                    <td>user</td>
+                    <td>get</td>
+                    <td><code>true</code></td>
+                  </tr>
+                  <tr>
+                    <td>user:1</td>
+                    <td>user</td>
+                    <td>patch</td>
+                    <td><code>false</code></td>
+                  </tr>
+                  <tr>
+                    <td>user:1</td>
+                    <td>user</td>
+                    <td>delete</td>
+                    <td><code>false</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">ACL, czyli <em>access control list</em></div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>z takiej listy można usunąć wszystkie wpisy z <code>false</code> - jeżeli nie znajdą się w bazie danych, oznacza to, że użytkownik nie ma prawa dostępu</li>
+              <li><code>SELECT COUNT(id) FROM permissions WHERE user_id = ? AND module = ? AND action = ?</code> wystarczy do sprawdzenia uprawnienia</li>
+              <li>powyższe lepiej zapisać jakoś ładniej obiektowo</li>
+              <li>oczywiście moduły i akcje można definiować we własny sposób; często przydaje się na przykład uprawnienie na zarządzanie np. własnymi artykułami</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Im dalej w las...</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-8 w-2/3 mx-auto">
+              <li>nic nie stoi na przeszkodzie, aby łączyć i mutować różne podejścia z autoryzacji</li>
+              <li>można utworzyć system ról, do których będa przypisane zestaw uprawnień i te zestawy przepisywać na konkretnego użytkownika przy przypisaniu roli</li>
+              <li>można część elementów systemu zamknąć za rolami, a część za uprawnieniami</li>
+              <li>można jednocześnie stosować flagi, operatory binarne i ACL, jeżeli system jest duży i skomplikowany</li>
+              <li>i na koniec: można skorzystać z zewnętrznego serwisu typu RBAC i oddać tę odpowiedzialność na zewnątrz</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>w każdym systemie trzeba zdefiniować pojęcie użytkownika, jego stany i role (może diagram to dobry pomysł)</li>
+                <li>nie wolno informować o tym czy dany użytkownik już jest tam zarejestrowany w systemie</li>
+                <li>hasła to najbardziej wrażliwe dane w systemach informatycznych; jako inżynierowie musimy pracować z nimi solidnie i z najwyższymi etycznymi standardami</li>
+                <li>z sesją czy bez - na to pytanie musimy sobie umieć odpowiedzieć przy budowie każdego systemu</li>
+                <li>autoryzacja to trudny kawałek chleba, ale na szczęście współczesne narzędzi pozwalają na odseparowanie jej od większości systemu, przez co możemy ją wdrażać innym tempem niż prowadzenie pozostałych prac</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="http://web.archive.org/web/20190117070306/http://www.rjp.pan.pl/index.php?option=com_content&view=article&id=263:autentykacja&catid=44&Itemid=145" target="_blank">Rada Języka Polskiego o brzydkich słowach takich jak autentykacja</a></li>
+                <li><a href="https://jwt.io/introduction" target="_blank">jwt.io</a> - wstęp do JWT</li>
+                <li><a href="https://jwt.io/" target="_blank">jwt.io</a> - debugger</li>
+                <li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html" target="_blank">dokumentacja AWS</a> - czym jest Amazon Cognito</li>
+                <li><a href="https://laravel.com/docs/11.x/authorization" target="_blank">dokumentacja Laravela</a> - bramy i polityki</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
