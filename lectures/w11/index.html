@@ -1,0 +1,146 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Asynchroniczne interakcje z serwerem</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">11</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Retrospekcja: Synchroniczne interakcje z serwerem</li>
+              <li>Wprowadzenie asynchroniczności</li>
+              <li>Single-page applications</li>
+              <li>Inne rozwiązania</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Retrospekcja:
+            <div>Synchroniczne interakcje z serwerem</div>
+          </section>
+          <section>
+            <div class="w-4/5 mx-auto">
+              <img src="../../images/w05/http.png" class="w-full" alt="Schemat wysłania żądania i odebrania odpowiedzi HTTP">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              schemat wysłania żądania i odebrania odpowiedzi HTTP
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Klasyczny flow</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Za klasyczny sposób odpytywania aplikacji webowej, w szczególności w formie strony internetowej, uważało się zazwyczaj podejście, w którym każde żądanie do serwera było wykonywane w sposób synchroniczny.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Podstawowe metody wysłania żądania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Można wyróżnić kilka podstawowych metod, którymi można wysłać żądanie HTTP z poziomu przeglądarki. Są to:
+            </div>
+
+            <div class="mt-8 gap-8 grid grid-cols-3 text-lg w-2/3 mx-auto">
+              <div class="flex-1">bezpośrednie wejście<br>"z zewnątrz"</div>
+              <div class="flex-1">wpisanie adresu w pasku adresu</div>
+              <div class="flex-1">kliknięcie w link<br><code>&lt;a href ...</code></div>
+              <div class="flex-1">przesłanie formularza <code>&lt;form ...</code></div>
+              <div class="flex-1">odświeżenie strony<br>(F5)</div>
+              <div class="flex-1"><code>window.location .href = url</code></div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Każdy z tych sposobów wysyła żądanie HTTP do serwera i czeka na jego odpowiedź. Następnie renderowana jest nowa strona na podstawie odpowiedzi lub realizowane jest przekierowanie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wady?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mb-8 text-lg w-2/3 mx-auto">
+              Można wyróżnić dwie podstawowe wady takiego podejścia:
+            </div>
+            <ul class="text-lg w-1/2 mx-auto">
+              <li>odpowiedź to w pełni zbudowany HTML, który może swoje ważyć i który trzeba za każdym razem na nowo renderować (nawet jeżeli zmienia się tylko jeden element całej strony)</li>
+              <li>może to być powolne, szczególnie z uiksowego punktu widzenia, gdy nie można zrobić kilku akcji jednocześnie</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>w każdym systemie trzeba zdefiniować pojęcie użytkownika, jego stany i role (może diagram to dobry pomysł)</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://laravel.com/docs/11.x/authorization" target="_blank">dokumentacja Laravela</a> - bramy i polityki</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

@@ -15,7 +15,7 @@ Kurs składa się z serii wykładów oraz zajęć projektowych. Zasady zaliczeni
 1. [Internetowe bazy danych](https://krzysztofrewak.github.io/ppsi/lectures/w08/index.html)
 1. [Mapowanie relacyjno-obiektowe](https://krzysztofrewak.github.io/ppsi/lectures/w09/index.html)
 1. [Uwierzytelnianie i autoryzacja użytkowników](https://krzysztofrewak.github.io/ppsi/lectures/w10/index.html)
-1. Asynchroniczne interakcje z serwerem
+1. [Asynchroniczne interakcje z serwerem](https://krzysztofrewak.github.io/ppsi/lectures/w11/index.html)
 1. Responsywny i dostępny frontend
 1. Mechanizmy pamięci podręcznej i optymalizacja
 1. Wdrażanie systemów internetowych
