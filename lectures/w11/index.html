@@ -110,6 +110,86 @@
           <section>
             Wprowadzenie do asynchroniczności
           </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Każda współczesna przeglądarka internetowa obsługuje JavaScript, a za jego pomocą można "pod maską" wysyłać żądania HTTP i przechwytywać ich odpowiedzi.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Najważniejsze jest jednak to, że żądanie i odebranie odpowiedzi nie musi wywołać przeładowania strony. Może stać się to "w tle".
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">fetch()</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">fetch("https://swapi.dev/api/planets/1/?format=json")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data["name"])
+    })</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              przykład pobrania danych z API funkcją <code>fetch</code>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">await fetch()</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">const response = await fetch("https://swapi.dev/api/planets/1/?format=json")
+const data = await response.json()
+console.log(data["name"])</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              przykład pobrania danych z API funkcją <code>fetch</code>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nieblokowane I/O i możliwość równoczesnego przetwarzania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Asynchroniczność umożliwia przeglądarkom i serwerom przetwarzanie innych zadań podczas oczekiwania na odpowiedź sieci, co oznacza, że UI użytkownika pozostaje responsywne i nie jest zablokowane przez długotrwałe operacje. Można wysyłać wiele żądań równocześnie, a nie czekać na zakończenie każdego z nich pojedynczo, co może znacząco skrócić czas potrzebny na przetwarzanie wielu żądań.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Lepsza wydajność i skalowalność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Ponieważ wątki nie są blokowane przez operacje wejścia/wyjścia, aplikacje mogą obsługiwać więcej operacji równocześnie, co jest szczególnie korzystne w przypadku aplikacji o dużym ruchu i dużych obciążeń.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Lepsza obsługa interakcji użytkownika</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Użytkownicy mogą kontynuować interakcję z aplikacją, nawet gdy dane są nadal ładowane, co poprawia ogólne wrażenie z korzystania z aplikacji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Prostsza obsługa przepływów pracy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Współczesne frameworki i biblioteki JavaScript (jak React, Angular, Vue.js) są zaprojektowane do pracy z asynchronicznymi operacjami, co ułatwia zarządzanie stanem i przepływem danych w aplikacji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Case study</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="w-full mx-auto">
+              <img src="../../images/w11/oceny.png" class="w-full" alt="Schemat wysłania żądania i odebrania odpowiedzi HTTP">
+            </div>
+            <div class="mt-8 text-base w-2/3 mx-auto">
+              przykładowa aplikacja, której używanie w sposób synchroniczny byłoby mordęgą
+            </div>
+          </section>
         </section>
 
         <section>
@@ -132,7 +212,7 @@
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li><a href="https://laravel.com/docs/11.x/authorization" target="_blank">dokumentacja Laravela</a> - bramy i polityki</li>
+                <li><a href="https://github.com/public-apis/public-apis" target="_blank">zbiór licznych publicznych API</a></li>
               </ul>
             </div>
           </section>
