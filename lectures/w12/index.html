@@ -1,0 +1,188 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+      pre { padding: 1em; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Responsywny i dostępny frontend</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">12</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>RWD</li>
+              <li>a11y</li>
+              <li>Inne rozwiązania</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            a11y
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dostępność w web designie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Dostępność (ang. <em>accessibility</em>) stron internetowych polega na tworzeniu stron, które są użyteczne i funkcjonalne dla wszystkich użytkowników, w tym osób z różnymi niepełnosprawnościami. Celem jest zapewnienie równego dostępu do informacji i funkcji niezależnie od ograniczeń użytkownika.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kluczowe zasady dostępności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Tworzenie dostępnych stron internetowych opiera się na kilku kluczowych zasadach, które pomagają zapewnić, że wszystkie elementy strony są dostępne dla wszystkich użytkowników. Są to:
+            </div>
+            <div class="mt-8 text-lg w-1/3 text-left mx-auto">
+              <ul>
+                <li>postrzegalność</li>
+                <li>funkcjonalność</li>
+                <li>zrozumiałość</li>
+                <li>solidność</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wsparcie dla technologii asystujących</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Technologie asystujące, takie jak czytniki ekranowe, lupy ekranowe i urządzenia do sterowania głosem, pomagają użytkownikom z niepełnosprawnościami korzystać z internetu. Projektowanie stron z myślą o tych technologiach jest kluczowe dla dostępności.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dobre praktyki projektowania dostępnych stron</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Do dobrych praktyk w projektowaniu dostępnych stron należą między innymi:
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul class="list-disc list-inside">
+                <li>używanie semantycznego HTML</li>
+                <li>dodawanie alternatywnego tekstu (alt) do obrazków</li>
+                <li>zapewnienie odpowiedniego kontrastu kolorów</li>
+                <li>tworzenie dostępnych formularzy z etykietami</li>
+                <li>zarządzanie skupieniem (focus) na elementach interaktywnych</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Testowanie dostępności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Regularne testowanie dostępności jest kluczowe w procesie projektowania. Można to zrobić za pomocą:
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul class="mt-4 list-disc list-inside">
+                <li>narzędzi automatycznych, takich jak WAVE, Axe</li>
+                <li>manualnych testów z wykorzystaniem czytników ekranowych</li>
+                <li>testów użytkowników z różnymi niepełnosprawnościami</li>
+              </ul>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Regularne testowanie pomaga identyfikować i naprawiać problemy dostępności.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykłady dostępnych komponentów</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Dostępne komponenty to takie, które są zaprojektowane z myślą o wszystkich użytkownikach. Przykłady obejmują:
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul class="mt-4 list-disc list-inside">
+                <li>dostępne menu nawigacyjne</li>
+                <li>interaktywne przyciski i linki z odpowiednimi etykietami</li>
+                <li>formularze z czytelnymi etykietami i instrukcjami</li>
+              </ul>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Każdy z tych komponentów powinien być testowany pod kątem dostępności.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zasoby i narzędzia do nauki dostępności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              Aby pogłębić wiedzę na temat dostępności, warto skorzystać z dostępnych zasobów:
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul class="mt-4 list-disc list-inside">
+                <li>Web Content Accessibility Guidelines (WCAG)</li>
+                <li>materiały edukacyjne WAI-ARIA</li>
+                <li>kursy online, takie jak "Accessibility for Web Developers" na Udacity</li>
+                <li>fora i społeczności, np. WebAIM</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>(...)</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://www.gov.pl/web/dostepnosc-cyfrowa/wcag-21-w-skrocie" target="_blank">WCAG 2.1 w skrócie</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
