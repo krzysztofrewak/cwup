@@ -17,9 +17,9 @@ Kurs składa się z serii wykładów oraz zajęć projektowych. Zasady zaliczeni
 1. [Uwierzytelnianie i autoryzacja użytkowników](https://krzysztofrewak.github.io/ppsi/lectures/w10/index.html)
 1. [Asynchroniczne interakcje z serwerem](https://krzysztofrewak.github.io/ppsi/lectures/w11/index.html)
 1. [Responsywny i dostępny frontend](https://krzysztofrewak.github.io/ppsi/lectures/w12/index.html)
-1. Mechanizmy pamięci podręcznej i optymalizacja
-1. Wdrażanie systemów internetowych
-1. Lokalizacja, skalowanie, dobre praktyki i inne
+1. [Mechanizmy pamięci podręcznej i optymalizacja](https://krzysztofrewak.github.io/ppsi/lectures/w13-15/index.html)
+1. [Wdrażanie systemów internetowych](https://krzysztofrewak.github.io/ppsi/lectures/w13-15/index.html)
+1. [Lokalizacja, skalowanie, dobre praktyki i inne](https://krzysztofrewak.github.io/ppsi/lectures/w13-15/index.html)
 
 #### Projektowanie i programowanie systemów internetowych II
 Kurs składa się z serii wykładów oraz zajęć projektowych. 
