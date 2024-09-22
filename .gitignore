@@ -1,4 +1,5 @@
-.idea
+/.idea
+/laboratories/ppo/.composer
 
 *.class
 **/composer.lock
