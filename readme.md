@@ -4,16 +4,16 @@ Strona kursów prowadzonych przeze mnie na kierunku Informatyka na Wydziale Nauk
 #### Projektowanie i programowanie obiektowe
 Kurs składa się zajęć laboratoryjnych na trzecim semestrze na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
 
-1. [Wprowadzenie do pracowni programowania obiektowego](./classes/lab01.md)
-1. [Klasy i obiekty](./classes/lab02.md)
-1. [Hermetyzacja](./classes/lab03.md)
-1. [Konstruktory](./classes/lab04.md)
-1. [Dziedziczenie](./classes/lab05.md)
-1. [Interfejsy](./classes/lab06.md)
-1. [Klasy abstrakcyjne](./classes/lab07.md)
-1. [Funkcje anonimowe](./classes/lab08.md)
-1. [Wyjątki](./classes/lab09.md)
-1. [Refleksje](./classes/lab10.md)
+1. [Wprowadzenie do pracowni programowania obiektowego](./laboratories/ppo/lab01.md)
+1. [Klasy i obiekty](./laboratories/ppo/lab02.md)
+1. [Hermetyzacja](./laboratories/ppo/lab03.md)
+1. [Konstruktory](./laboratories/ppo/lab04.md)
+1. [Dziedziczenie](./laboratories/ppo/lab05.md)
+1. [Interfejsy](./laboratories/ppo/lab06.md)
+1. [Klasy abstrakcyjne](./laboratories/ppo/lab07.md)
+1. [Funkcje anonimowe](./laboratories/ppo/lab08.md)
+1. [Wyjątki](./laboratories/ppo/lab09.md)
+1. [Refleksje](./laboratories/ppo/lab10.md)
 1. Praktyczne wykorzystanie programowania obiektowego, cz. I
 1. Praktyczne wykorzystanie programowania obiektowego, cz. II
 1. Praktyczne wykorzystanie programowania obiektowego, cz. III

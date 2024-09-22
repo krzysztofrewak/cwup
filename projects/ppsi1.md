@@ -71,7 +71,7 @@ Lista zagadnień kwalifikacyjnych kształtuje się następująco:
 Za zaliczone zagadnienie uznaje się takie, za które grupa dostałaby ocenę przynajmniej dostateczną.
 
 #### Sprawozdanie
-Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształują się następująco:
+Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształtują się następująco:
 - zgodnie z ogólnoprzyjętymi standardami naukowymi, sprawozdanie jest skonstruowane w technologii $\LaTeX$ i oddane w formacie PDF;
 - sprawozdanie jest dostarczone najpóźniej w dniu oddania całego projektu w formie elektronicznej (najlepiej dodane do repozytorium);
 - sprawozdanie zawiera jako rozdziały lub sekcje:

@@ -1,0 +1,25 @@
+services:
+  php:
+    image: ghcr.io/blumilksoftware/php:8.2
+    container_name: ppo-php
+    working_dir: /application
+    user: ${CURRENT_UID:-1000}
+    volumes:
+      - .:/application
+  java:
+    image: openjdk:22-jdk
+    container_name: ppo-java
+    working_dir: /application
+    user: ${CURRENT_UID:-1000}
+    volumes:
+      - .:/application
+  python:
+    image: python:3.12-rc
+    container_name: ppo-python
+    working_dir: /application
+    user: ${CURRENT_UID:-1000}
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=UTF-8
+    volumes:
+      - .:/application
