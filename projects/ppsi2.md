@@ -55,4 +55,4 @@ Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształt
 Należy przestawić całym zespołem efekty swojej pracy. Prezentacja musi odbyć się w formie przedstawienia działającej i wdrożonej aplikacji.
 
 #### Tematy prac projektowych
-Temat należy wybrać z listy dostępnej [tutaj](./ppsi2/2024.md).
+Temat należy wybrać z listy dostępnej [tutaj](./ppsi2/2024.md). Dobrane grupy będą wybierały tematy w kolejności wybranej przez prowadzącego.
