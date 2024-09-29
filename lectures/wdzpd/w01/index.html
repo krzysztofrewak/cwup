@@ -1,0 +1,301 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wprowadzenie do zarządzania projektami deweloperskimi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Metodyki zarządzania projektami</h5>
+            <h5 class="text-2xl">Wprowadzenie do zarządzania projektami deweloperskimi</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">1</span> z 8 </h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Ramowy plan semestru</li>
+              <li>Warunki zaliczenia kursu</li>
+              <li>Metodyki zarządzania projektami</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Ramowy plan semestru
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Planowany rozkład jazdy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10 w-2/3 mx-auto">
+              <li>Metodyki zarządzania projektami <span class="text-orange-500">(jesteśmy tutaj!)</span>
+              </li>
+              <li>Role w zespole programistycznym</li>
+              <li>Analiza zadań projektowych</li>
+              <li>Esytmowanie pracochłonności zadań</li>
+              <li>Zarządzanie projektem</li>
+              <li>Podstawy komunikacji</li>
+              <li>Dokumentacja projektowa</li>
+              <li>Kolokwium zaliczeniowe</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Warunki zaliczenia kursu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Formy zajęć</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">wykład</span> to teoretyczna część kursu; podczas siedmiu spotkań zostaną
+              przedstawione najważniejsze zagadnienia związane z zarządzaniem projektami informatycznymi
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto opacity-25">
+              <span class="font-bold">laboratorium</span> to praktyczna część kursu; w trakcie semestru studenci będą
+              pracować zespołowo nad zarządzaniem projektem informatycznym
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Wykład kończy się kolokwium podsumowującym wiedzę przyswojoną w trakcie semestru. Kolokwium odbędzie się w
+              formie pisemnej na ostatnich zajęciach w planie.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              <div>Ponadto na wykładach:</div>
+              <div class="mt-4">a) będzie sprawdzana lista obecności na zasadzie <em>białej listy</em></div>
+              <div>b) będzie mierzona (pozytywna i negatywna) aktywność studentów.</div>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Zachęcam do uczęszczania na wykłady.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Ocena końcowa</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-5xl w-2/3 mx-auto">
+              Ω = 0.5 W + 0.5 L
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Ocena niedostateczna z jednej formy rzutuje na ocenę niedostateczną za całość!
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bonusy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Osoby, które otrzymały laboratorium ocenę <span class="font-bold">bardzo dobrą</span>, zostaną zwolnione z
+              kolokwium z przepisaną oceną.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wysoka frekwencja oraz aktywność na wykładach mogą rzutować na obniżenie progu przepisywanej oceny do
+              <span class="font-bold">dobrej plus</span> dla indywidualnych studentów.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Quizy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W trakcie semestru mogą zostać organizowane dodatkowe zwolnienia z egzaminu w formie interaktywnych
+              quizów, których zakres będzie obejmował materiał z bieżącego wykładu.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Student, który otrzyma najwięcej punktów z danego quizu, zostanie zwolniony z egzaminu z przepisaną oceną
+              z laboratorium.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Metodyki zarządzania projektami
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Metodyka a metodologia</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Metodyka odnosi się do <span class="font-bold">praktycznego zastosowania metod</span>, czyli sposobów
+              realizacji określonych zadań lub osiągania celów w danej dziedzinie. Jest to zbiór narzędzi, technik i
+              zasad, które są wykorzystywane w praktyce.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Metodologia z kolei jest <span class="font-bold">teoretycznym ujęciem metod</span>. Dotyczy naukowych
+              podstaw wyboru i stosowania określonych metod w badaniach czy innych procesach. W metodologii bada się
+              zasady, które stoją za wyborem i konstrukcją metod, oraz analizuje, dlaczego i w jaki sposób metody te są
+              stosowane. Obejmuje ona również krytykę i ocenę różnych podejść do badań.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Metodyki zarządzania projektami</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Choć trudno jest zaprezentować sztywną systematykę metodyk zarządzania projektami (w szczególności
+              informatycznymi), można spróbować podzielić je wedle ogólnego podejścia do planowania i realizacji zadań.
+              Wyróżnimy wówczas podejścia:
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul>
+                <li>tradycyjne</li>
+                <li>iteracyjne i zwinne</li>
+                <li>procesowe</li>
+                <li>optymalizacyjne</li>
+                <li>integracyjne</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Metodyki tradycyjne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Charakteryzują się sztywną, sekwencyjną strukturą, w której każdy etap musi zostać zakończony przed
+              rozpoczęciem następnego. Zazwyczaj opierają się na szczegółowych planach ustalonych na początku projektu i
+              są dobrze przystosowane do projektów o dobrze zdefiniowanych wymaganiach, które nie zmieniają się w
+              trakcie realizacji. <span class="opacity-25">Pytanie: czy w IT możemy spotkać taki projekt?</span>
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Za przykłady mogą posłużyć <span class="font-bold">waterfall</span> czy <span class="font-bold">critical
+              path method</span>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Iteracyjne i zwinne metodyki</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Skupiają się na cyklicznej realizacji projektu, podzielonego na mniejsze części. Każda iteracja dostarcza
+              działający produkt, co pozwala na dostosowanie do zmieniających się wymagań i minimalizowanie ryzyka
+              błędów. Cechują się adaptacyjnością, ciągłą współpracą z interesariuszami i szybkim dostarczaniem
+              wartości. Zwinne podejście pozwala na regularne iteracje z ciągłym feedbackiem, co umożliwia dynamiczne
+              dostosowywanie się do zmian w projekcie.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Kluczowe metodyki zwinne to <span class="font-bold">agile</span> (w tym Scrum) oraz
+              <span class="font-bold">Extreme Programming (XP)</span>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Procesowe i strukturalne metodyki</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Koncentrują się na formalnych, strukturalnych procesach, które dokładnie definiują role, odpowiedzialności
+              i etapy projektu. Są często stosowane w większych projektach, gdzie wymagane są formalne standardy
+              zarządzania i pełna dokumentacja.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przykłady to <span class="font-bold">PRINCE2</span> i <span class="font-bold">PMBOK</span>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Lean i optymalizacyjne metodyki</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Skupiają się na eliminacji marnotrawstwa i optymalizacji procesów. Celem jest dostarczanie maksymalnej
+              wartości przy minimalnych zasobach, jednocześnie zapewniając ciągłe doskonalenie produktów i procesów.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przykłady obejmują <span class="font-bold">Kanban</span>, <span class="font-bold">Lean Software
+              Development</span> i <span class="font-bold">Six Sigma</span>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">DevOps i podejścia integracyjne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Podejście DevOps łączy zespoły programistyczne i operacyjne, kładąc nacisk na automatyzację procesów, skrócenie
+              cykli dostarczania oraz poprawę współpracy między działami. DevOps wspiera ciągłą integrację i wdrażanie (CI/CD),
+              co pozwala na szybkie i stabilne dostarczanie oprogramowania.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <span class="font-bold">DevOps</span> to kluczowy przykład podejścia integracyjnego.
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>w projektach IT znajdziemy cały przekrój różnych podejść do zarządzania</li>
+                <li>trudno powiedzieć, jaka metodyka jest najlepsza, ale przykładowo duże państwowe projekty raczej będą organizowane w PRINCE2, a nie Scrumie</li>
+                <li>tradycyjne metodyki taka jak waterfall są sztywne i pasują do stabilnych projektów</li>
+                <li>agile jest bardziej elastyczny, ale przez to trudniej oszacować budżet</li>
+                <li>zarządzanie projektem musi dostosować się do wszystkich interesariuszy</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://agilemanifesto.org/iso/pl/manifesto.html" target="_blank">manifest programowania zwinnego</a></li>
+                <li><a href="https://www.templeton-recruitment.com/tech-news/how-to-become-an-it-project-manager-a-complete-guide-for-2023" target="_blank">jak zostać project managerem?</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
