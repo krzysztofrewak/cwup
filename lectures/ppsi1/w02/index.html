@@ -1,0 +1,685 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Statyczne strony internetowe</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">2</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>HTML: projektowanie struktury</li>
+              <li>CSS: nadawanie wyglądu</li>
+              <li>Frameworki: idea i przegląd</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            HTML: projektowanie struktury
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym nie jest HTML?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">HTML</span> przede wszystkim nie jest językiem programowania.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym jest HTML?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">HTML</span> (<span class="italic">HyperText Markup Language</span>) to hipertekstowy język znaczników umożliwiający ustandaryzowane zapisanie struktury strony internetowej.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Za jego pomocą można zbudować podział dokumentu na semantyczne sekcje, ale nie udostępnia praktycznie żadnych funkcji programistycznych znanych z klasycznych języków programowania takich jak deklarowanie zmiennych i przypisywanie im wartości, pętle czy wyrażenia warunkowe.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Niewątpliwą zaletą HTML jest to, że może być edytowany w dowolnym edytorze tekstu, a do jego uruchomienia wystarczy przeglądrka.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Nawet statyczne pliki <code>*.html</code> można uruchomić lokalnie przez wstukanie do niej ścieżki do tegoż pliku.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w02/html.png" class="w-full" alt="Bardzo prosta strona internetowa">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              bardzo prosta strona internetowa: kod, render i schemat
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa domykanego tagu HTML</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">&lt;nazwa <span class="opacity-15">[atrybut-n="wartość-n"]<sup>n</sup></span>&gt;<span class="opacity-15">slot</span>&lt;/nazwa&gt;</span></code>
+            </div>
+
+            <div class="mt-12 text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              Każdy domykany tag HTML:
+              <ul class="block">
+                <li>musi mieć nazwę w tagu otwierającym</li>
+                <li>może mieć dowolną liczbę atrybutów z wartościami</li>
+                <li>może mieć dowolną wartość wpisaną w slot</li>
+              </ul>
+              <ul class="block">
+                <li>w slocie można wpisać inne tagi HTML</li>
+                <li>jeżeli slot jest pusty, można go domknąć slashem</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto flex flex-col gap-4">
+              <div class="text-3xl"><pre class="p-4">&lt;span class="font-bold text-xl" id="hello" title="Hello message"&gt;
+    Hello there!
+&lt;/span&gt;</pre></div>
+            </div>
+
+            <div class="mt-12 text-lg w-2/3 text-left mx-auto flex flex-col gap-4">
+              Przykładowo:
+              <ul class="block">
+                <li>nazwą tagu tutaj jest <code>span</code></li>
+                <li>tag ma trzy atrybuty:
+                    <ul class="block">
+                        <li>listę klas <code>class</code> z wartością <code>font-bold text-xl</code></li>
+                        <li>identyfikator <code>id</code> z wartością <code>hello</code></li>
+                        <li>tytuł <code>title</code> z wartością <code>Hello message</code></li>
+                    </ul>
+                </li>
+                <li>w slocie zawartością jest napis <code>Hello there!</code></li>
+              </ul>
+              <p>Wyrenderowana zostanie oczywiście tylko fraza <span class="italic">Hello there!</span>, ale pozostałe informacje są istotne dla silnika przeglądarki, który do tego szkieletu może dodać reguły CSS lub skrypty JS.</p>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa niedomykanego tagu HTML</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">&lt;nazwa <span class="opacity-15">[atrybut-n="wartość-n"]<sup>n</sup></span>&gt;<span class="opacity-15"></span></code>
+            </div>
+
+            <div class="mt-12 text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              Każdy niedomykany tag HTML:
+              <ul class="block">
+                <li>musi mieć nazwę w tagu otwierającym</li>
+                <li>może mieć dowolną liczbę atrybutów z wartościami</li>
+                <li>nie może mieć żadnej wartości wpisanej w slot</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto flex flex-col gap-4">
+              <div class="text-3xl"><pre class="p-4">&lt;img src="./logo.png" class="w-72" alt="Logo"&gt;</pre></div>
+            </div>
+
+            <div class="mt-12 text-lg w-2/3 text-left mx-auto flex flex-col gap-4">
+              Przykładowo:
+              <ul class="block">
+                <li>nazwą tagu tutaj jest <code>img</code></li>
+                <li>tag ma trzy atrybuty:
+                  <ul class="block">
+                    <li>źródło obrazka <code>src</code> z wartością <code>./logo.png</code></li>
+                    <li>listę klas <code>class</code> z wartością <code>w-72</code></li>
+                    <li>alternatywny tekst <code>title</code> z wartością <code>Logo</code></li>
+                  </ul>
+                </li>
+              </ul>
+              <p>Wyrenderowany zostanie oczywiście tylko obrazek (lub napis <span class="italic">Logo</span> jeżeli obrazka nie można pobrać), ale pozostałe informacje ponownie są istotne dla silnika przeglądarki, który do tego szkieletu może dodać reguły CSS lub skrypty JS.</p>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Każdy tag ma zestaw dostępnych do wykorzystania atrybutów. Przykładowo <code>src</code> może określić źródło obrazka w <code>img</code> lub adres URL załączanej strony w <code>iframe</code>, ale dodane do <code>span</code> nie za wiele zrobi.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niektóre atrybuty - jak identyfikator <code>id</code>, zestaw klas <code>class</code> czy stylowanie <code>style</code> - są domyślnie dostępne we wszystkich tagach.
+            </div>
+          </section>
+          <section>
+            Szybki przegląd najważniejszych tagów
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Hiperłącza &lt;a&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;a href="https://blumilk.pl/" target="_blank"&gt;
+    Blumilk sp. z o.o.
+&lt;/a&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">a</code> to (niegdyś) podstawa sieci www: tworzy linki, które po kliknięciu przenoszą na stronę określoną w <code>href</code>; atrybutem <code>target</code> można sterować zachowaniem przeglądarki po kliknięciu
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kontenery &lt;div&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;div class="flex flex-col lg:flex-row"&gt;
+    &lt;div class="flex-1"&gt;1&lt;/div&gt;
+    &lt;div class="flex-1 flex"&gt;
+      &lt;div class="flex-1"&gt;2&lt;/div&gt;
+      &lt;div class="flex-1"&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">div</code> to podstawa szkieletu stron www: to kontener, który można ostylować i do którego można włożyć kolejne kontenery
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Tabele &lt;table&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;table class="table-auto"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;id&lt;/th&gt;
+        &lt;th&gt;name&lt;/th&gt;
+        &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;Jan Kowalski&lt;/td&gt;
+        &lt;td&gt;
+          &lt;button (...)&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">table</code> służy do tworzenia tabel... i tylko tabel!
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Formularze &lt;form&gt; i &lt;input&gt;</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">&lt;form method="post"&gt;
+    &lt;input type="text" name="name"&gt;
+    &lt;input type="email" name="email"&gt;
+    &lt;input type="submit" value="Wyślij"&gt;
+&lt;/form&gt;</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">form</code> zbiera pola formularza <code class="font-bold">input</code>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            CSS: nadawanie wyglądu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym jest CSS?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">CSS</span> (<span class="italic">Cascading Style Sheets</span>, kaskadowe arkusze stylów) to kolejny język znaczników, tym razem wspomagający budowanie wizualnej warstwy stron internetowych.
+            </div>
+
+            <div class="mt-12 text-lg w-2/3 mx-auto flex flex-col gap-4">
+              Podstawowa idea to tworzenie reguł, które opiszą wygląd poszczególnych elementów renderowanych przez przeglądarkę.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w02/css.png" class="w-full" alt="Bardzo prosta strona internetowa">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              bardzo prosta strona (ale już ładniejsza)  internetowa: kod i render
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Budowa reguły CSS</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor { <span class="opacity-15">[atrybut-n: wartość-n;]<sup>n</sup></span> }</span></code>
+            </div>
+
+            <div class="mt-12 text-lg w-1/2 text-left mx-auto flex flex-col gap-4">
+              Każda reguła CSS:
+              <ul class="block">
+                <li>musi tyczyć się selektora</li>
+                <li>może mieć dowolną liczbę atrybutów z wartościami</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Selektor bez operatora wybiera tagi HTML o zadanej nazwie. <code>span {}</code> nada styl wszystkim węzłom typu <code>span</code> w HTML-u.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">.selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Selektor kropki wybiera klasy. <code>.text-bold {}</code> nada styl wszystkim węzłom, które w atrybucie <code>class</code> będą miały <code>text-bold</code>.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">#selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Selektor hash wybiera identyfikatory. <code>#logout {}</code> nada styl elementowi, który w atrybucie <code>id</code> będzie miały <code>logout</code>.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor.selector { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Konkatenacja: <code>span.text-bold {}</code> nada styl wszystkim węzłom typu <code>span</code>, które w atrybucie <code>class</code> będą miały <code>text-bold</code>.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector > selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Bezpośrednie dziecko: <code>ul.sidebar > li {}</code> nada styl wszystkim węzłom typu <code>li</code>, które są bezpośrednimi dziećmi jakiekogolwiek węzła typu <code>ul</code> z klasą <code>sidebar</code>.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Dziecko: <code>ul.sidebar li {}</code> nada styl wszystkim węzłom typu <code>li</code>, które są dziećmi jakiekogolwiek węzła typu <code>ul</code> z klasą <code>sidebar</code>.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor + selector { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Następny: <code>div.p {}</code> nada styl wszystkim węzłom typu <code>p</code>, które jako pierwsze występują po <code>div</code>.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector, selektor { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Łączenie: <code>span, p {}</code> nada styl wszystkim węzłom typu <code>span</code> oraz <code>p</code>.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">* { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Wszystko: <code>* {}</code> nada styl wszystkim węzłom.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl">selektor:pseudoklasa { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Pseudoklasy: <code>#contact:hover {}</code> nada styl elementowi o identyfikatorze <code>contact</code>, ale dopiero, gdy użytkownik najedzie na niego myszką.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector[atrybut="wartość"] { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Atrybuty: <code>a.link[target="_blank"] {}</code> nada styl wszystkim węzłom typu <code>a</code> z klasą <code>link</code> i atrybutem <code>target</code> ustawionym na <code>_blank</code>.
+            </div>
+            <div class="mt-12 text-lg w-full mx-auto">
+              <code><span class="text-4xl">selector:not(selector) { <span class="opacity-15">...</span> }</span></code>
+            </div>
+            <div class="mt-6 text-lg w-1/2 mx-auto">
+              Operacje logiczne: <code>div:not(.list) {}</code> nada styl wszystkim węzłom typu <code>div</code>, które nie mają nadanej klasy <code>list</code>.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Wszystkie selektory można ze sobą łączyć. Przykładowo poniższy zapis jest najbardziej poprawną regułą:
+            </div>
+            <div class="mt-8 text-xl w-full mx-auto">
+              <code>body > div.footer li, li.item, footer *:hover { color: <span class="text-red-400">Red</span>; }</code>
+            </div>
+          </section>
+          <section>
+            Szybki przegląd najczęściej używanych reguł
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kolorowanie tekstu (i nie tylko)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">span.text-red { color: Red; }
+span.text-green { color: rgba(0, 255, 0, 255); }
+span.text-blue { color: #0000FF; }</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">color</code> odpowiada za kolor tekstu, ale także krzywych w obiektach SVG; kolor można przedstawić słowem, w formie RGB lub RGBA, a także jako HEX
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wymiarowanie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">div.w-full { width: 100vw; }
+div.w-half { width: 50%; }
+div.w-100px { width: 100px; }
+div.w-8em { width: 8em; }</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">width</code> i <code class="font-bold">height</code> odpowiadają za wymiary, które można podawać w proporcji do szerokości ekranu, procentach, pikselach lub jednostce relatywnej do wielkości fontu.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Marginesy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">div.padded { padding: 1em; }
+div.x-padded { padding: 0 1em; }
+div.left-padded { padding: 0 0 0 1em; }
+<span class="opacity-25"># div.left-padded { padding: 0; padding-left: 1em; }</span>
+
+div.margined { margin: 1em; }</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">padding</code> i <code class="font-bold">margin</code> to marginesy wewnętrzne i zewnętrzne kontenerów; przyjmują wartości w specyficzny sposób liczony "od góry zgodnie ze wskazówkami zegara"
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wyświetlanie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl"><pre class="p-4">div.hidden { dislay: hidden; }
+div.fixed { display: fixed; top: 0; right: 0; padding: 1em; }
+div.flex { display: flex }</pre></div>
+            </div>
+
+            <div class="text-lg w-2/3 mx-auto">
+              <code class="font-bold">display</code> manipuluje wyświetlaniem elementu
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Frameworki: idea i przegląd
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym jest framework?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">Framework</span> należy rozumieć jako zbiór narzędzi programistycznych, które ujednolicają w jakiś sposób proces wytwarzania oprogramowania.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <span class="font-bold">Framework CSS</span> będzie najczęściej biblioteką ułatwiająca budowanie frontendu. Taka biblioteka będzie składała się z wielu udokumentowanych klas, które umożliwiają progamiście budowanie aplikacji z gotowych komponentów.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Rankingi</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w02/frameworks.png" class="w-full" alt="ranking frameworków State of CSS">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              ranking ze strony <a href="https://2023.stateofcss.com/en-US/css-frameworks/">State of CSS</a>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Instalacja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Większość frameworków pozwala na podpięcie się do CDN-a lub ściągnięcie gotowych plików. Niektóre wymagają większej wiedzy programistycznej do optymalnego uruchomienia, ale do celów testowych i tak udostępniają "łatwą drogę".
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład: Formularz bez CSS</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex gap-8">
+              <div class="flex-1 text-lg">
+                <pre><code>
+&lt;html lang="pl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Bardzo prosty formularz&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;label for="email"&gt;Email address&lt;/label&gt;
+        &lt;input type="email" id="email" placeholder="name@example.com"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="about"&gt;About you&lt;/label&gt;
+        &lt;textarea id="about" rows="3"&gt;&lt;/textarea&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+              </div>
+              <div class="flex-1">
+                <img src="../../../images/ppsi1/w02/plain.png" alt="formularz bez stylowania">
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład: Formularz z Bootstrapem</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex gap-8">
+              <div class="flex-1 text-lg break-normal">
+                <pre><code>
+&lt;html lang="pl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Bardzo prosty formularz (Bootstrap)&lt;/title&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="w-25 p-3"&gt;
+      &lt;div class="mb-3"&gt;
+        &lt;label for="email" class="form-label"&gt;Email address&lt;/label&gt;
+        &lt;input type="email" class="form-control" id="email" placeholder="name@example.com"&gt;
+      &lt;/div&gt;
+      &lt;div class="mb-3"&gt;
+        &lt;label for="about" class="form-label"&gt;About you&lt;/label&gt;
+        &lt;textarea class="form-control" id="about" rows="3"&gt;&lt;/textarea&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+              </div>
+              <div class="flex-1">
+                <img src="../../../images/ppsi1/w02/bootstrap.png" alt="formularz w Bootstrapie">
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład: Formularz z Tailwindem</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex gap-8">
+              <div class="flex-1 text-lg break-normal">
+                <pre><code>
+&lt;html lang="pl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Bardzo prosty formularz (Tailwind)&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="w-1/4 p-3"&gt;
+      &lt;div class="mb-3"&gt;
+        &lt;label for="email" class="block text-sm font-medium leading-6 text-gray-900"&gt;
+          Email address
+        &lt;/label&gt;
+        &lt;div class="mt-2"&gt;
+          &lt;input type="email" name="email" id="email" class="block w-full
+            rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1
+            ring-inset ring-gray-300 placeholder:text-gray-400
+            focus:ring-2 focus:ring-inset focus:ring-indigo-600
+            sm:text-sm sm:leading-6" placeholder="name@example.com"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="mb-3"&gt;
+        &lt;label for="comment" class="block text-sm font-medium leading-6 text-gray-900"&gt;
+          About you
+        &lt;/label&gt;
+        &lt;div class="mt-2"&gt;
+          &lt;textarea rows="4" name="comment" id="comment" class="block w-full
+            rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1
+            ring-inset ring-gray-300 placeholder:text-gray-400
+            focus:ring-2 focus:ring-inset focus:ring-indigo-600
+            sm:text-sm sm:leading-6"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+              </div>
+              <div class="flex-1">
+                <img src="../../../images/ppsi1/w02/tailwind.png" alt="formularz w Tailwindzie">
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wstęp do responsywności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Responsywność będzie tematem jednego z późniejszych wykładów, ale już tutaj warto wspomnieć, że jedną z największych zalet frameworków CSS jest ułatwienie tworzenia widoków, które dobrze wyglądają na ekranach o różnej rozdzielczości.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dzięki sprytnie zaprojektowanym klasom można budować jeden szkielet w HTML, a dostosowywać go jedynie przez CSS.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><span class="text-4xl"><span class="opacity-15">class="</span>p-0 md:p-4 lg:p-8 xl:p-10<span class="opacity-15">"</span></span></code>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <div class="mb-4">Kontener będzie miał:</div>
+              <ul>
+                <li>domyślnie (na telefonie?) zerowy wewnętrzny margines,</li>
+                <li>na średnich urządzeniach (od 768px) większy,</li>
+                <li>na dużych (od 1024px) jeszcze większy,</li>
+                <li>a na jeszcze większych (od 1280px) - największy.</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w02/rwd.png" class="w-full" alt="przykład responsywnego designu">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              ten sam szkielet, a różny render dla różnych rozdzielczości
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>HTML pomaga w tworzeniu struktury strony internetowej i dobrze pisać go z głową, aby jedna struktura działała na telefonach i desktopach</li>
+                <li>HTML można sobie wyobrażać jako system pudełek w pudełkach w pudełkach; w JavaScripcie nazwalibyśmy to drzewem DOM</li>
+                <li>CSS pomaga w stylowaniu strony internetowej, a jego reguły opierają się na logice selektorów</li>
+                <li>frameworki CSS to podstawa większości współczesnych aplikacji internetowych</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://www.w3schools.com/tags/" target="_blank">rozpiska tagów HTML</a></li>
+                <li><a href="https://selectors.app/" target="_blank">fajna apka do nauki selektorów CSS</a></li>
+                <li><a href="https://stateofcss.com/en-US" target="_blank">wyniki ankiety State of CSS 2023</a></li>
+                <li class="mt-4"><a href="https://tailwindcss.com/" target="_blank">dokumentacja Tailwinda</a></li>
+                <li><a href="https://getbootstrap.com/" target="_blank">dokumentacja Bootstrapa</a></li>
+                <li><a href="https://materializecss.com/" target="_blank">dokumentacja Materialize</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

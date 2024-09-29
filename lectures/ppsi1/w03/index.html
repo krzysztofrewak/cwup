@@ -1,0 +1,361 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych I</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+      code { padding: 0 .25em; background: rgba(211, 211, 211, 0.25); }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Narzędzia deweloperskie</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych I</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">3</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span></div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Przeglądarki internetowe</li>
+              <li>Edytory i IDE</li>
+              <li>Systemy operacyjne i środowisko</li>
+              <li>Inne przydasie</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Przeglądarki internetowe
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czym jest przeglądarka internetowa?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">Przeglądarka internetowa</span> (ang. <em>web browser</em>) – program komputerowy służący do pobierania i wyświetlania stron internetowych udostępnianych przez serwery WWW, a także odtwarzania plików multimedialnych. <sup>[<a href="https://pl.wikipedia.org/wiki/Przegl%C4%85darka_internetowa" target="_blank">1</a>]</sup>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dlaczego jest to istotne?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Niestety każda przeglądarka będzie działała nieco inaczej. Poza oczywistościami takimi jak różnorakie funkcjonalności czy wygląd, różnią się też silnikiem renderowania, co w szczególności będzie odpowiadało za różnice w interpretacji drzewa DOM, arkuszy CSS czy skryptów Javascript.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Chrome, Opera, Vivaldi i Edge korzystają z silnika Blink. Safari (i stare Chrome) z WebKita, Firefox - z Gecko. Będzie to szczegółnie uciążliwe dla frontendowców, kiedy trzeba będzie przewidzieć jak dane komponenty mogą wyglądąć i działać w różnych przeglądarkach.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/browsersmarket.png" class="w-full" alt="Udział przeglądarek w rynku">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              udział przeglądarek w rynku na przestrzeni ostatnich lat
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Która jest najlepsza?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Tutaj już oczywiście należy rozpatrywać takie pytanie w kontekście prywatnych upodobań. Warto jednak mieć przynajmniej ze trzy przeglądarki zainstalowane na swoim komputerze.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Ale ważne jest dla nas to, co znajdziemy pod spodem</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Podstawowym narzędziem inżynierskim jest możliwość podejrzenia źródła strony.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Ctrl+U (albo ⌘ + ⌥ + U) zazwyczaj pokaże nam zwrotkę serwera, która otrzymujemy po wysłaniu zapytania na adres podany w pasku adresu. Czasami będzie to miało sens, a czasami niestety nie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Narzędzia deweloperskie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              O wiele ciekawszym oknem są tzw. narzędzia deweloperskie czy też <em>devtools</em>, które w każdej przeglądarce wyglądają nieco inaczej, ale generalnie spełniają zawsze ten sam cel.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              F12 (albo ⌘ + ⌥ + I, ablo Ctrl + Shift + I) powinno uruchomić to w większości przeglądarek.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/devtools.png" class="w-full" alt="Zrzut ekranu z narzędzi deweloperskich">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              Inspektor jest wygodnym narzędziem do analizy drzewa DOM
+            </div>
+          </section>
+          <section>
+            <div class="w-4/5 text-xl mx-auto mb-10">
+              (tutaj zrobimy przegląd kolejnych funkcji na żywo)
+            </div>
+
+            <ol class="text-sm text-gray-500 leading-10 w-1/2 mx-auto">
+              <li>sensowne użycie Inspektora</li>
+              <li>podręczny edytor CSS</li>
+              <li>konsola JS</li>
+              <li>debuger</li>
+              <li>sieć, czyli możliwość podglądania co się dzieje na warstwie HTTP</li>
+              <li>dane</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Edytory i IDE
+          </section>
+          <section>
+            <div class="font-bold text-3xl">W czym kodzić?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli chcemy przelać nasze myśli na kod, mamy do wyboru tak naprawdę dwie (trzy?) opcje: edytory tekstu (w CLI i graficzne) oraz IDE.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Edytory w CLI</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-10">
+              <li>szybkie</li>
+              <li>praktycznie zawsze dostępne</li>
+              <li>mogą być trudne do opanowania</li>
+              <li>mogą być potężne poprzez konfigurowalność</li>
+            </ul>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/cli.png" class="w-full" alt="Edytor tekstu GNU nano">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              Edytor tekstu GNU nano
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Edytory wizualne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-10">
+              <li>to samo, co edytory w CLI, ale tym razem też przy użyciu myszki</li>
+              <li>dobrze sobie radzą z dużymi plikami</li>
+              <li>z grubsza rozumieją co w nich piszemy</li>
+              <li>warto znać ich liczne funkcjonalności i skróty klawiszowe <span class="text-gray-400">(tutaj zrobimy sobie live coding)</span></li>
+            </ul>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/text.png" class="w-full" alt="Edytor tekstu Sublime Text">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              Edytor tekstu Sublime Text
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Integrated development environment</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-10">
+              <li>pełny pakiet narzędzi inżynierskich</li>
+              <li>skonstruowane specjalnie do wytwarzania oprogramowania</li>
+              <li>w dużej mierze standardy branżowe</li>
+              <li>mogą być drogie</li>
+            </ul>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/ide.png" class="w-full" alt="IDE PHPStorm">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              IDE PHPStorm
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Systemy operacyjne i środowisko
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jaki system operacyjny jest najlepszy?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Nie da się obiektywnie tego powiedzieć. Windows, macOS i różne dystrybucje Linuksa mają swoje zalety i wady. Grunt to wiedzieć jakie mamy potrzeby i możliwości.
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/os.png" class="w-full" alt="Udział systemów operacyjnych w rynku w kontekście korzystania z klientów webowych">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              udział systemów operacyjnych w rynku w kontekście korzystania z klientów webowych na przestrzeni ostatnich lat
+            </div>
+          </section>
+          <section>
+            <div class="w-full mx-auto">
+              <img src="../../../images/ppsi1/w03/os2.png" class="w-full" alt="Udział systemów operacyjnych w rynku w kontekście pracy prorgamistów">
+            </div>
+            <div class="mt-8 text-base w-4/5 mx-auto">
+              udział systemów operacyjnych w rynku w kontekście pracy prorgamistów na przestrzeni ostatnich lat
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wirtualizacja i konterneryzacja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Warto natomiast zastanowić się czy chcemy instalować bezpośrednio w systemie wszystkie potrzebne do projektów narzędzia, kompilatory, interpretery czy systemy zarządzania zależnościami. Wirtaualizacja (VirtualBox, Vagrant) i konteneryzacja (Docker) mogą wyglądać na skomplikowane, ale w dalszej perspektywie są niezastąpionymi narzędziami.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Inne przydasie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Terminal</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Nawet jeżeli pracujecie w okienkach i panicznie boicie się konsoli, warto mieć pod ręką dobry terminal. I to nie taki, który utrudnia życie, ale taki, który wszystko przyspiesza i automatyzuje.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Mój faworyt: cokolwiek na uniksach lub Cmder (na Windowsie).
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Klient SQL</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli Wasze IDE nie ma sensownego wsparcia do zarządzania bazą danych, warto zainteresować się czymś innym. Dobre oprogramowanie tego typu powinno być lekkie, umożliwiać podgląd danych, wpisywanie kwerend oraz sensowne modyfikowanie z podglądu w formie tabelarycznej.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Mój faworyt: IDE JetBrains lub HeidiSQL (na Windowsie).
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Klient gita</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Istnieje mnóstwo narzędzi ułatwiajacych pracę z gitem. Git pull i push są proste do wyklikania w konsoli, ale bardziej skomplikowane akcje czasami dobrze móc po prostu wyklikać. Istnieje mnóstwo dedykowanego oprogrampowania, ale warto wybrać takie, które jak najmniej ingeruje w naszą pracę.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Mój faworyt: IDE JetBrains lub git w terminalu.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Klient http</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Wysyłanie zapytań HTTP i badanie ich odpowiedzi to jedno z podstawowych zadań towarzyszących programowaniu systemów internetowych. Warto umieć korzystać z narzędzia, które zapamięta nasze poprzednie zapytania oraz umożliwi manipulowanie nagłówkami i ciałem zapytania.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Mój faworyt: Postman lub Insomnia.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Narzędzia AI</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W dzisiejszych czasach zaraz nie będzie można sensownie pracować bez wspomagania się sztuczną inteligencją. Nie powinniśmy korzystać z tych narzędzi na zasadzie "zrób wszystko za mnie", ale raczej jako pomoc przy całym procesie.
+            </div>
+
+            <div class="mt-10 text-lg w-2/3 mx-auto">
+              Mój faworyt: GitHub Copilot i Chat GPT.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>znalezienie dobrych narzędzi to może nie aż połowa, ale jakaś część sukcesu</li>
+                <li>warto dostosować swoje narzędzia do swojego stacku technologicznego</li>
+                <li>nie warto się kopać z koniem i używać nieefektywnych czy starych narzędzi ze względu na to, że są domyślnie instalowane w systemie lub je znamy z poprzednich etapów edukacji</li>
+                <li>wszystko jest oczywiście podatne na takie zjawiska jak moda, więc warto raz na jakiś czas odświeżyć swoje przyzwyczajenia</li>
+                <li>bez narzędzi klasy enterprise trudno zbudować projekt klasy enterprise (co nie znaczy, że się nie da)</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://www.statista.com/statistics/268254/market-share-of-internet-browsers-worldwide-since-2009/" target="_blank">udział przeglądarek w rynku</a></li>
+                <li><a href="https://www.statista.com/statistics/869211/worldwide-software-development-operating-system/" target="_blank">udział systemów operacyjnych w rynku</a></li>
+                <li><a href="https://www.bytebase.com/blog/top-open-source-sql-clients/" target="_blank">przegląd klientów SQL</a></li>
+                <li><a href="https://kinsta.com/blog/vagrant-vs-docker/" target="_blank">Docker czy Vagrant?</a></li>
+                <li><a href="https://betterprogramming.pub/why-you-shouldnt-always-use-an-ide-28ed8c7e6843" target="_blank">jak IDE może nas skrzywdzić</a></li>
+                <li><a href="https://www.jetbrains.com/community/education/" target="_blank">produkty JetBrains dla studentów za darmo</a></li>
+                <li><a href="https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-setting-up-github-student-and-github-copilot-as-an/ba-p/3736279" target="_blank">GitHub Copilot dla studentów</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

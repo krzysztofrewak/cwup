@@ -1,0 +1,9 @@
+{
+    "name": "ppo/lab06",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ppo\\Lab06\\": "src/"
+        }
+    }
+}
