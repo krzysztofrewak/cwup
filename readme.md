@@ -80,3 +80,8 @@ Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym se
 1. Wzorce projektowe: antywzorce
 1. Programowanie ekstremalne
 1. Praktyczne code review
+
+
+#### Projekt zespołowy
+Kurs składa się z zajęć projektowych na siódmym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.  Zasady zaliczenia projektu znajdują się [tutaj](./projects/pz.md).
+
