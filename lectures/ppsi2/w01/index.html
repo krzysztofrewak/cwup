@@ -202,7 +202,10 @@
             <hr class="border-orange-400 border-opacity-50 my-12">
 
             <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
-              <div class="text-3xl"><pre class="p-4">docker run --rm python:latest python -c 'print("Hello world!")'</pre></div>
+              <div class="text-3xl">
+                <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>(cli)</code></div>
+                <pre class="p-4">docker run --rm python:latest python -c 'print("Hello world!")'</pre>
+              </div>
             </div>
 
             <div class="mt-8 text-lg w-full mx-auto">
@@ -215,6 +218,9 @@
             </div>
           </section>
           <section>
+            <div class="font-bold text-3xl">Witaj, świecie (ale poprzez Dockerfile)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
             <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
               <div class="text-3xl">
                 <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>Dockerfile</code></div>
@@ -222,13 +228,15 @@
 COPY . /app
 WORKDIR /app
 CMD ["python", "hello.py"]
-</pre></div>
+</pre>
+              </div>
             </div>
 
             <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
               <div class="text-3xl">
                 <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>hello.py</code></div>
-                <pre class="p-4">print("Hello world!")</pre></div>
+                <pre class="p-4">print("Hello world!")</pre>
+              </div>
             </div>
 
             <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
@@ -237,7 +245,62 @@ CMD ["python", "hello.py"]
                 <pre class="p-4">docker build -t hello .
 docker run hello
 
-<span class="text-gray-400"># Hello world!</span></pre></div>
+<span class="text-gray-400"># Hello world!</span></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Witaj, świecie (ale poprzez docker compose)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl">
+                <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>docker-compose.yml</code></div>
+                <pre class="p-4">services:
+  app:
+    image: python:3.12.6
+    command: python -c 'print("Hello world!")'
+</pre>
+              </div>
+            </div>
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl">
+                <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>(cli)</code></div>
+                <pre class="p-4">docker compose up
+docker compose run app
+
+<span class="text-gray-400"># Hello world!</span></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Witaj, świecie (ale poprzez docker compose, ale inaczej)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl">
+                <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>docker-compose.yml</code></div>
+                <pre class="p-4">services:
+  app:
+    image: python:3.12.6
+    entrypoint: python -c
+</pre>
+              </div>
+            </div>
+
+            <div class="text-lg w-full mx-auto flex flex-col gap-4 mb-8">
+              <div class="text-3xl">
+                <div class="text-sm text-left pl-12 ml-2 -mb-4"><code>(cli)</code></div>
+                <pre class="p-4">docker-compose run app 'print("Hello world!")'
+
+<span class="text-gray-400"># Hello world!</span></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="w-4/5 mx-auto">
+              <img src="../../../images/ppsi2/w01/hub.png" class="w-full" alt="Docker Hub">
             </div>
           </section>
         </section>
@@ -252,13 +315,10 @@ docker run hello
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li>w projektach IT znajdziemy cały przekrój różnych podejść do zarządzania</li>
-                <li>trudno powiedzieć, jaka metodyka jest najlepsza, ale przykładowo duże państwowe projekty raczej będą
-                  organizowane w PRINCE2, a nie Scrumie
-                </li>
-                <li>tradycyjne metodyki taka jak waterfall są sztywne i pasują do stabilnych projektów</li>
-                <li>agile jest bardziej elastyczny, ale przez to trudniej oszacować budżet</li>
-                <li>zarządzanie projektem musi dostosować się do wszystkich interesariuszy</li>
+                <li>kontener to zamknięty mikrosystem z własną pamięcią, przestrzenią dyskową oraz komunikacją przez porty</li>
+                <li>aplikacja webowa może być zbudowana wewnątrz jednego kontenera, ale może być też złożona z większej liczby kontenerów</li>
+                <li>jeden kontener jest wygodniejszy produkcyjnie; wiele - lokalnie</li>
+                <li>Docker pozwala na jednokrokowe uruchomienie całego projektu</li>
               </ul>
             </div>
           </section>
@@ -268,11 +328,11 @@ docker run hello
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li><a href="https://agilemanifesto.org/iso/pl/manifesto.html" target="_blank">manifest programowania
-                  zwinnego</a></li>
+                <li><a href="https://github.com/blumilksoftware/toby/blob/main/docker-compose.yml" target="_blank">przykładowy
+                  docker-compose.yml aplikacji w PHP</a></li>
                 <li>
-                  <a href="https://www.templeton-recruitment.com/tech-news/how-to-become-an-it-project-manager-a-complete-guide-for-2023" target="_blank">jak
-                    zostać project managerem?</a>
+                  <a href="https://www.educative.io/blog/docker-compose-tutorial" target="_blank">Docker Compose
+                    Tutorial: Advanced Docker made simple</a>
                 </li>
               </ul>
             </div>
