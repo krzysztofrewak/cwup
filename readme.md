@@ -43,7 +43,7 @@ Kurs składa się z serii wykładów oraz zajęć projektowych na czwartym semes
 Kurs składa się z serii wykładów oraz zajęć projektowych na piątym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia projektu znajdują się [tutaj](./projects/ppsi2.md).
 
 1. [Konteneryzacja środowiska deweloperskiego](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w01/index.html)
-1. Testowanie systemów internetowych
+1. [Testowanie systemów internetowych](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w02/index.html)
 1. Automatyzacja utrzymania jakości
 1. Projektowanie API
 1. Reaktywny frontend

@@ -1,0 +1,621 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych II</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Testowanie systemów internetowych</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych II</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">2</span> z 8</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Testowanie manualne</li>
+              <li>Testy jednostkowe</li>
+              <li>Testy integracyjne</li>
+              <li>TDD</li>
+              <li>BDD</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Testowanie manualne
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Działa?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Po zakończeniu prac nad zadaniem lub serią zadań wypadałoby sprawdzić czy wszystko działa zgodnie z
+              oczekiwaniami. Pierwszym krokiem w takim założeniu są testy manualne, czyli ręczne "przeklikanie" systemu
+              lub aplikacji.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Oczywiście w różnych systemach będzie wyglądało to trochę inaczej. Czasami będzie można "przejść przez
+              aplikację" w przeglądarce, czyli uruchomić konkretną stronę, wypełnić formularz, wysłać go i zobaczyć co
+              się stało w dashboardzie lub bazie daynch.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jeżeli testowane jest samo API, pomocne może być oprogramowanie typu Postman czy Insomnia, które pozwala
+              na wysyłanie parametryzowanych żądań HTTP. Wówczas trzeba sprawdzić odpowiedź oraz stan aplikacji po
+              wykonaniu żądania.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Syzyfowe prace</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Niestety, im więcej funkcjonalności ma system, tym więcej pracy trzeba poświęcić testom.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Szybko bowiem się okaże, że jedna funkcjonalność to nie tylko jeden test, ale najczęściej całe scenariusze
+              sprawdzające tzw. "happy path", oczekiwaną obsługę błędów oraz obsługę przypadków brzegowych.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Okazać się też może fakt, że nie można "po prostu przejść" testu, ot tak. Żeby miał on sens, trzeba
+              zbudować sensowne środowisko wokół, a to zajmuje czas.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Logowanie i rejestracja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Wyobraźmy sobie prosty formularz uwierzytelniający użytkownika. Będzie miał dwie zakładki: logowanie i
+              rejestrację. Pierwszy formularz będzie składał się z pól "email" i "hasło"; drugi z "email", "hasło",
+              "powtórz hasło", "zaakceptuj regulamin". Spróbujmy stworzyć scenariusze testowe do tej funkcjonalności.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 text-left mx-auto flex flex-col gap-4">
+              <ul class="block">
+                <li>logowanie (happy path): użytkownik wpisuje poprawne email i hasło i zostaje przekierowany na stronę
+                  dashboardu
+                </li>
+                <li>logowanie: użytkownik wpisuje poprawny email i niepoprawne hasło i otrzymuje komunikat "Podano
+                  niepoprawne dane logowania"
+                </li>
+                <li>logowanie: użytkownik wpisuje niepoprawny email i hasło i otrzymuje komunikat "Podano niepoprawne
+                  dane logowania"
+                </li>
+                <li>logowanie: użytkownik wpisuje tylko email i otrzymuje komunikat "Podano niepełne dane logowania"
+                </li>
+                <li>logowanie: użytkownik wpisuje tylko hasło i otrzymuje komunikat "Podano niepełne dane logowania"
+                </li>
+                <li>logowanie: użytkownik wpisuje poprawne email i hasło, ale jeszcze nie został aktywowany, więc
+                  otrzymuje komunikat "Twoje konto nie zostało aktywowane"
+                </li>
+                <li>logowanie: użytkownik wpisuje poprawne email i hasło, ale został zbanowany, więc otrzymuje komunikat
+                  "Twoje konto zostało zablokowane"
+                </li>
+                <li>logowanie: użytkownik wpisuje poprawne email i hasło, ale nadszedł czas na zmianę danych, więc
+                  zostaje przekierowany na stronę ustawienia nowego hasła
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 text-left mx-auto flex flex-col gap-4">
+              <ul class="block">
+                <li>rejestracja (happy path): użytkownik wpisuje poprawne email, hasła i zgodę i otrzymuje komunikat "Na
+                  podany adres został wysłany link aktywacyjny", a na mejla trafia informacja z linkiem
+                </li>
+                <li>rejestracja: użytkownik wpisuje istniejący już w bazie email i otrzymuje informację "Na podany adres
+                  został wysłany link aktywacyjny", a na mejle trafia informacja "Ktoś próbuje się pod Ciebie podszyć"
+                </li>
+                <li>rejestracja: użytkownik wpisuje niepoprawny składniowo email i otrzymuje informację "Podano
+                  niepoprawne dane rejestracji: email musi mieć formę emaila"
+                </li>
+                <li>rejestracja: użytkownik wpisuje email, dwa różne hasła i zgodę i otrzymuje informację "Podano
+                  niepoprawne dane rejestracji: hasło musi zostać podane dwa razy jednakowo"
+                </li>
+                <li>rejestracja: użytkownik wpisuje poprawne email, hasła i otrzymuje informację "Podano niepoprawne
+                  dane rejestracji: zgoda jest wymagana"
+                </li>
+                <li>i tak dalej, i tak dalej...</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Już sama liczba scenariuszy jest ogromna, ale przecież wypadałoby wszystko posprawdzać. Dostosowywanie
+              bazy danych do każdego środowiska skutecznie wydłuży czas testu tej jednej funkcjonalności do godzin.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co testować?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Tutaj można byłoby zadać zasadne pytanie: co w takim razie należy testować?
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              "Wszystko" byłoby najlepszą odpowiedzią, ale niestety czasami trzeba pójść na kompromis. Trudno jest
+              wybrać najważniejsze scenriusze, ale może ich priorytetyzacja to dobry pomysł?
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Automatyzacja = jakość</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Z racji, że testowanie to zadanie czasochłonne i żmudne, już dawno temu zaczęto je automatyzować w różny
+              sposób. W dalszej części wykładu zobaczymy jak testować pojedyncze funkcje, całe funkcjonalności oraz jak
+              sensownie pisać takie testy.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Testy jednostkowe
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jednostka w systemie informatycznym</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Nie ma jednej definicji "jednostki" w systemie informatycznym, ale intuicyjnie powinniśmy ją rozumieć jako
+              jedną rzecz, którą można przetestować. Czasami będzie to po prostu metoda klasy, czasami cała prosta
+              klasa.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              <code><pre class="p-4">
+
+class TableRowStyleGenerator
+{
+    public static array&lt;string&gt; get(int lineNumber, bool isActive = true)
+    {
+        let styles = ["py-2", "px-4"]
+
+        switch(true) {
+            lineNumber % 2 === 0 -> styles.append("bg-gray-100"),
+            lineNumber % 2 !== 0 -> styles.append("bg-gray-50"),
+            !isActive -> styles.append("text-gray-400").append("cursor-blocked"),
+        }
+
+        return styles
+    }
+}
+
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Wyobraźmy sobie taką metodę, która będzie pomagała nam w budowie klas CSS dla tabelki w HTML.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><pre class="p-4">
+
+assertSame(["py-2", "px-4", "bg-gray-50"], TableRowStyleGenerator::get(1))
+assertSame(["py-2", "px-4", "bg-gray-100"], TableRowStyleGenerator::get(2))
+assertSame(["py-2", "px-4", "bg-gray-50"], TableRowStyleGenerator::get(3))
+
+assertSame(["py-2", "px-4", "bg-gray-50", "text-gray-400", "cursor-blocked"], TableRowStyleGenerator::get(1), false)
+assertSame(["py-2", "px-4", "bg-gray-100", "text-gray-400", "cursor-blocked"], TableRowStyleGenerator::get(2), false)
+assertSame(["py-2", "px-4", "bg-gray-50", "text-gray-400", "cursor-blocked"], TableRowStyleGenerator::get(3), false)
+
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Test może wyglądać tak jak tutaj.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Asercja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Asercja to wyrażenie lub instrukcja w kodzie, która sprawdza, czy określony warunek jest spełniony podczas
+              wykonywania programu. Jeśli warunek jest prawdziwy, program kontynuuje działanie bez zakłóceń. Jeśli
+              jednak warunek nie jest spełniony, asercja zwykle powoduje wygenerowanie błędu lub wyjątku, sygnalizując,
+              że w kodzie wystąpił problem wymagający uwagi.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-full mx-auto">
+              <code><pre class="p-4">
+
+assertEquals(2, 4 / 2)
+assertTrue(5 === (10 / 2))
+assertNull(getFromXml("userId"))
+assertCount(10, users)
+assertEmpty(users)
+assertInfinite(INF + INF)
+
+expectException(InvalidArgumentException.class)
+
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Asercje mogą przyjmować przeróżne formy. Niektóre języki są w nie wyposażone domyślnie, a niektóre
+                potrzebują dodatkowych bibliotek.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Code coverage</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Większość frameworków do testów posiada funkcjonalność pozwalającą na sprawdzenie, ile procent kodu
+              zostało pokryte testami jednostkowymi. Niektóre szkoły mówią, że należałoby przetestować wszystkie
+              publicznie metody w głównym katalogu projektu.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Ale można zadać pytanie: czy jest sens testować jednostkowo np. kontroler HTTP aplikacji MVC? Albo model w
+              rozumieniu ORM, który ma akcesor w postaci publicznej metody? Albo klasę typu DTO?
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Testy integracyjne
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jednostka w systemie informatycznym</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli przetestujemy wszystkie pojedyncze elementy systemu, wcale nie musimy dostać potwierdzenia, że
+              wszystko będzie działało poprawnie. Ważne jest nie tylko to, jak działają poszczególne jednostki, ale
+              także to jak działają w odpowiednim połączeniu ze sobą.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              <code><pre class="p-4">
+
+let response = this.get("/")
+
+assertHtmlContainsString("O nas")
+assertHtmlContainsString("Kontakt")
+assertHtmlContainsString("Logowanie")
+
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Prosty test sprawdzający czy wszystko gra na stronie głównej systemu internetowego.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-3/5 mx-auto">
+              <code><pre class="p-4">
+this.actAsUser(factory(User).create())
+let response = this.get("/")
+
+assertHtmlContainsString("O nas")
+assertHtmlContainsString("Kontakt")
+assertHtmlContainsString("Wyloguj się")
+
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Prosty test sprawdzający czy wszystko gra na stronie głównej systemu internetowego, ale po zalogowaniu.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Diabeł tkwi w zależnościach</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Żeby łatwo móc pisać testy integracyjne, trzeba włożyć trochę pracy w pisanie samego kodu. Jednym z
+              podstawowych założeń powinno być tworzenie klas, które jak najmniej są zależne od innych klas (czyli m.
+              in. wykorzystywać wzorzec wstrzykiwania zależności).
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-4/5 mx-auto">
+              <code><pre class="p-4">
+class ContactController
+{
+    public Response post(Request request, Config config, Redirector redirector)
+    {
+        let mailer = new InternalMailingService(...config.get("mail"))
+        mailer.send(request.get("email"), request.get("content"))
+
+        return redirector.back()
+    }
+}
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Taką klasę trudno jest przetestować integracyjnie. Jeżeli kontroler ten jest podpięty pod route <code>POST
+                /contact</code> to każde uruchomienie go w teście... wyśle nam mejla. Warto zauważyć, że pewne rzeczy
+                można tutaj jednak kontrolować już na poziomie konfiguracji.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-4/5 mx-auto">
+              <code><pre class="p-4">
+class ContactController
+{
+    public Response post(Request request, Mailer mailer, Config config, Redirector redirector)
+    {
+        mailer.send(request.get("email"), request.get("content"))
+
+        return redirector.back()
+    }
+}
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Tutaj serwis mejlujący zostanie stworzony sam przez framework podczas normalnego cyklu życia aplikacji.
+                My natomiast w testach możemy zbudować własną klasę, która będzie udawała mejlowanie, a tak naprawdę
+                zapisze coś tylko do pliku albo nie zrobi nic.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co testować?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Również tutaj nie ma złotego środka. Niektórzy mogą powiedzieć, że każdy route aplikacji powinien zostać
+              poddany testom. Niektórzy stwierdzą, że powinno się robić koniecznie wszystkie happy pathy, jeszcze inni
+              dobiorą tylko te najbardziej istotne punkty systemu.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            TDD
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Test Driven Development</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Test Driven Development (ang. <em>programowanie sterowane testami</em>) to technika prowadzenia projektu,
+              w której to testy wyznaczają kierunek rozwoju projektu.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Krok pierwszy: Napisz testy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Programista zaczyna zadanie od zapoznania się z jego treścią, a następnie... pisze testy. Mogą to być
+              testy jednostkowe dla mniejszych zadań lub testy integracyjne dla większych. W testach tych opisuje happy
+              path, przewidywaną obsługę błedów oraz obsługę przypadków brzegowych.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Uruchamia je... i wszystko świecą się "na czerwono". Nic dziwnego, przecież kod, który testują jeszcze nie
+              powstał.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Krok drugi: Dopisz kod</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Programista wie już jak wszystko powinno działać, więc może zająć się implementacją zadania. Dzięki
+              scenariuszom testowym może od razu wyłapać niuanse i zabezpieczyć swój kod.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Uruchamia testy ponownie i wszystko powinno zaświecić się "na zielono".
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Krok trzeci: Refaktoryzacja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli wszystko działa, nadszedł czas na refaktoryzację. Jest to proces doprowadzenia kodu do oczekiwanego
+              stanu w kontekście jakości, bezpieczeństwa i przyjętych standardów. To tutaj można podzielić klasy na
+              mniejsze, zadbać o enkapsulację czy zastanowić się nad redundancją.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Na tym etapie nie powinno się już nic zmienić w kontekście statusu testów.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            BDD
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Behaviour-Driven Development</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Behaviour-Driven Development (ang. <em>programowanie sterowane zachowaniem</em>) to technika prowadzenia
+              projektu, w której to testy spełniają rolę nie tylko techniczną, ale również domenową.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Idea jest taka, aby testy były pisane w języku "domenowym", czyli po... angielsku lub polsku. Każdy wiersz
+              opisany w takim języku byłby tak naprawdę wywołaniem funkcji w tzw. kontekście, ale na pewnym poziomie
+              abstrakcji byłoby to czytelne i przyjazne dla użytkownika.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Służy do tego język Gherkin, który jest językiem niezależnym od technologii bazowej. Dzięki temu testy BDD
+              wyglądaja tak samo w aplikacjach pehapowych, pythonowych czy dotnetowych.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-4/5 mx-auto">
+              <code><pre class="p-4">
+@unit @inflector
+Feature: Unit testing BookWordInflector service
+
+  Scenario Outline: BookWordInflector class is unit tested
+    Given there is a new BookWordInflector instance
+    When inflect() method is called with &lt;number&gt; parameter
+    Then result &lt;result&gt; should be returned
+
+    Examples:
+      | number | result  |
+      | 0      | książek |
+      | 1      | książkę |
+      | 2      | książki |
+      | 5      | książek |
+      | 10     | książek |
+      | 15     | książek |
+      | 20     | książek |
+      | 22     | książki |
+      | 25     | książek |
+      | 33     | książki |
+      | 50     | książek |
+      | 100    | książek |
+      | 101    | książek |
+      | 102    | książki |
+      | 112    | książek |
+      | 300    | książek |
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                Taki test jest zdatny do przecztania nie tylko przez programistę, ale również przez analityka
+                biznesowego.
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="text-lg w-4/5 mx-auto">
+              <code><pre class="p-4">
+  /**
+   * @Given there is a new BookWordInflector instance
+   */
+  public void thereIsANewBookWordInflectorInstance()
+  {
+      this.inflector = new BookWordInflector()
+  }
+
+  /**
+   * @When inflect() method is called with :number parameter
+   */
+  public void inflectMethodIsCalledWithParameter(int number)
+  {
+      this.inflectorResult = this.inflector.inflect(number)
+  }
+
+  /**
+   * @Then result :result should be returned
+   */
+  public void resultShouldBeReturned(string result)
+  {
+      assertEquals(result, this.inflectorResult)
+  }
+</pre>
+              </code>
+
+              <div class="mt-8 text-lg w-full mx-auto">
+                A to już warstwa faktycznego oprogramowania wierszyków.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              BDD jest często łączone z TDD. Wyobraźmy sobie sytuację, w której zamiast opisanych językiem potocznym zadań programistycznych otrzymalibyśmy... gotowe scenariusze testów, które trzeba byłoby tylko okodować.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>bez testów nie można założyć, że system działa poprawnie</li>
+                <li>testy należy uruchamiać jak najczęściej, a najlepiej włączyć je do procesów CI/CD</li>
+                <li>testy jednostkowe pomagają nam najczęściej przy obsłudze przypadków brzegowych</li>
+                <li>testy integrracyjne pokażą czy aplikacja działa po dowolnych zmianach</li>
+                <li>TDD i BDD to techniki programowania ekstremalnego, ale warto się z nimi zaznajomić</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>
+                  <a href="https://aws.amazon.com/what-is/unit-testing/" target="_blank">czym jest unit testing</a> wg Amazonu
+                </li>
+                <li>
+                  <a href="https://docs.phpunit.de/en/11.4/assertions.html" target="_blank">lista asercji</a> w PHPUnit
+                </li>
+                <li>
+                  <a href="https://github.com/blumilksoftware/blt" target="_blank">Behat-Laravel Toolbox</a> - biblioteka napisana przez studentów CWUP do integracji Laravela z Behatem, czyli frameworkiem BDD
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
