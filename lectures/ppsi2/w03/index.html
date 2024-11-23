@@ -1,0 +1,185 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych II</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Automatyzacja utrzymania jakości</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych II</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">3</span> z 8</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Cechy dobrego systemu informatycznego</li>
+              <li>Narzędzia wspomagające</li>
+              <li>Automatyzacja utrzymania jakości kodu</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Cechy dobrego systemu informatycznego
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co to znaczy "dobry" system?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Najważniejsza oczywiście jest odpowiedź na pytanie "czy działa?"
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niestety tak krótkowzroczne podejście może być problematyczne - zarówno dla programistów, którzy kiedyś
+              będą musieli rozszerzać lub naprawiać system, jak i dla samego zamawiającego, dla którego te zmiany będą
+              praco- i czasochłonne.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jak sprawdzić czy system działa?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Testy, testy i testy.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Bez uruchomienia zestawów scenariuszy testów aplikacji nie da się powiedzieć tak naprawdę czy system
+              poprawnie działa. Oczywiście wiele zależy od jakości tychże testów, ale lepiej mieć małe pokrycie, ale
+              opisujące najważniejsze funkcjonalności niż kompletny brak testów.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Dobrym pierwszym krokiem w każdym projekcie jest uruchomienie testów zanim się nawet zajrzy do kodu.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jeżeli już na tym etapie testy nie przechodzą, możemy mieć wątpliwości do tego, co tak naprawdę kryje się
+              w repozytorium. Jeżeli ich w ogóle nie ma - mamy potwierdzenie, że system nie był budowany na poważnie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przeczytaj mnie!</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Inną dobrą praktyką jest zamieszczenie pliku <code>readme.md</code> w głównym katalogu repozytorium.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Oczywiście readme powinno zawierać ogólny opis projektu i instrukcję uruchomienia lokalnego oraz
+              uruchomienia testów. Bazowe readme frameworka powinno być usunięte w zasadzie przy pierwszym commicie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Uruchomienie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bardzo często systemy internetowe potrzebują wielu zależności - zarówno na poziomie usług, jak i
+              pobieranych paczek. Wszystko, co potrzebne, powinno być udokumentowane jak najdokładniej... albo po prostu
+              opisane w plikach dockerowych.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Inna dobrą praktyką może być stworzenie skryptu uruchamiającego system.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dokumentacja REST API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli system publikuje REST API, warto dodać do niego dokumentację, aby każdy wiedział jak korzystać ze
+              wszystkich kolejnych endpointów. Tym bardziej, jeżeli mówimy o kilku rozmawiających ze sobą serwisach
+              wewnątrz systemu.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Może się zdawać oczywistym, że pod endpoint `POST /logout` należy wysłać token uwierzytelniający w
+              nagłówku oraz puste ciało, a otrzymamy jako odpowiedź status 200...
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              A może request przyjmuje więcej nagłówków i w zależności od <code>Accept-Language</code> dostaniemy różną
+              odpowiedź? Ale co gdy token jest przeterminowany? Albo użytkownik został usunięty? Z prostego endpointu
+              zrobi się przynajmniej kilka scenariuszy.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Taka dokumentacja może wyglądać następująco, a budowana jest z...
+              <a href="https://petstore.swagger.io/v2/swagger.json" target="_blank">pliku JSON</a>:
+            </div>
+            <div class="mt-8 mx-auto">
+              <img src="../../../images/ppsi2/w03/swagger.png" class="w-full" alt="Swagger UI">
+            </div>
+          </section>
+        </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>bez testów nie można założyć, że system działa poprawnie</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>
+                  <a href="https://aws.amazon.com/what-is/unit-testing/" target="_blank">czym jest unit testing</a> wg
+                  Amazonu
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
