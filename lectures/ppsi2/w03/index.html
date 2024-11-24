@@ -139,7 +139,274 @@
               <img src="../../../images/ppsi2/w03/swagger.png" class="w-full" alt="Swagger UI">
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl italic">Everything in Its Right Place</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli korzystamy ze znanego frameworka i celowo naginamy jego konwencje, warto gdzieś to zanotować.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przykładowo odejście od laravelowych fasad brzmi rozsądnie, ale kłóci się z oficjalnym podejściem
+              przedstawianym w dokumentacji frameworka. Podobnie rzecz się ma z wykorzystaniem DTO, własnym systemem
+              warstw abstrakcji i każdą inną tego typu zmianą.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Spacje czy taby?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W sensownie prowadzonym projekcie nie powinno być miejsca na kłótnie o taby i spacje czy klamerki
+              otwierające metodę w tej lub w nowej linii. Uwspólniony styl programowania powinien dotyczyć wszystkich i
+              być jasno sprecyzowany, żeby code review nie zajmowało godziny dziennie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dlaczego?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              "Dobry" system informatyczny powinien być działający, ale także skalowalny i przenoszalny oraz naprawialny
+              i rozszerzalny.
+            </div>
+          </section>
         </section>
+
+        <section>
+          <section>
+            Narzędzia wspomagające
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Spacje czy taby?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Przy większym projekcie sprawdzanie stylu kodu to męczarnia.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dlatego też większość ekosystemów zbudowanych wokół języków programowania i frameworków webowych
+              wytworzyła narzędzia do zapewnienia automatycznego sprawdzania i naprawiania stylu kodowania.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">Narzędzia takie nazywają się najczęściej linterami lub fixerami.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl"><code>pep8 --first optparse.py</code></div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+optparse.py:69:11: E401 multiple imports on one line
+optparse.py:77:1: E302 expected 2 blank lines, found 1
+optparse.py:88:5: E301 expected 1 blank line, found 0
+optparse.py:222:34: W602 deprecated form of raising exception
+optparse.py:347:31: E211 whitespace before '('
+optparse.py:357:17: E201 whitespace after '{'
+optparse.py:472:29: E221 multiple spaces before operator
+optparse.py:544:21: W601 .has_key() is deprecated, use 'in'</pre>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Co kraj, to obyczaj, dlatego każda technologia ma swoje lintery:
+            </div>
+
+            <ul class="pt-8 text-lg leading-10">
+              <li>Python - pep8, Pylint</li>
+              <li>JavaScript - ESLint, Prettier</li>
+              <li>PHP - PHP-CS-Fixer, Psalm</li>
+              <li>C# - natywny <code>dotnet format</code></li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Warsztat</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zobaczmy co może przykładowe narzędzie tej klasy:
+              <a href="https://mlocati.github.io/php-cs-fixer-configurator/#version:3.64" target="_blank">PHP-CS-Fixer</a>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Codestyle, ale i więcej</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Część z powyższych narzędzi potrafi nie tylko poprawić odstępy czy ogólny styl, ale także przeprowadzić
+              statyczną analizę kodu w celu identyfikacji błędów, luk bezpieczeństwa i niezgodności ze standardami
+              kodowania. Pozwala to wykrywać i naprawiać potencjalne problemy na wczesnym etapie rozwoju oprogramowania.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Warsztat</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zobaczmy co może przykładowe narzędzie tej klasy:
+              <a href="https://phpstan.org/r/6e3868d9-d83e-40e8-b77b-7ea6aee7cc65" target="_blank">Psalm</a>.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Automatyzacja utrzymania jakości kodu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Produktywność vs lenistwo</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Korzystanie z runnerów testów czy linterów ułatwia pracę, ale generuje jeden poważny problem: trzeba o tym
+              pamiętać przy każdym puszczeniem zmian.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dlatego też warto rozważyć zautomatyzowanie całego procesu, aby ktoś lub coś robili to za nas.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Git Hooks</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jednym z takich rozwiązań jest wykorzystywanie Git Hooków, czyli możliwych do oprogramowania reakcji na rzucane przez Gita zdarzenia.
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 mx-auto">
+              <img src="../../../images/ppsi2/w03/hooks.png" class="w-full" alt="schemat Git Hooks">
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Git Hooks</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zalety? Łatwe w konfiguracji i działające lokalnie.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wady? Mogą być trudne w obsłudze, jeżeli środowisko jest zdockeryzowane. Bardzo łatwo je wyłączyć, co niektórych będzie kusiło.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">GitHub Actions</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Alternatywą może być GitHub Actions, czyli funkcjonalność dostarczana przez GitHub, która polega na umożliwieniu uruchamiania dowolnych skryptów "wewnątrz GitHuba". W bardzo prosty sposób można podpiąć uruchamianie testów czy linterów na zdarzenia takie jak pull request czy push na główny branch.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład #1</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+name: Check PR Title
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - ready_for_review
+      - reopened
+
+jobs:
+  check-pr-title:
+    name: Check PR title
+    timeout-minutes: 10
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: blumilksoftware/action-pr-title</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład #2</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+name: Test & lint PHP stuff
+
+on:
+  pull_request:
+    # (...)
+
+jobs:
+  test-and-lint-php:
+    name: Test & lint PHP stuff
+    timeout-minutes: 10
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-22.04
+    services:
+       # (...)
+
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-suggest
+
+      - name: Run PHP linter
+        run: composer cs
+
+      - name: Run PHP static analysis
+        run: composer analyse
+
+      - name: Execute tests
+        run: php artisan test --env=ci</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład #3</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 8 1 * *"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install and build frontend
+        run: |
+          npm install
+          npm run-script build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php
+
+      - name: Install and build backend
+        run: |
+          composer install
+          composer build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action</pre>
+            </div>
+          </section>
         </section>
 
         <section>
@@ -163,8 +430,19 @@
             <div class="text-lg w-2/3 mx-auto">
               <ul>
                 <li>
-                  <a href="https://aws.amazon.com/what-is/unit-testing/" target="_blank">czym jest unit testing</a> wg
-                  Amazonu
+                  <a href="https://mlocati.github.io/php-cs-fixer-configurator/#version:3.64" target="_blank">konfigurator PHP-CS-Fixer</a>
+                </li>
+                <li>
+                  <a href="https://github.com/blumilksoftware/codestyle" target="_blank">codestyle</a> wykorzystywany w Blumilku
+                </li>
+                <li>
+                  <a href="https://eslint.org/" target="_blank">ESLint</a> - strona główna
+                </li>
+                <li>
+                  <a href="https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks" target="_blank">Git Hooks</a>
+                </li>
+                <li>
+                  <a href="https://github.com/blumilksoftware/toby/tree/main/.github/workflows" target="_blank">przykładowe GitHub Actions</a>
                 </li>
               </ul>
             </div>
