@@ -302,6 +302,14 @@ optparse.py:544:21: W601 .has_key() is deprecated, use 'in'</pre>
             </div>
           </section>
           <section>
+            <div class="font-bold text-3xl">CI + CD</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Dzięki GitHub Actions można tworzyć niestandardowe ciągi zadań za pomocą plików konfiguracyjnych YAML, co umożliwia integrację ciągłą (CI) i ciągłe wdrażanie (CD) bez potrzeby korzystania z zewnętrznych narzędzi. Platforma oferuje również możliwość korzystania z gotowych akcji stworzonych przez społeczność, co przyspiesza proces automatyzacji i ułatwia zarządzanie cyklem życia aplikacji.
+            </div>
+          </section>
+          <section>
             <div class="font-bold text-3xl">Przykład #1</div>
             <hr class="border-orange-400 border-opacity-50 my-12">
 
@@ -407,6 +415,14 @@ jobs:
         uses: JamesIves/github-pages-deploy-action</pre>
             </div>
           </section>
+          <section>
+            <div class="font-bold text-3xl">Alternatywy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Istnieje wiele innych alternatyw (między innymi popularny Gitlab CI/CD, narzędzia takie jak Jenkins, Travis czy CircleCI), ale wszystkie działają w miarę podobnie.
+            </div>
+          </section>
         </section>
 
         <section>
@@ -419,7 +435,13 @@ jobs:
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li>bez testów nie można założyć, że system działa poprawnie</li>
+                <li>testowanie (automatyczne!) jest niezbędne do zapewnienia poprawności działania systemu</li>
+                <li>dokumentacja ułatwia uruchomienie i rozwój projektu</li>
+                <li>narzędzia takie jak lintery, formatery i fixery automatyzują utrzymanie jakości kodu</li>
+                <li>automatyzacja procesów zwiększa efektywność</li>
+                <li>wykorzystanie platform takich jak GitHub Actions umożliwia ciągłą integrację i wdrażanie</li>
+                <li>"dobry" system powinien być nie tylko działający, ale także skalowalny, przenośny, naprawialny i rozszerzalny</li>
+
               </ul>
             </div>
           </section>
