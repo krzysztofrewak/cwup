@@ -1,0 +1,485 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych II</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Automatyzacja utrzymania jakości</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych II</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">3</span> z 8</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Cechy dobrego systemu informatycznego</li>
+              <li>Narzędzia wspomagające</li>
+              <li>Automatyzacja utrzymania jakości kodu</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Cechy dobrego systemu informatycznego
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co to znaczy "dobry" system?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Najważniejsza oczywiście jest odpowiedź na pytanie "czy działa?"
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Niestety tak krótkowzroczne podejście może być problematyczne - zarówno dla programistów, którzy kiedyś
+              będą musieli rozszerzać lub naprawiać system, jak i dla samego zamawiającego, dla którego te zmiany będą
+              praco- i czasochłonne.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jak sprawdzić czy system działa?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Testy, testy i testy.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Bez uruchomienia zestawów scenariuszy testów aplikacji nie da się powiedzieć tak naprawdę czy system
+              poprawnie działa. Oczywiście wiele zależy od jakości tychże testów, ale lepiej mieć małe pokrycie, ale
+              opisujące najważniejsze funkcjonalności niż kompletny brak testów.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Dobrym pierwszym krokiem w każdym projekcie jest uruchomienie testów zanim się nawet zajrzy do kodu.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Jeżeli już na tym etapie testy nie przechodzą, możemy mieć wątpliwości do tego, co tak naprawdę kryje się
+              w repozytorium. Jeżeli ich w ogóle nie ma - mamy potwierdzenie, że system nie był budowany na poważnie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przeczytaj mnie!</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Inną dobrą praktyką jest zamieszczenie pliku <code>readme.md</code> w głównym katalogu repozytorium.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Oczywiście readme powinno zawierać ogólny opis projektu i instrukcję uruchomienia lokalnego oraz
+              uruchomienia testów. Bazowe readme frameworka powinno być usunięte w zasadzie przy pierwszym commicie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Uruchomienie</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bardzo często systemy internetowe potrzebują wielu zależności - zarówno na poziomie usług, jak i
+              pobieranych paczek. Wszystko, co potrzebne, powinno być udokumentowane jak najdokładniej... albo po prostu
+              opisane w plikach dockerowych.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Inna dobrą praktyką może być stworzenie skryptu uruchamiającego system.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dokumentacja REST API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli system publikuje REST API, warto dodać do niego dokumentację, aby każdy wiedział jak korzystać ze
+              wszystkich kolejnych endpointów. Tym bardziej, jeżeli mówimy o kilku rozmawiających ze sobą serwisach
+              wewnątrz systemu.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Może się zdawać oczywistym, że pod endpoint `POST /logout` należy wysłać token uwierzytelniający w
+              nagłówku oraz puste ciało, a otrzymamy jako odpowiedź status 200...
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              A może request przyjmuje więcej nagłówków i w zależności od <code>Accept-Language</code> dostaniemy różną
+              odpowiedź? Ale co gdy token jest przeterminowany? Albo użytkownik został usunięty? Z prostego endpointu
+              zrobi się przynajmniej kilka scenariuszy.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Taka dokumentacja może wyglądać następująco, a budowana jest z...
+              <a href="https://petstore.swagger.io/v2/swagger.json" target="_blank">pliku JSON</a>:
+            </div>
+            <div class="mt-8 mx-auto">
+              <img src="../../../images/ppsi2/w03/swagger.png" class="w-full" alt="Swagger UI">
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl italic">Everything in Its Right Place</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli korzystamy ze znanego frameworka i celowo naginamy jego konwencje, warto gdzieś to zanotować.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przykładowo odejście od laravelowych fasad brzmi rozsądnie, ale kłóci się z oficjalnym podejściem
+              przedstawianym w dokumentacji frameworka. Podobnie rzecz się ma z wykorzystaniem DTO, własnym systemem
+              warstw abstrakcji i każdą inną tego typu zmianą.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Spacje czy taby?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W sensownie prowadzonym projekcie nie powinno być miejsca na kłótnie o taby i spacje czy klamerki
+              otwierające metodę w tej lub w nowej linii. Uwspólniony styl programowania powinien dotyczyć wszystkich i
+              być jasno sprecyzowany, żeby code review nie zajmowało godziny dziennie.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dlaczego?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              "Dobry" system informatyczny powinien być działający, ale także skalowalny i przenoszalny oraz naprawialny
+              i rozszerzalny.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Narzędzia wspomagające
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Spacje czy taby?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Przy większym projekcie sprawdzanie stylu kodu to męczarnia.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dlatego też większość ekosystemów zbudowanych wokół języków programowania i frameworków webowych
+              wytworzyła narzędzia do zapewnienia automatycznego sprawdzania i naprawiania stylu kodowania.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">Narzędzia takie nazywają się najczęściej linterami lub fixerami.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl"><code>pep8 --first optparse.py</code></div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+optparse.py:69:11: E401 multiple imports on one line
+optparse.py:77:1: E302 expected 2 blank lines, found 1
+optparse.py:88:5: E301 expected 1 blank line, found 0
+optparse.py:222:34: W602 deprecated form of raising exception
+optparse.py:347:31: E211 whitespace before '('
+optparse.py:357:17: E201 whitespace after '{'
+optparse.py:472:29: E221 multiple spaces before operator
+optparse.py:544:21: W601 .has_key() is deprecated, use 'in'</pre>
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Co kraj, to obyczaj, dlatego każda technologia ma swoje lintery:
+            </div>
+
+            <ul class="pt-8 text-lg leading-10">
+              <li>Python - pep8, Pylint</li>
+              <li>JavaScript - ESLint, Prettier</li>
+              <li>PHP - PHP-CS-Fixer, Psalm</li>
+              <li>C# - natywny <code>dotnet format</code></li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Warsztat</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zobaczmy co może przykładowe narzędzie tej klasy:
+              <a href="https://mlocati.github.io/php-cs-fixer-configurator/#version:3.64" target="_blank">PHP-CS-Fixer</a>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Codestyle, ale i więcej</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Część z powyższych narzędzi potrafi nie tylko poprawić odstępy czy ogólny styl, ale także przeprowadzić
+              statyczną analizę kodu w celu identyfikacji błędów, luk bezpieczeństwa i niezgodności ze standardami
+              kodowania. Pozwala to wykrywać i naprawiać potencjalne problemy na wczesnym etapie rozwoju oprogramowania.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Warsztat</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zobaczmy co może przykładowe narzędzie tej klasy:
+              <a href="https://phpstan.org/r/6e3868d9-d83e-40e8-b77b-7ea6aee7cc65" target="_blank">Psalm</a>.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Automatyzacja utrzymania jakości kodu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Produktywność vs lenistwo</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Korzystanie z runnerów testów czy linterów ułatwia pracę, ale generuje jeden poważny problem: trzeba o tym
+              pamiętać przy każdym puszczeniem zmian.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dlatego też warto rozważyć zautomatyzowanie całego procesu, aby ktoś lub coś robili to za nas.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Git Hooks</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jednym z takich rozwiązań jest wykorzystywanie Git Hooków, czyli możliwych do oprogramowania reakcji na rzucane przez Gita zdarzenia.
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 mx-auto">
+              <img src="../../../images/ppsi2/w03/hooks.png" class="w-full" alt="schemat Git Hooks">
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Git Hooks</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Zalety? Łatwe w konfiguracji i działające lokalnie.
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wady? Mogą być trudne w obsłudze, jeżeli środowisko jest zdockeryzowane. Bardzo łatwo je wyłączyć, co niektórych będzie kusiło.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">GitHub Actions</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Alternatywą może być GitHub Actions, czyli funkcjonalność dostarczana przez GitHub, która polega na umożliwieniu uruchamiania dowolnych skryptów "wewnątrz GitHuba". W bardzo prosty sposób można podpiąć uruchamianie testów czy linterów na zdarzenia takie jak pull request czy push na główny branch.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">CI + CD</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Dzięki GitHub Actions można tworzyć niestandardowe ciągi zadań za pomocą plików konfiguracyjnych YAML, co umożliwia integrację ciągłą (CI) i ciągłe wdrażanie (CD) bez potrzeby korzystania z zewnętrznych narzędzi. Platforma oferuje również możliwość korzystania z gotowych akcji stworzonych przez społeczność, co przyspiesza proces automatyzacji i ułatwia zarządzanie cyklem życia aplikacji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład #1</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+name: Check PR Title
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - ready_for_review
+      - reopened
+
+jobs:
+  check-pr-title:
+    name: Check PR title
+    timeout-minutes: 10
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: blumilksoftware/action-pr-title</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład #2</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+name: Test & lint PHP stuff
+
+on:
+  pull_request:
+    # (...)
+
+jobs:
+  test-and-lint-php:
+    name: Test & lint PHP stuff
+    timeout-minutes: 10
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-22.04
+    services:
+       # (...)
+
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-suggest
+
+      - name: Run PHP linter
+        run: composer cs
+
+      - name: Run PHP static analysis
+        run: composer analyse
+
+      - name: Execute tests
+        run: php artisan test --env=ci</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład #3</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full text-xl flex gap-4">
+            <pre class="p-4">
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 8 1 * *"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install and build frontend
+        run: |
+          npm install
+          npm run-script build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php
+
+      - name: Install and build backend
+        run: |
+          composer install
+          composer build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Alternatywy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Istnieje wiele innych alternatyw (między innymi popularny Gitlab CI/CD, narzędzia takie jak Jenkins, Travis czy CircleCI), ale wszystkie działają w miarę podobnie.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>testowanie (automatyczne!) jest niezbędne do zapewnienia poprawności działania systemu</li>
+                <li>dokumentacja ułatwia uruchomienie i rozwój projektu</li>
+                <li>narzędzia takie jak lintery, formatery i fixery automatyzują utrzymanie jakości kodu</li>
+                <li>automatyzacja procesów zwiększa efektywność</li>
+                <li>wykorzystanie platform takich jak GitHub Actions umożliwia ciągłą integrację i wdrażanie</li>
+                <li>"dobry" system powinien być nie tylko działający, ale także skalowalny, przenośny, naprawialny i rozszerzalny</li>
+
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>
+                  <a href="https://mlocati.github.io/php-cs-fixer-configurator/#version:3.64" target="_blank">konfigurator PHP-CS-Fixer</a>
+                </li>
+                <li>
+                  <a href="https://github.com/blumilksoftware/codestyle" target="_blank">codestyle</a> wykorzystywany w Blumilku
+                </li>
+                <li>
+                  <a href="https://eslint.org/" target="_blank">ESLint</a> - strona główna
+                </li>
+                <li>
+                  <a href="https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks" target="_blank">Git Hooks</a>
+                </li>
+                <li>
+                  <a href="https://github.com/blumilksoftware/toby/tree/main/.github/workflows" target="_blank">przykładowe GitHub Actions</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

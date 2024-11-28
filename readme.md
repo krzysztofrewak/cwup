@@ -44,7 +44,7 @@ Kurs składa się z serii wykładów oraz zajęć projektowych na piątym semest
 
 1. [Konteneryzacja środowiska deweloperskiego](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w01/index.html)
 1. [Testowanie systemów internetowych](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w02/index.html)
-1. Automatyzacja utrzymania jakości
+1. [Automatyzacja utrzymania jakości](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w03/index.html)
 1. Projektowanie API
 1. Reaktywny frontend
 1. Architektura sterowana zdarzeniami
@@ -55,8 +55,8 @@ Kurs składa się z serii wykładów oraz zajęć projektowych na piątym semest
 Kurs składa się z serii wykładów na piątym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
 
 1. [Metodyki zarządzania projektami](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w01/index.html)
-1. Role w zespole programistycznym
-1. Analiza zadań projektowych
+1. [Role w zespole programistycznym](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w02/index.html)
+1. [Analiza zadań projektowych](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w03/index.html)
 1. Esytmowanie pracochłonności zadań
 1. Zarządzanie projektem
 1. Podstawy komunikacji

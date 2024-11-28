@@ -114,7 +114,7 @@ class ParkingLot
     protected const Integer MAX_AVAILABLE_SPACES = 3
     protected Integer occupiedSpaces = 0
 
-    public void (ParkingVehicle vehicle)
+    public void letIn(ParkingVehicle vehicle)
     {
         String name = vehicle.identify()
         String now = date("Y-m-d H:M:S")
