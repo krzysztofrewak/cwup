@@ -1,4 +1,4 @@
-## Klasy abstrakcyjne
+## Funkcje anonimowe
 
 ### Agenda
 Przewidywany plan zajęć kształtuje się następująco:
