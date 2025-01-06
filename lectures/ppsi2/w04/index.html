@@ -1,0 +1,443 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projektowanie i programowanie systemów internetowych II</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Projektowanie API</h5>
+            <h5 class="text-2xl">Projektowanie i programowanie systemów internetowych II</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">4</span> z 8</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Interfejsy systemów informatycznych</li>
+              <li>Projektowanie API</li>
+              <li>Konsumowanie API</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Interfejsy systemów informatycznych
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jak podłączyć się do innego systemu?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Interfejs (ang. <em>interface</em>) pozwala na połączenie ze sobą dwóch urządzeń lub programów.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Interfejsem mogą być zarówno kontrolki renderowane użytkownikowi na ekranie, dzięki którym może wchodzić w interakcje z systemem, jak i odpowiednio dopasowane końcówki przewodu internetowego. Dzisiaj skupimy się na komunikacji między dwoma programami.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Stare dzieje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Swego czasu wielu producentów umożliwiało łączenie się ze swoim oprogramowaniem za pomocą specjalistycznych bibliotek zwanych SDK - <em>software development kit</em>.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Przykładem - działającym do tej pory - mogą być niektóre systemy księgowe. Żeby móc pobrać z takiego systemu faktury, należy napisać własną aplikację w języku, w którym dostępne jest SDK. Więc jeżeli przykładowo InsERT Subiekt nexo został opracowany w technologii .NET, a jego SDK jest również napisany w C#, jedynym sposobem na połączenie się do niego będzie własna aplikacja C#... w tej wersji, którą wspiera SDK.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jeszcze starsze dzieje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jakkolwiek problematyczne by nie było, SDK było krokiem milowym w dziedzinie łączenia ze sobą różnych systemów informatycznych.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Zanim stało się popularne, systemy porozumiewały się ze sobą na zasadzie eksportu i importu płaskich plików albo poprzez współdzielenie bazy danych. Niektóre systemy oczywiście działają tak dzisiaj i można sobie wyobrazić jakie problemy to może ze sobą nieść.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">SOAP + WSDL</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              SOAP (<em>Simple Object Access Protocol</em>) pojawił się w latach 90. jako odpowiedź na szybko rozwijający się internet.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wykorzystywał (a w zasadzie wciąż wykorzystuje) wiadomości w formacie XML sprecyzowanym czasami poprzez WSDL. Zatem poprzez jeden endpoint HTTP w aplikacji można wykonać wszystkie dozwolone akcje systemu - to która zostanie wykonana zależy wyłącznie od struktury i zawartości wysłanego żądania.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Czyli przykładowo <code>POST /api</code> może zarówno pobrać dzisiejsze statystyki systemowe, usunąć wszystkich użytkowników oraz nadać status administratora wybranemu użytkownikowi. Może też zwrócić 150 różnych składniowo odpowiedzi, a żeby je zrozumieć, trzeba znać format każdej z nich.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wszystko powinno być oczywiście opisane w dokumentacji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">REST API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              REST (<em>Representational State Transfer</em>) to nie tylko interfejs, ale cała architektura systemu informatycznego.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Podstawowym założeniem jest to, że dany system informatyczny udostępnia listę dozwolonych akcji poprzez udokumentowane endpointy po protokole HTTP. Dzięki temu można ułatwić komunikację i wykorzystać nie tylko same adresy, ale także metody HTTP oraz statusy informacji zwrotnej z odpowiedzi HTTP.
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Zatem pobranie statystyk będzie dostępne pod endpointem <code>GET /api/statistics</code>, usunięcie użytkowników - <code>DELETE /api/users</code>, a nadanie statusu administratora - <code>PATCH /api/users/1 { status: "admin" }</code>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Projektowanie API
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Podstawy REST API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Założenia REST API powinny się przede wszystkim zamykać w sześciu podstawowych zasadach: separacja klienta i serwera, bezstanowość, cache po stronie odpowiedzi, ujednolicony interfejs, system warstw oraz opcjonalnie <em>code on demand</em>.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Separacja klienta i serwera</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W założeniu REST API powinno być stosowane dla odseparowanych od siebie serwera i klienta lub klientów. Dzięki takiemu rozwiązaniu jedno API systemu informatycznego może obsłużyć na przykład aplikację webową, aplikację mobilną oraz wewnętrzny system raportujący.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bezstanowość</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Bezstanowość (ang. <em>stateless</em>) odnosi się do zasady, według której serwer nie przechowuje informacji o stanie klienta między różnymi żądaniami. Oznacza to, że każde żądanie wysyłane przez klienta do serwera musi zawierać wszystkie dane niezbędne do przetworzenia tego żądania. Serwer traktuje każde żądanie jako odrębne i niezależne od innych, nawet jeśli pochodzi od tego samego klienta.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Cache</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W kontekście REST API, zasada cache oznacza, że odpowiedzi zwracane przez serwer powinny zawierać same w sobie informacje wskazujące, czy i jak długo mogą być przechowywane w pamięci podręcznej przez klienta lub pośrednie serwery (np. serwery proxy). Najczęściej odbywa się to poprzez nagłówek odpowiedzi HTTP, np.: <code>Cache-Control: max-age=3600</code>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Ujednolicony interfejs</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Celem REST API jest ujednolicenie interakcji między klientem a serwerem, co upraszcza projektowanie systemów, zwiększa ich spójność i umożliwia niezależny rozwój poszczególnych komponentów. Przykładowo każdy zasób musi mieć swój identyfikator (np. <code>/api/users/123</code>), może być zmieniany (np. <code>PATCH /api/users/123 { (...) }</code>), a każe żądanie i odpowiedź zawierają wszystkie informacje potrzebne do jego zrozumienia i przetworzenia.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Warstwowość</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Komunikacja między klientem a serwerem powinna być możliwa do zrealizowania przez szereg pośrednich warstw (np. serwery proxy, load balancery, cache, bramy API), a klient nie powinien wiedzieć ani odczuwać, czy łączy się bezpośrednio z serwerem końcowym, czy z warstwą pośrednią. Zwiększa to skalowalność systemu, ale także umożliwia poprawę bezpieczeństwa, cacheowania czy modularyzacji.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Opcjonalnie: code on demand</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <em>Code on demand</em> to opcjonalna cecha w architekturze REST, która pozwala serwerowi na dostarczanie kodu wykonywalnego do klienta. Kod ten może być uruchamiany po stronie klienta w celu tymczasowego rozszerzenia lub dostosowania jego funkcjonalności. Kod zazwyczaj jest przesyłany w formacie, który może być wykonany przez standardową wirtualną maszynę, np. JavaScript w przeglądarce.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">REST = routing</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Część frameworków MVC zachęca do deklarowania routingu w jednym pliku lub katalogu. Ułatwia to pracę inżynierom, ponieważ w łatwy sposób można podejrzeć jaka akcji API wywołuje jaki kontroler.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Bardzo często to pliki routingu są pierwszymi plikami do zaznajomienia się, gdy staramy się zrozumieć nowy projekt (zaraz oczywiście po uruchomieniu testów).
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Routing = REST</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><code>GET /articles</code> – pobierz listę wszystkich artykułów</li>
+                <li><code>GET /articles/{id}</code> – pobierz szczegóły konkretnego artykułu</li>
+                <li><code>POST /articles</code> – utwórz nowy artykuł</li>
+                <li><code>PUT /articles/{id}</code> – zaktualizuj cały artykuł</li>
+                <li><code>PATCH /articles/{id}</code> – częściowo zaktualizuj artykuł</li>
+                <li><code>DELETE /articles</code> – usuń wszystkie artykuły</li>
+                <li><code>DELETE /articles/{id}</code> – usuń artykuł</li>
+              </ul>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Podstawowy routing dla zasobu <code>article</code> może prezentować się jak powyżej.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Routing = REST (2)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><code>GET /articles/{id}/pdf</code> – pobierz PDF z artykułem</li>
+                <li><code>GET /articles/{id}/comments</code> – pobierz komentarze do artykułu</li>
+                <li><code>POST /articles/{id}/comments</code> – dodaj komentarz do artykułu</li>
+                <li><code>GET /articles/{id}/metadata</code> – pobierz metadane artykułu</li>
+                <li><code>GET /articles/search?query=</code> – wyszukaj artykuły</li>
+              </ul>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Ale nic nie powinno stać na drodze, aby to rozszerzyć wedle potrzeb.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Każdy robi swoje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Nadawanie użytkownikowi wyższych uprawnień? W architekturze REST wszystko powinno być na swoim miejscu:
+            </div>
+
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <ul>
+                <li>router przyjmuje deklarację, że <code>POST /api/users/{id}/promote/admin</code> uruchomi kontroler <code>UserPromotionController</code></li>
+                <li>odpowiednia metoda kontrolera uruchamia jedynie serwis promujący użytkownika i zwraca odpowiedź, że się udało</li>
+                <li>serwis ten pobiera jedynie użytkownika o zadanym id z bazy i nadaje mu uprawnienia administracyjne... lub rzuca wyjątkiem</li>
+                <li>pozostałe akcje - uwierzytelnienie, autoryzacja - powinny się dziać obok, np. w middlewarach</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Middleware i handlery wyjątków</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              W wielu frameworkach wiele akcji można uruchomić między routerem a kontrolerem albo przy okazji przechwycenia rzuconego wyjątku. Dobrze skonstruowane middlewary i handlery pozwalają na budowę modularnego kodu, a to z kolei ułatwia nad nim pracę.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jak odbierać parametry?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jako, że REST powinien być bezstanowy, wszystkie informacje od klienta powinny być wysłane w żądaniu HTTP... ale przecież wiemy już, że możemy przekazać te dane w różny sposób:
+            </div>
+            <div class="w-full text-xl flex gap-4">
+              <pre class="p-4">PATCH /api/users/1 HTTP/1.1 <span class="text-gray-500">- w parametrze URI</span></pre>
+            </div>
+            <div class="-mt-6 w-full text-xl flex gap-4">
+              <pre class="p-4">GET /api/users/search?query=rewak HTTP/1.1 <span class="text-gray-500">- w querystringu</span></pre>
+            </div>
+            <div class="-mt-6 w-full text-xl flex gap-4">
+              <pre class="p-4">DELETE /api/users/123 HTTP/1.1 <span class="text-gray-500">- w nagłówku żądania HTTP</span>
+Accept-Language: en
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2M<span class="text-gray-500">...</span></pre>
+            </div>
+            <div class="-mt-6 w-full text-xl flex gap-4">
+              <pre class="p-4">POST /api/users HTTP/1.1 <span class="text-gray-500">- w body żądania HTTP</span>
+{
+    "name": "anowak",
+    "email": "anna.nowak@example.com",
+    "password": "zima2024!"
+}</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dokumentacja!</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Każde API powinno być udokumentowane w takim sposób, aby inżynierowie pracujący przy jego konsumowaniu nie mieli problemów ze zrozumieniem struktury żądań i odpowiedzi.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Czasami w trakcie prac nad systemem internetowym buduje się dokumentację w jednym z pierwszych kroków. Dzięki temu prace nad frontendem czy aplikacją mobilną mogą już iść do przodu. Dzięki temu również można już na początku zauważyć pewnie niedociągnięcia, braki, błędy logiczne czy możliwości usprawnienia systemu.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Taka dokumentacja może wyglądać następująco, a budowana jest z
+              <a href="https://petstore.swagger.io/v2/swagger.json" target="_blank">pliku JSON</a>:
+            </div>
+            <div class="mt-8 mx-auto">
+              <img src="../../../images/ppsi2/w03/swagger.png" class="w-full" alt="Swagger UI">
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Konsumowanie API
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Mamy API... i co teraz?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Gdy stajemy przed zadaniem podłączenia się do zewnętrznego API, pierwszym krokiem powinno być oczywiście znalezienie dokumentacji oraz uzyskanie dostępu do testowej instancji tegoż API.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Postman</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Dobrym narzędziem do zrozumienia jak działa czyjeś API jest Postman (lub analogiczne oprogramowanie typu Insomnia). Z jego poziomu można "strzelać" do wybranych endpointów, sprawdzać jak działają procesy biznesowe wewnątrz systemu i zobaczyć jak aktualna jest dokumentacja.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Zresztą plik OpenAPI można łatwo zaimportować do Postmana i wykorzystać wedle własnego pomysłu i potrzeb.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">TDD!</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Następnie warto jest spróbować napisać własny wrapper na API. Przecież nie będziemy strzelać curlem z poziomu kontrolera, prawda? A jeżeli już tworzymy klasę taką jak <code>CepikIntegration</code>, można od razu napisać do niej automatyczne testy zbudowane wokół mocków odpowiadających OpenAPI.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Mała podpowiedź: ChatGPT i inne narzędzia AI powinny sobie świetnie poradzić z generowaniem kodu na podstawie plików OpenAPI.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Mapowanie API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Jeżeli API zwraca udokumentowane obiekty, warto je zbudować również w swoim systemie... ale już pod siebie i swoje potrzeby. Jeżeli API zwraca timestampy, nie bójmy się przekonwertować ich sobie na obiekty z którymi łatwiej będzie się pracowało.
+            </div>
+            <div class="w-full text-xl flex flex-1 gap-4">
+              <div class="w-full"> <pre class="p-4">{
+    "model": "QASHQAI",
+    "make": "NISSAN",
+    "registered-at": 1736186247,
+    "stolen-at": null,
+    "curbWeight": 1180,
+    "grossWeight": 1675,
+    "ownerType": "person",
+    "ownerNumber": 3,
+    "ownersCount": 1,
+    "currentOwnerPurchaseYear": "2021",
+    "usageType": "private",
+    "firstRegistrationInPolandDate": null
+}</pre>
+              </div>
+              <div class="w-full"> <pre class="p-4">readonly class Vehicle {
+    public string model;
+    public string make;
+    public Date registeredAt;
+    public bool isStolen;
+}</pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Warstwa abstrakcji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Warto też pomyśleć nad zamknięciem całego połączenia z API wewnątrz klas z generalnym interfejsem. Przykładowo:
+            </div>
+            <div class="w-full text-xl flex gap-4">
+              <pre class="p-4">WeatherData weather = (new WeatherServiceIntegration())->getWeather()</pre>
+            </div>
+            <div class="text-lg w-2/3 mx-auto">
+              będzie generalnie lepsze niż:
+            </div>
+            <div class="w-full text-xl flex gap-4">
+              <pre class="p-4">WeatherData weather = (new WeatherServiceIntegration())->connectToImgw()->getWeather(ImgwForecasts::72h)</pre>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Savoir-vivre</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Warto "grzecznie" korzystać z zewnętrznych API. Niektóre z nich mają limity na liczbę żądań per wybrana jednostka czasu lub opłaty za korzystanie z endpointów.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Czasami o wiele wygodniej jest zaimplementować licznik zapytań po swojej stronie niż opracować cały schemat działania w przypadku zablokowania nam dostępu do zewnętrznego serwisu. Niestety komplikuje to system po naszej stronie (o kolejki, obsługę opóźnień), ale zdecydowanie zwiększa <em>user experience</em>, a czasami i <em>client experience</em>.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>API ewoluowały od importu/eksportu plików, przez SDK, SOAP, aż po REST API i nowsze rozwiązania jak GraphQL</li>
+                <li>REST API to architektura systemu informatycznego, która upraszcza komunikację między klientem a serwerem poprzez zdefiniowane endpointy i metody HTTP</li>
+                <li>dobrze zaprojektowane API powinno być czytelne i odpowiednio udokumentowane</li>
+                <li>narzędzia takie jak Swagger czy Postman ułatwiają testowanie i wdrażanie API</li>
+                <li>warto stosować narzędzia wspomagające integrację, takie jak własne klasy czy warstwy abstrakcji</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                  <li><a href="https://github.com/public-apis/public-apis" target="_blank">lista przeróżnych publicznych API</a></li>
+                  <li><a href="https://github.com/blumilksoftware/openapi-toolbox/" target="_blank">zestaw przydatnych narzędzi do integracji OpenAPI z Laravelem</a></li>
+                  <li><a href="https://appmaster.io/pl/blog/mydlo-a-odpoczynek" target="_blank">różnica między SOAP a REST</a></li>
+                  <li><a href="https://petstore.swagger.io/" target="_blank">przykładowa dokumentacja w Swaggerze</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
