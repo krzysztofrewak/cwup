@@ -45,7 +45,7 @@ Kurs składa się z serii wykładów oraz zajęć projektowych na piątym semest
 1. [Konteneryzacja środowiska deweloperskiego](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w01/index.html)
 1. [Testowanie systemów internetowych](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w02/index.html)
 1. [Automatyzacja utrzymania jakości](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w03/index.html)
-1. Projektowanie API
+1. [Projektowanie API](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w04/index.html)
 1. Reaktywny frontend
 1. Architektura sterowana zdarzeniami
 1. Inne wzorce architektoniczne
