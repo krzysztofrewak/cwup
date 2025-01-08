@@ -1,0 +1,226 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Estymowanie pracochłonności zadań</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <section>
+            <h5 class="text-5xl">Estymowanie pracochłonności zadań</h5>
+            <h5 class="text-2xl">Wprowadzenie do zarządzania projektami deweloperskimi</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">4</span> z 8 </h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-10 list-disc list-inside">
+              <li>Wprowadzenie do estymacji zadań</li>
+              <li>Popularne techniki szacowania</li>
+              <li>Najczęstsze pułapki i wyzwania</li>
+              <li>Podsumowanie</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Wprowadzenie do estymacji zadań
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dlaczego estymacje są ważne?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Estymacje (szacunki czasowe) pozwalają:
+            </div>
+            <ul class="pt-4 text-lg list-disc list-inside w-2/3 mx-auto">
+              <li>Określić realny harmonogram projektu</li>
+              <li>Oszacować koszty i zasoby niezbędne do realizacji</li>
+              <li>Planować pracę zespołu w cyklach (np. sprintach)</li>
+              <li>Ocenić ryzyko przekroczenia terminów</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Co wpływa na pracochłonność zadań?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul class="list-disc list-inside">
+                <li><span class="font-bold">Złożoność techniczna</span> – integracje, nowe technologie, niejasne wymagania</li>
+                <li><span class="font-bold">Zależności między zadaniami</span> – jedne zadania muszą być wykonane przed innymi</li>
+                <li><span class="font-bold">Dostępność specjalistów</span> – eksperci od konkretnej dziedziny mogą być ograniczonym zasobem</li>
+                <li><span class="font-bold">Ryzyko zmian w trakcie projektu</span> – np. dodatkowe wymagania czy przeprojektowanie</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Popularne techniki szacowania
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Planning Poker</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <p>Jedna z najpopularniejszych metod stosowanych w metodykach zwinnych (Agile). Uczestnicy spotkania (zazwyczaj deweloperzy) oceniają złożoność zadań w systemie "story points".</p>
+              <p class="mt-4">Zasady:</p>
+            </div>
+            <ul class="pt-4 text-lg list-disc list-inside w-2/3 mx-auto">
+              <li>Każdy wybiera kartę z liczbą punktów, które jego zdaniem odzwierciedlają złożoność zadania</li>
+              <li>Wszyscy odkrywają karty jednocześnie</li>
+              <li>Omawia się skrajne wartości i dochodzi do konsensusu</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Metoda 3-punktowa (PERT)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <p>Klasyczny sposób wyznaczania uśrednionej estymaty zadania, zakłada podanie trzech wartości:</p>
+            </div>
+            <ul class="pt-4 text-lg list-disc list-inside w-2/3 mx-auto">
+              <li>Optymistycznej (O)</li>
+              <li>Pesymistycznej (P)</li>
+              <li>Najbardziej prawdopodobnej (M)</li>
+            </ul>
+            <div class="text-lg w-2/3 mx-auto mt-4">
+              Wynik najczęściej liczy się wzorem:
+              <p class="mt-2 italic font-semibold">E = (O + 4M + P) / 6</p>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Techniques Bucket System</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <p>Alternatywa dla Planning Poker, sprawdzająca się przy większych backlogach. Polega na grupowaniu zadań do określonych „koszyków” (bucketów) o przyjętej wielkości pracochłonności.</p>
+              <p class="mt-4">Przykład koszyków:</p>
+            </div>
+            <ul class="pt-4 text-lg list-disc list-inside w-2/3 mx-auto">
+              <li>1 – zadania wymagające około 1 godziny pracy</li>
+              <li>2 – zadania wymagające 2-3 godzin pracy</li>
+              <li>4 – zadania wymagające około pół dnia pracy</li>
+              <li>8 – zadania wymagające 1 dnia pracy, itd.</li>
+            </ul>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Estymowanie w godzinach vs story points</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul class="list-disc list-inside">
+                <li><span class="font-bold">Estymacje w godzinach</span> – bliżej realiów codziennego planowania, ale trudniej uwzględnić nieprzewidywalne zdarzenia</li>
+                <li><span class="font-bold">Story points</span> – koncentrują się na względnej złożoności, co ułatwia oszacowanie pracy w czasie, ale wymaga pewnego przyzwyczajenia</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Najczęstsze pułapki i wyzwania
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przesadny optymizm</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Wielu programistów ma skłonność do zaniżania czasu potrzebnego na wykonanie zadania, co prowadzi do niewykonalnych harmonogramów.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Warto uwzględnić zapas na nieprzewidziane zdarzenia (buffer) oraz pamiętać, że problemy zawsze się pojawią.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Brak aktualizacji szacunków</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Z czasem nowe informacje mogą wpływać na zmianę estymacji.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Gdy rośnie zakres projektu lub pojawiają się problemy, estymacja sprzed kilku tygodni może okazać się całkowicie błędna.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Różny poziom doświadczenia</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Seniorzy estymują inaczej niż juniorzy, którzy mogą nie znać wszystkich ryzyk czy niuansów.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Dobrym rozwiązaniem jest wspólne omawianie zadań, aby wypracować bardziej obiektywną estymację.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kluczowe wnioski</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul class="list-disc list-inside">
+                <li>Estymacje pozwalają planować harmonogram i koszty, ale nigdy nie są w 100% dokładne</li>
+                <li>Wybór metody szacowania zależy od kultury zespołu i rodzaju projektu (Agile, tradycyjne podejścia)</li>
+                <li>Przesadny optymizm i brak aktualizacji potrafią zrujnować nawet najlepszy plan</li>
+                <li>Systematyczne podejście, wspólna praca i komunikacja w zespole są kluczem do lepszych prognoz</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul class="list-disc list-inside">
+                <li><a href="https://www.mountaingoatsoftware.com/agile/planning-poker" target="_blank">Planning Poker</a></li>
+                <li><a href="https://www.scrum.org/resources/blog/why-do-we-use-story-points-estimating" target="_blank">czym są story pointy? - scrum.org</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

@@ -57,7 +57,7 @@ Kurs składa się z serii wykładów na piątym semestrze na specjalności Progr
 1. [Metodyki zarządzania projektami](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w01/index.html)
 1. [Role w zespole programistycznym](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w02/index.html)
 1. [Analiza zadań projektowych](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w03/index.html)
-1. Esytmowanie pracochłonności zadań
+1. [Esytmowanie pracochłonności zadań](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w04/index.html)
 1. Zarządzanie projektem
 1. Podstawy komunikacji
 1. Dokumentacja projektowa
