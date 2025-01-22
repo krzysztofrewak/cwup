@@ -46,10 +46,10 @@ Kurs składa się z serii wykładów oraz zajęć projektowych na piątym semest
 1. [Testowanie systemów internetowych](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w02/index.html)
 1. [Automatyzacja utrzymania jakości](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w03/index.html)
 1. [Projektowanie API](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w04/index.html)
-1. Reaktywny frontend
-1. Architektura sterowana zdarzeniami
-1. Inne wzorce architektoniczne
-1. Bezpieczeństwo systemów internetowych
+1. [Reaktywny frontend](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w05-08/index.html)
+1. [Architektura sterowana zdarzeniami](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w05-08/index.html)
+1. [Inne wzorce architektoniczne](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w05-08/index.html)
+1. [Bezpieczeństwo systemów internetowych](https://krzysztofrewak.github.io/cwup/lectures/ppsi2/w05-08/index.html)
 
 #### Wprowadzenie do zarządzania projektami deweloperskimi
 Kurs składa się z serii wykładów na piątym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
@@ -58,9 +58,9 @@ Kurs składa się z serii wykładów na piątym semestrze na specjalności Progr
 1. [Role w zespole programistycznym](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w02/index.html)
 1. [Analiza zadań projektowych](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w03/index.html)
 1. [Esytmowanie pracochłonności zadań](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w04/index.html)
-1. Zarządzanie projektem
-1. Podstawy komunikacji
-1. Dokumentacja projektowa
+1. [Zarządzanie projektem](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
+1. [Podstawy komunikacji](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
+1. [Dokumentacja projektowa](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
 1. Kolokwium zaliczeniowe
 
 #### Zaawansowane metody programowania
@@ -85,4 +85,3 @@ Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym se
 
 #### Projekt zespołowy
 Kurs składa się z zajęć projektowych na siódmym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.  Zasady zaliczenia projektu znajdują się [tutaj](./projects/pz.md).
-
