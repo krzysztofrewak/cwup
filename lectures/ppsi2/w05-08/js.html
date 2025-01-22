@@ -1,0 +1,39 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaktywny frontend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+  </head>
+  <body class="bg-white">
+    <div class="container mx-auto py-12 flex flex-col gap-4 p-6" x-data>
+      <template x-for="item in $store.items">
+       <template x-if="!item.hidden">
+         <div class="group shadow-lg flex items-center justify-center rounded-xl cursor-pointer p-4" :class="item.classes" @click="item.hidden = true">
+           <span class="text-2xl" x-text="item.name"></span>
+         </div>
+       </template>
+      </template>
+      <div>
+        licznik: <span x-text="$store.items.filter(item => item.hidden).length"></span> z <span x-text="$store.items.length"></span>
+      </div>
+    </div>
+  </body>
+  <script>
+    const items = [
+      { name: "Konteneryzacja środowiska deweloperskiego", classes: "bg-gray-900 text-white", hidden: false },
+      { name: "Testowanie systemów internetowych", classes: "bg-gray-800 text-white", hidden: false },
+      { name: "Automatyzacja utrzymania jakości", classes: "bg-gray-700 text-white", hidden: false },
+      { name: "Projektowanie API", classes: "bg-gray-600 text-white", hidden: false },
+      { name: "Reaktywny frontend", classes: "bg-gray-500 text-white", hidden: false },
+      { name: "Architektura sterowana zdarzeniami", classes: "bg-gray-400", hidden: false },
+      { name: "Inne wzorce architektoniczne", classes: "bg-gray-300", hidden: false },
+      { name: "Bezpieczeństwo systemów internetowych", classes: "bg-gray-200", hidden: false },
+    ]
+
+    document.addEventListener('alpine:init', () => {
+      Alpine.store('items', items)
+    })
+  </script>
+</html>
