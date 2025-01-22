@@ -61,7 +61,7 @@ Kurs składa się z serii wykładów na piątym semestrze na specjalności Progr
 1. [Zarządzanie projektem](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
 1. [Podstawy komunikacji](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
 1. [Dokumentacja projektowa](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
-1. [Kolokwium zaliczeniowe](https://krzysztofrewak.github.io/cwup/lectures/wdzpd/w05-07/index.html)
+1. Kolokwium zaliczeniowe
 
 #### Zaawansowane metody programowania
 Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
