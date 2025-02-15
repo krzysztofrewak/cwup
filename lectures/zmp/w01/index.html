@@ -1,0 +1,354 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Dobór technologii projektowej</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">1</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Ramowy plan semestru</li>
+              <li>Warunki zaliczenia kursu</li>
+              <li>Dobór technologii projektowej</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Ramowy plan semestru
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Planowany rozkład jazdy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-4/5 mx-auto flex">
+              <ol class="flex-1 text-lg leading-10 w-2/3 mx-auto">
+                <li>Dobór technologii projektowej</li>
+                <li>Zasady SOLID</li>
+                <li>KISS, DRY, YAGNI, GRASP i inne</li>
+                <li>12 factor</li>
+                <li>Czysty kod, część I</li>
+                <li>Czysty kod, część II</li>
+                <li>Czysty kod, część III</li>
+                <li>Onboarding projektowy</li>
+              </ol>
+              <ol class="flex-1 text-lg leading-10 w-2/3 mx-auto">
+                <li value="9">Praktyczny polimorfizm</li>
+                <li>Wzorce projektowe: kreacyjne</li>
+                <li>Wzorce projektowe: strukturalne</li>
+                <li>Wzorce projektowe: operacyjne</li>
+                <li>Wzorce projektowe: antywzorce</li>
+                <li>Programowanie ekstremalne</li>
+                <li>Praktyczne code review</li>
+              </ol>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Warunki zaliczenia kursu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Formy zajęć</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <span class="font-bold">wykład</span> to teoretyczna część kursu; w trakcie 15 spotkań zostaną
+              przedstawione najważniejsze zagadnienia związane z zarządzaniem projektami informatycznymi
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              <span class="font-bold">laboratorium</span> to praktyczna część kursu; w trakcie semestru studenci będą
+              pracować zespołowo nad projektem i budową systemu informatycznego
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              Wykład kończy się egzaminem podsumowującym wiedzę przyswojoną w trakcie semestru. Egzamin - w zależności
+              od liczby przystępujących osób - odbędzie się w formie pisemnej lub ustnej. Zagadnienia do egzaminu
+              zostaną przedstawione na ostatnim wykładzie.
+            </div>
+          </section>
+          <section>
+            <div class="text-lg w-2/3 mx-auto">
+              <div>Ponadto na wykładach:</div>
+              <div class="mt-4">a) będzie sprawdzana lista obecności na zasadzie <em>białej listy</em></div>
+              <div>b) będzie mierzona (pozytywna i negatywna) aktywność studentów.</div>
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Zachęcam do uczęszczania na wykłady.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Ocena końcowa</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-5xl w-2/3 mx-auto">
+              Ω = 0.3 W + 0.7 L
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Ocena niedostateczna z jednej formy rzutuje na ocenę niedostateczną za całość!
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Bonusy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              Osoby, które otrzymały z projektu ocenę <span class="font-bold">bardzo dobrą</span>, zostaną zwolnione z
+              kolokwium z przepisaną oceną.
+            </div>
+            <div class="mt-8 text-lg w-2/3 mx-auto">
+              Wysoka frekwencja oraz aktywność na wykładach mogą rzutować na obniżenie progu przepisywanej oceny do
+              <span class="font-bold">dobrej plus</span> dla indywidualnych studentów.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Dobór technologii projektowej
+          </section>
+          <section>
+            <div class="font-bold text-3xl">W czym to napisać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                Wybór technologii projektowej to jedna z najważniejszych decyzji, które trzeba podjąć na samym początku projektu.
+              </div>
+              <div class="text-lg w-2/3 mx-auto">
+                Często ta decyzja "podejmie się sama" - chociażby biorąc pod uwagę doświadczenie zespołu, specjalizację firmy czy wymagania klienta. Zespół ekspertów w dotnecie raczej sam z siebie nie zaproponuje żeby nowy projekt pisać w Springu. Prędzej właśnie spróbuje przekonać klienta, że jego technologia jest "lepsza".
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Młotki i gwoździe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                Znane w branży powiedzenie mówi, że właściciel młotka wszystko widzi jako gwoździe. Dlatego też ten dotnetowiec będzie chciał wszystko rozwiązywać microsoftowymi narzędziami.
+              </div>
+              <div class="text-lg w-2/3 mx-auto">
+                Teoretycznie większość programów da się napisać w każdym języku programowania. Poza aspektami typowo projektowymi, istnieją również obiektywne przesłanki mówiące, że pewne technologie są w niektórych przypadkach lepsze niż inne.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                <div class="w-2/3 mx-auto grid grid-cols-4 gap-x-8">
+                  <img src="../../../images/ppsi1/w01/cpp.png" alt="C++">
+                  <img src="../../../images/ppsi1/w01/csharp.png" alt="C#">
+                  <img src="../../../images/ppsi1/w01/go.png" alt="Go">
+                  <img src="../../../images/ppsi1/w01/dart.png" alt="Dart">
+                  <img src="../../../images/ppsi1/w01/java.png" alt="Java">
+                  <img src="../../../images/ppsi1/w01/kotlin.png" alt="Kotlin">
+                  <img src="../../../images/ppsi1/w01/php.png" alt="PHP">
+                  <img src="../../../images/ppsi1/w01/python.png" alt="Python">
+                  <img src="../../../images/ppsi1/w01/ruby.png" alt="Ruby">
+                  <img src="../../../images/ppsi1/w01/swift.png" alt="Swift">
+                  <img src="../../../images/ppsi1/w01/ts.png" alt="Typescript">
+                  <div class="flex items-center justify-center">i inne</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Backend / API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                <div class="w-full mx-auto grid grid-cols-12">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/cpp.png" alt="C++">
+                  <img class="" src="../../../images/ppsi1/w01/csharp.png" alt="C#">
+                  <img class="" src="../../../images/ppsi1/w01/go.png" alt="Go">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/dart.png" alt="Dart">
+                  <img class="" src="../../../images/ppsi1/w01/java.png" alt="Java">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/kotlin.png" alt="Kotlin">
+                  <img class="" src="../../../images/ppsi1/w01/php.png" alt="PHP">
+                  <img class="" src="../../../images/ppsi1/w01/python.png" alt="Python">
+                  <img class="" src="../../../images/ppsi1/w01/ruby.png" alt="Ruby">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/swift.png" alt="Swift">
+                  <img class="" src="../../../images/ppsi1/w01/ts.png" alt="Typescript">
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                Backend webowy może być pisany praktycznie w każdym języku, ale niektóre są lepsze od innych*, a jeszcze inne mają bardziej wyspecjalizowane narzędzia (frameworki) niż pozostałe. I to dzięki modularności, elastyczności i gotowym komponentom są one tak popularne.
+              </div>
+              <div class="text-lg w-2/3 mx-auto">
+                Oczywiście, że można pisać REST-owy backend połączony z bazą danych i systemem cache w C++... W wielu przypadkach prawdopodobnie będzie to tzw. <em>overengineering</em> i porywanie się z motyką na słońce. Niemniej jednak znajdą się pewnie i takie miejsca, gdzie będzie to akurat wskazane.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Frontend webowy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                <div class="w-full mx-auto grid grid-cols-12">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/cpp.png" alt="C++">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/csharp.png" alt="C#">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/go.png" alt="Go">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/dart.png" alt="Dart">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/java.png" alt="Java">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/kotlin.png" alt="Kotlin">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/php.png" alt="PHP">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/python.png" alt="Python">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/ruby.png" alt="Ruby">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/swift.png" alt="Swift">
+                  <img class="" src="../../../images/ppsi1/w01/ts.png" alt="Typescript">
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                Na frontendzie webowym - w kontekście aplikacji, a nie stylowania - mamy JavaScript, TypeScript i długo, długo nic.
+              </div>
+              <div class="text-lg w-2/3 mx-auto">
+                Coraz popularniejsze robi się WebAssembly czy też komponentowe frameworki takie jak Livewire czy Blazor, ale dominacji javascriptowych technologii długo jeszcze nic nie przebije.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Aplikacje mobilne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                <div class="w-full mx-auto grid grid-cols-12">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/cpp.png" alt="C++">
+                  <img class="" src="../../../images/ppsi1/w01/csharp.png" alt="C#">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/go.png" alt="Go">
+                  <img class="" src="../../../images/ppsi1/w01/dart.png" alt="Dart">
+                  <img class="" src="../../../images/ppsi1/w01/java.png" alt="Java">
+                  <img class="" src="../../../images/ppsi1/w01/kotlin.png" alt="Kotlin">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/php.png" alt="PHP">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/python.png" alt="Python">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/ruby.png" alt="Ruby">
+                  <img class="" src="../../../images/ppsi1/w01/swift.png" alt="Swift">
+                  <img class="" src="../../../images/ppsi1/w01/ts.png" alt="Typescript">
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                Aplikacje mobline może podzielić z grubsza na trzy typy: natywne, międzyplatformowe oraz "udające" aplikacje.
+              </div>
+              <div class="text-lg w-2/3 mx-auto">
+                Natywne są pisane na konkretną platformę (Java/Kotlin na Androidzie, Swift na iOS), międzyplatformowe można budować na obie platformy (Dart/Flutter, Xamarin, TypeScript/React Native), a te ostatnie to po prostu strony internetowe opakowane w kontener aplikacji mobilnej. Każde z tych rozwiązań ma oczywiście swoje plusy i minusy.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Programy desktopowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                <div class="w-full mx-auto grid grid-cols-12">
+                  <img class="" src="../../../images/ppsi1/w01/cpp.png" alt="C++">
+                  <img class="" src="../../../images/ppsi1/w01/csharp.png" alt="C#">
+                  <img class="" src="../../../images/ppsi1/w01/go.png" alt="Go">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/dart.png" alt="Dart">
+                  <img class="" src="../../../images/ppsi1/w01/java.png" alt="Java">
+                  <img class="" src="../../../images/ppsi1/w01/kotlin.png" alt="Kotlin">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/php.png" alt="PHP">
+                  <img class="" src="../../../images/ppsi1/w01/python.png" alt="Python">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/ruby.png" alt="Ruby">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/swift.png" alt="Swift">
+                  <img class="opacity-10" src="../../../images/ppsi1/w01/ts.png" alt="Typescript">
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-8">
+              <div class="text-lg w-2/3 mx-auto">
+                Programy desktopowe świętowały już dni swojej popularności, ale w wielu miejscach można je wciąż spotkać. Dawniej były samoistnymi systemami, a obecnie często łączą się do zewnętrznego API lub bazy danych, aby działać "w chmurze".
+              </div>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>trzeba wiedzieć jakie technologie są odpowiednie do jakich zadań</li>
+                <li>zamykanie się na jeden stack technologiczny w życiu to raczej słaba strategia</li>
+                <li>w teorii można napisać aplikację mobilną w PHP... ale po co?</li>
+                <li>warto znać różnice między językami i frameworkami, aby móc znajdować najlepsze rozwiązania w swojej technologii</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>projekt <a href="https://github.com/gothinkster/realworld" target="_blank">gothinkster/realworld</a></li>
+                <li><a href="https://snipcart.com/blog/webassembly-vs-javascript" target="_blank">Webassembly vs. JavaScript: How Do They Compare</a></li>
+                <li><a href="https://syndicode.com/blog/how-to-choose-tech-stack/" target="_blank">How to choose the right tech stack for your project?</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
