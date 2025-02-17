@@ -5,7 +5,7 @@
 
 Zaliczenie zajęć projektowych kursu **Projektowanie i programowanie systemów internetowych I** odbywa się poprzez opracowanie projektu programistycznego i sprawozdania oraz prezentację pracy projektowej. Ocena końcowa $\Omega$ będzie wyliczana w następujący sposób:
 
-$$ \Omega = 0.7k_1 + 0.2k_2 + 0.1k_3 $$
+$$ \Omega = 0.8k_1 + 0.1k_2 + 0.1k_3 $$
 
 gdzie kolejne $k_n$ powinny być rozumiane następująco:
 
@@ -23,8 +23,8 @@ Oddanie pracy projektowej wymaga obecności całego zespołu, a warunkiem koniec
 
 Należy zaprojektować, zaimplementować i wdrożyć system internetowy wedle własnego pomysłu lub na podstawie wybranego spośród proponowanych tematów. Warunki zaliczenia kształtują się następująco:
 - projekt jest wykonywany w trójkach:
-    - w przypadku niedobrania trójki, trójkę wyznacza prowadzący zajęcia;
-    - w przypadku nieodpowiedniej liczby studentów, prowadzący może utworzyć zespół dwu- lub czteroosobowy;
+    - w przypadku niedobrania trójki, trójkę wyznacza prowadzący zajęcia, a grupa otrzyma modyfikator $-0.5$ do oceny końcowej za projekt za brak umiejętności pracy zespołowej;
+    - w przypadku nieodpowiedniej liczby studentów, prowadzący może utworzyć zespół czteroosobowy;
 - unikalny temat projektu musi zostać zatwierdzony przez prowadzącego zajęcia najpóźniej do trzeciego tygodnia semestru; w przeciwnym razie grupa otrzymuje:
     - wybrany przez prowadzącego temat bez możliwości zmiany tematu;
     - modyfikator $-0.5$ do oceny końcowej za projekt za niedotrzymanie terminu;
@@ -66,9 +66,9 @@ Lista zagadnień kwalifikacyjnych kształtuje się następująco:
 | 17 | publikacja API            | wystawienie własnego API                                 | XI     |
 | 18 | RWD                       | responsywny frontend                                     | XII    |
 | 19 | logger                    | logowanie akcji w systemie                               | XV     |
-| 20 | _deployment_              | wdrożenie aplikacji internetowej                         | IV     |
+| 20 | deployment                | wdrożenie aplikacji internetowej                         | IV     |
 
-Za zaliczone zagadnienie uznaje się takie, za które grupa dostałaby ocenę przynajmniej dostateczną.
+Za zaliczone zagadnienie uznaje się takie, za które grupa otrzymała ocenę przynajmniej dostateczną.
 
 #### Sprawozdanie
 Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształtują się następująco:
@@ -99,8 +99,8 @@ Należy przestawić całym zespołem efekty swojej pracy. Prezentacja musi odby�
     - lubimyczytac.pl lub Goodreads
 
 #### Terminarz (semestr letni 2023/24)
-- 1. tydzień (16 lutego) - zajęcia wprowadzające
-- 3. tydzień (1 marca) - termin deklaracji zespołów i tematów
-- 4. tydzień (15 marca) - ostateczny termin dostarczenia adresu repozytorium
-- 7. tydzień (1 kwietnia) - połowa semestru
-- 13. tydzień (9 czerwca) - koniec semestru
+- 1. tydzień (17 lutego) - zajęcia wprowadzające
+- 3. tydzień (9 marca) - termin deklaracji zespołów i tematów
+- 4. tydzień (16 marca) - ostateczny termin dostarczenia adresu repozytorium
+- 8. tydzień (13 kwietnia) - połowa semestru
+- 17. tydzień (9 czerwca) - koniec semestru
