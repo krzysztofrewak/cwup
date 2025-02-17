@@ -103,4 +103,4 @@ Należy przestawić całym zespołem efekty swojej pracy. Prezentacja musi odby�
 - 3. tydzień (9 marca) - termin deklaracji zespołów i tematów
 - 4. tydzień (16 marca) - ostateczny termin dostarczenia adresu repozytorium
 - 8. tydzień (13 kwietnia) - połowa semestru
-- 17. tydzień (9 czerwca) - koniec semestru
+- 17. tydzień (15 czerwca) - koniec semestru
