@@ -1,0 +1,746 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Zasady SOLID</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">2</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Dobre praktyki w programowaniu</li>
+              <li>Zasada pojedynczej odpowiedzialności</li>
+              <li>Zasada otwarte-zamknięte</li>
+              <li>Zasada podstawienia Liskov</li>
+              <li>Zasada segregacji interfejsów</li>
+              <li>Zasada odwrócenia zależności</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Dobre praktyki w programowaniu
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dekalog programisty</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Nikt nigdy nie sformułował definitywnych zasad mówiących jak należy programować czy też opisujących
+                idealny kod. Przy mnogości technologii, rodzajów i wielkości projektów oraz stylów programowania, budowa
+                takich przykazań byłaby z góry skazana na porażkę.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Doświadczenie i intuicja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Część tzw. "dobrych praktyk" powstała w wyniku skodyfikowania różnych doświadczeń wielu programistów.
+                Nie należy ich traktować jak listy nakazów czy zakazów, a raczej jako punkt odniesienia.
+              </div>
+              <div>
+                Warto znać różne punkty widzenia. Tym bardziej, jeżeli okazały się być przydatne w wielu projektach, a
+                inni inżynierowie potrafią się do nich odnieść.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">SOLID</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Jednym z podstawowych zbiorów dobrych praktyk jest tzw. SOLID.
+              </div>
+              <div>
+                To mnemoniczny akronim zaproponowany przez Roberta C. Martina, który opisuje najważniejsze - jego
+                zdaniem - założenia programowania obiektowego.
+              </div>
+              <div>
+                Są to, kolejno: <span class="font-bold">S</span>ingle responsibility principle, <span class="font-bold">O</span>pen/closed
+                principle, <span class="font-bold">L</span>iskov substitution principle,
+                <span class="font-bold">I</span>nterface segregation principle oraz <span class="font-bold">D</span>ependency
+                inversion principle.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zasada pojedynczej odpowiedzialności
+          </section>
+          <section>
+            <div class="font-bold text-3xl">SRP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Single responsibility principle</em>, SRP, zasada pojedynczej odpowiedzialności.
+              </div>
+              <div>
+                Klasa powinna mieć tylko jedną odpowiedzialność.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Odpowiedzialność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Odpowiedzialność - przynajmniej w teorii inżynierii oprogramowania - to powód do modyfikacji wartości
+                obiektu zbudowanego na podstawie klasy.
+              </div>
+              <div>
+                W dużym uproszczeniu chodzi o to, aby projektować klasy, które będą robiły tylko jedną rzecz.
+              </div>
+            </div>
+          </section>
+          <section>
+            <pre class="p-4"><code class="text-sm">class UserService
+{
+    public UserService()
+    public UserService(User user)
+
+    public UserService create(array&lt;string> data)
+    public UserService update(array&lt;string> data)
+    public UserService delete()
+
+    public UserService activate()
+    public UserService deactivate()
+    public UserService promote()
+    public UserService demote()
+
+    public Permissions getPermissions()
+
+    public UserService resetPassword()
+    public UserService resetPassword(string password)
+}</code></pre>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Czy taka klasa jest dobrze zaprojektowana?
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Tip</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Nieoficjalnym sposobem na sprawdzenie, czy przypadkiem nie łamiemy SRP, jest sprawdzenie czy nazwa klasy
+                faktycznie nam mówi o jej odpowiedzialności.
+              </div>
+            </div>
+
+            <pre class="p-4"><code class="text-sm">class CreatingUpdatingDeletingActivatingPromotingPermissionsGettingPasswordResetingService
+{
+    public UserService()
+    public UserService(User user)
+
+    public UserService create(array&lt;string> data)
+    public UserService update(array&lt;string> data)
+    public UserService delete()
+
+    <span class="text-gray-400">// (...)</span>
+}</code></pre>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Rozwiązanie?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                O wiele lepszym sposobem do zachowania porządku jest stworzenie większej liczby mniejszych klas. Łatwiej
+                nimi zarządzać, łatwiej refaktorować i o wiele łatwiej testować i później utrzymywać.
+              </div>
+            </div>
+
+            <pre class="p-4"><code class="text-sm">class CreateUserAction
+{
+    public CreateUserAction()
+    public User create(array&lt;string> data)
+}</code></pre>
+            <pre class="p-4"><code class="text-sm">class UserPromotionAction
+{
+    public UserPromotionAction(User user)
+    public void promote()
+    public void demote()
+}</code></pre>
+          </section>
+          <section>
+            <pre class="p-4"><code class="text-sm">class User
+{
+    public string id
+    public string email
+    public string password
+    public string firstName
+    public string lastName
+    public Gender gender
+    public Date birthDate
+    public Role role
+    public bool acceptedRegulations
+    public bool acceptedMarketing
+    public bool acceptedGdpr
+    public Timestamp createdAt
+    public ?Timestamp deletedAt
+}</code></pre>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Powyższe wygląda całkiem sensownie, prawda?
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Refaktor</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class User
+{
+    public string id
+    public string email
+    public string password
+    public Role role
+    public Timestamp createdAt
+    public ?Timestamp deletedAt
+
+    public UserProfile profile()
+    public UserConsents consents()
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class UserProfile
+{
+    public string firstName
+    public string lastName
+    public Gender gender
+    public Date birthDate
+}</code></pre>
+
+                <pre class="p-4"><code class="text-xs">class UserConsents
+{
+    public bool acceptedRegulations
+    public bool acceptedMarketing
+    public bool acceptedGdpr
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Może lepiej podzielić wielką klasę na trzy osobne?
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zasada otwarte-zamknięte
+          </section>
+          <section>
+            <div class="font-bold text-3xl">OCP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Open/closed principle</em>, OCP, zasada otwarte-zamknięte.
+              </div>
+              <div>
+                Wszystkie klasy i ich metody powinny być tak zaprojektowane, aby być otwarte na rozszerzanie, ale zamknięte na modyfikacje.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Otwarte/zamknięte</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Chodzi przede wszystkim o to, aby móc zmieniać zachowania poszczególnych fragmentów kodu bez potrzeby wprowadzania zmian w całym projekcie.
+              </div>
+              <div>
+                Im więcej jest miejsc ze złamaną OCP, tym trudniej jest utrzymywać kod. Z czasem może się on zmienić w tzw. <span class="italic">spaghetti code</span>, a w końcu - w tzw. <span class="italic">big ball of mud</span>.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">class UserRoleHelper
+{
+    public string getLabel(User user)
+    {
+        if (user.type === "admin") {
+            return "administrator"
+        }
+
+        if (user.type === "guest") {
+            return "gość"
+        }
+
+        throw new UnknownUserRoleExcpetion()
+    }
+}</code></pre>
+              </div>
+              <div class="flex-1"><pre class="p-4"><code class="text-sm">UserRoleHelper helper = new UserRoleHelper()
+
+helper.getLabel(new User("john", "admin"))
+helper.getLabel(new User("jack", "guest"))
+<span class="text-red-500">helper.getLabel(new User("jim", "superadmin"))</span></code></pre></div>
+            </div>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                W takim przypadku dodanie nowej roli będzie wymagało rozszerzenia drzewka ifów w <code>UserRoleHelper</code>.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">class User
+{
+    public string getLabel()
+}
+
+class Administrator extends User
+{
+    public string getLabel()
+}
+
+class Guest extends User
+{
+    public string getLabel()
+
+class SuperAdministrator extends User
+{
+    public string getLabel()
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">class UserRoleHelper
+{
+    public string getLabel(User user)
+    {
+        return user.getLabel()
+    }
+}</code></pre><pre class="p-4"><code class="text-sm">UserRoleHelper helper = new UserRoleHelper()
+
+helper.getLabel(new Administrator("john"))
+helper.getLabel(new Guest("jack"))
+helper.getLabel(new SuperAdministrator("jim"))</code></pre></div>
+            </div>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                A tutaj mamy wszystko jasne i na swoim miejscu.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zasada podstawienia Liskov
+          </section>
+          <section>
+            <div class="font-bold text-3xl">LSP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Liskov substitution principle</em>, LSP, zasada podstawienia Liskov.
+              </div>
+              <div>
+                Obiekt klasy pochodnej powinien zawsze móc zastąpić obiekt klasy bazowej - bez zmiany zachowania programu.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Przykład</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Jeżeli mamy klasę <code>Vehicle</code>, po której dziedziczą <code>Car</code> oraz <code>Bike</code>, powinniśmy się spodziewać, że każda metoda czy pole oczekujące pojazdu, będzie mogło przyjąć także samochód i rower. Tak działa dziedziczenie w paradygmacie obiektowym.
+              </div>
+              <div>
+                Niestety, okazuje się, że można się zaplątać chociażby w przesłanianiu metod i właśnie zasada podstawiania Liskov próbuje nas bronić przed takimi problemami.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class Rectangle
+{
+    public number width
+    public number height
+
+    public setWidth(number width)
+    {
+        this.width = width
+    }
+
+    public setHeight(number height)
+    {
+        this.height = height
+    }
+
+    public number area()
+    {
+        return this.width * this.height
+    }
+}</code></pre>
+
+                <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+                  <div>
+                    Wszystko wygląda poprawnie... do momentu, gdy pod <code>Rectangle</code> ktoś nie podstawi obiektu klasy <code>Square</code>.
+                  </div>
+                </div>
+              </div>
+              <div class="flex-1"><pre class="p-4"><code class="text-xs">class Square extends Rectangle
+{
+    public setWidth(number width)
+    {
+        this.width = width
+        this.height = width
+    }
+
+    public setHeight(number height)
+    {
+        this.width = height
+        this.height = height
+    }
+}</code></pre><pre class="p-4"><code class="text-xs">Square square = new Square()
+square.setWidth(5)
+square.setHeight(10)
+square.area() <span class="text-gray-400"># 100</span>
+
+Rectangle rectangle = new Rectangle()
+rectangle.setWidth(5)
+rectangle.setHeight(10)
+rectangle.area() <span class="text-gray-400"># 50</span>
+
+Rectangle rectangle = new Square()
+rectangle.setWidth(5)
+rectangle.setHeight(10)
+rectangle.area() <span class="text-gray-400"># 100</span></code></pre></div>
+            </div>
+          </section>
+          <section>
+            <div class="flex">
+              <div class="flex-1"><pre class="p-4"><code class="text-xs">abstract class Figure
+{
+    abstract public number area()
+}</code></pre>
+                <pre class="p-4"><code class="text-xs">class Rectangle extends Figure
+{
+    public number width
+    public number height
+
+    public Rectangle(number width, number height)
+    {
+        this.width = width
+        this.height = height
+    }
+
+    public number area()
+    {
+        return this.width * this.height
+    }
+}</code></pre>
+
+                <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+                  <div>
+                    Czasami proste rozwiązania są najlepsze. A jeżeli coś wygląda na zdatne do dziedziczenia, nie oznacza, że trzeba to dziedziczenie tam stosować.
+                  </div>
+                </div>
+              </div>
+              <div class="flex-1"><pre class="p-4"><code class="text-xs">class Square extends Figure
+{
+    public number size
+
+    public Square(number size)
+    {
+        this.size = size
+    }
+
+    public number area()
+    {
+        return this.size * this.size
+    }
+}</code></pre><pre class="p-4"><code class="text-xs">Square square = new Square(10)
+square.area() <span class="text-gray-400"># 100</span>
+
+Figure square = new Square(10)
+square.area() <span class="text-gray-400"># 100</span>
+
+Rectangle rectangle = new Rectangle(5, 10)
+rectangle.area() <span class="text-gray-400"># 50</span>
+
+Figure rectangle = new Rectangle(5, 10)
+rectangle.area() <span class="text-gray-400"># 50</span></code></pre></div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zasada segregacji interfejsów
+          </section>
+          <section>
+            <div class="font-bold text-3xl">ISP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Interface segregation principle</em>, ISP, zasada segregacji interfejsów.
+              </div>
+              <div>
+                Wiele mniejszych interfejsów jest z reguły lepsze niż jeden duży.
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Mniej = lepiej</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">interface Exportable
+{
+    public string toJson()
+    public string toCsv()
+    public SimpleXml toXml()
+    public File toPdf()
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">interface JsonExportable
+{
+    public string toJson()
+}
+
+interface CsvExportable
+{
+    public string toCsv()
+}
+
+<span class="text-gray-400"># (...)</span></code></pre>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Takie podejście przyda się w momencie, gdy któryś z wielu zasobów będzie musiał być eksportowany tylko do jednego formatu.
+              </div>
+              <div>
+                Można natomiast zadać sobie pytanie: czy klasa z kilkoma interfejsami przeczy SRP?
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zasada odwrócenia zależności
+          </section>
+          <section>
+            <div class="font-bold text-3xl">DIP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Dependency inversion principle</em>, DIP, zasada odwrócenia zależności.
+              </div>
+              <div>
+                Wysokopoziomowe moduły nie powinny zależeć od modułów niskopoziomowych. Oba powinny wynikać z abstrakcji.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wysoki i niski poziom</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Żeby wiedzieć o czym mowa, musimy zdefiniować moduły wysoko- i niskopoziomowe. Te pierwsze z reguły zarządzają logiką biznesową i opisują domenę. Przykładowo może być to serwis pobierający dzisiejszą pogodę i zapisujący ją do bazy danych.
+              </div>
+              <div>
+                Moduły niskopoziomowe zawierają w sobie informacje dotyczące infrastruktury i szczegóły techniczne. Kontynuując poprzedni przykład, tutaj będa to serwisy łączące się z API systemu pogodowego oraz zapisujące dane w konkretnym systemie bazodanowym.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Zła praktyka: Jeśli moduł wysokopoziomowy bezpośrednio używa modułu niskopoziomowego, mamy silne powiązanie (tzw. <em>tight coupling</em>).
+              </div>
+              <div>
+                Dobra praktyka: Zamiast tego, oba moduły powinny zależeć od abstrakcji (np. dobrze zaprojektowanych interfejsów).
+              </div>
+            </div>
+          </section>
+          <section>
+            <pre class="p-4"><code class="text-sm">class WeatherService
+{
+    public void execute()
+    {
+        ImgwIntegration integration = new ImgwIntegration()
+        MySqlConnection connection = new MySqlConnection("localhost", "3306", "username", "password")
+
+        WeatherData weatherData = integration.getData()
+        connection.insert("weather_logs", weatherData)
+    }
+}</code></pre>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Taka klasa pewnie zadziała, ale przetestowanie jej będzie bardzo trudne.
+              </div>
+            </div>
+          </section>
+          <section>
+            <pre class="p-4"><code class="text-sm">class WeatherService
+{
+    WeatherIntegration integration
+    DatabaseConnection connection
+
+    public WeatherService(WeatherIntegration integration, DatabaseConnection connection)
+    {
+        this.integration = integration
+        this.connection = connection
+    }
+
+    public void execute()
+    {
+        this.connection.insert("weather_logs", this.integration.getData())
+    }
+}</code></pre>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Tutaj mamy wszystko wchodzące i wychodzące z aplikacji jak na tacy. Możemy też sterować pobieraniem i zapisywaniem w dowolny sposób.
+              </div>
+            </div>
+          </section>
+          <section>
+            <pre class="p-4"><code class="text-xs">class WeatherServiceTest
+{
+    [ClearDatabase]
+    public void testWeatherService()
+    {
+        WeatherIntegration integration = new HardcodedWeatherIntegration("resources/testing/weather/001.json")
+        DatabaseConnection connection = new InMemoryDatabaseConnection()
+
+        assert().database(connection).tableCount("weather_logs", 0)
+
+        WeatherService service = new WeatherService(integration, connection)
+        service.execute()
+
+        assert().database(connection).tableCount("weather_logs", 1)
+        assert().database(connection).table("weather_logs").query().first().equals({
+            temperature: 21.2,
+            humidity: 54,
+            windSpeed: 3.13,
+            windDegree: 93,
+            pressure: 1014,
+        })
+    }
+}</code></pre>
+
+            <div class="flex flex-col gap-8 mt-12 w-2/3 mx-auto text-lg">
+              <div>
+                Tak może wyglądać test dobrze skonstruowanej klasy tego typu.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>dobre praktyki programistyczne są dokładnie tym, co sugeruje ich nazwa: dobrymi praktykami, które warto znać, ale też warto wiedzieć, kiedy z nich korzystać</li>
+                <li>klasy powinny mieć tylko jedną odpowiedzialność</li>
+                <li>klasy powinny być otwarte na rozszerzanie, ale zamknięte na modyfikacje</li>
+                <li>obiekty klasy pochodnej powinien zawsze móc zastąpić obiekt klasy bazowej</li>
+                <li>interfejsy powinny być jak najbardziej precyzyjne</li>
+                <li>wysokopoziomowe moduły nie powinny zależeć od modułów niskopoziomowych</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><em>Czysty kod. Podręcznik dobrego programisty</em>, Robert C. Martin</li>
+                <li><a href="https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design" target="_blank">SOLID: The First 5 Principles of Object Oriented Design</a>
+                </li>
+                <li><a href="https://stackoverflow.blog/2021/11/01/why-solid-principles-are-still-the-foundation-for-modern-software-architecture/" target="_blank">Why SOLID principles are still the foundation for modern software architecture</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

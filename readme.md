@@ -67,7 +67,7 @@ Kurs składa się z serii wykładów na piątym semestrze na specjalności Progr
 Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia laboratorium znajdują się [tutaj](./laboratories/zmp.md).
 
 1. [Dobór technologii projektowej](https://krzysztofrewak.github.io/cwup/lectures/zmp/w01/index.html)
-1. Zasady SOLID
+1. [Zasady SOLID](https://krzysztofrewak.github.io/cwup/lectures/zmp/w02/index.html)
 1. KISS, DRY, YAGNI, GRASP i inne
 1. 12 factor
 1. Czysty kod, część I
