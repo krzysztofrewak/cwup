@@ -1,0 +1,339 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">KISS, DRY, YAGNI, GRASP i inne</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">3</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>KISS</li>
+              <li>DRY</li>
+              <li>YAGNI</li>
+              <li>GRASP</li>
+              <li>I inne</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            KISS
+          </section>
+          <section>
+            <div class="font-bold text-3xl">KISS</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Keep It Simple, Stupid!</em>, KISS, czyli zasada <em>uprzejmie</em> zachęcająca nas do budowy
+                prostego kodu. Okazuje się, że najprostsze rozwiązania zazwyczaj są najlepsze.
+              </div>
+              <div>
+                Po polsku niektóre źródła tłumaczą ją bezpośrednio na BUZI (<em>Bez udziwnień zapisu, idioto</em>), ale
+                lepiej skupmy się na oryginale.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">KISS</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Proste rozwiązania mają kilka zalet nad rozwiązaniami skomplikowanymi (nie mówiąc już o rozwiązaniach
+                "hakowanych"):
+              </div>
+              <div class="text-left mx-auto">
+                <ul>
+                  <li>łatwiej je przeczytać i zrozumieć</li>
+                  <li>łatwiej je utrzymywać</li>
+                  <li>łatwiej do nich wdrożyć nowych ludzi</li>
+                  <li>łatwiej je testować</li>
+                </ul>
+              </div>
+              <div>
+                Oczywiście to wszystko truizmy, ale kilka przykładów powinno rozjaśnić sytuację.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                KISS dotyczy zarówno trywialnych rzeczy, jak i tych bardziej złożonych. Nawet uproszczenie najprostszych struktur zwiększa czytelność i zamiary programisty:
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">bool hasLegalDrinkingAge(User user)
+{
+    int age = user.getAge()
+
+    if(age < 18) {
+        return false
+    }
+
+    return true
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">bool hasLegalDrinkingAge(User user)
+{
+    return user.getAge() >= 18
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Nawet takie rzeczy jak nazewnictwo klas i zmiennych można upraszczać. Może nie warto wypisywać wszędzie zbędnych informacji?
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">interface GradesCalculator
+{
+    public GradesCalculator addGradesToCalculator(array&lt;Grade> grades)
+    public GradesCalculator addGradeToCalculator(Grade grade)
+    public GradesCalculator performCalculations()
+    public FinalGrade getCalculatedFinalGrade()
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">interface GradesCalculator
+{
+    public GradesCalculator add(array&lt;Grade> grades)
+    public GradesCalculator add(Grade grade)
+    public GradesCalculator calculate()
+    public FinalGrade getResult()
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Inna sprawa, że KISS można zastosować też do uproszczenia wykorzystania danej klasy. Jaki jest sens budowania metody <code>getResult()</code>, jeżeli trzeba pamiętać, aby najpierw wywołać <code>calculate()</code>
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">interface GradesCalculator
+{
+    public GradesCalculator add(array&lt;Grade> grades)
+    public GradesCalculator add(Grade grade)
+    public GradesCalculator calculate() <span class="text-gray-500">             # co się stanie jak tego nie wywołamy?</span>
+    public FinalGrade getResult() <span class="text-gray-500">                   # wynik będzie nieprawdziwy?</span>
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">interface GradesCalculator
+{
+    public GradesCalculator add(array&lt;Grade> grades)
+    public GradesCalculator add(Grade grade)
+    public FinalGrade calculate()
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                KISS nie tyczy się tylko kodu. To samo możemy powiedzieć na temat testów, dokumentacji, środowiska i wszystkich innych części składowych projektu.
+              </div>
+              <div>
+                Przykładowo: jeżeli możemy umieścić gotowe zmienne środowiskowe (loginy, hasła) do środowiska testowego, zróbmy to. Po co zmuszać inżynierów do wymyślania tych danych na nowo przy każdym stawianiu projektu?
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div class="font-bold text-3xl">KISS czy nie KISS?</div>
+              <hr class="border-orange-400 border-opacity-50 my-12">
+              <div>
+                Nie ma oczywiście żadnej jednej definicji, co oznacza KISS.
+              </div>
+              <div>
+                Coś "prostego" może też oznaczać coś całkowicie innego dla pojedynczego programisty, dla zgranego zespołu, dla zopensourcowanej paczki, a jeszcze co innego dla studentów na wykładzie.
+              </div>
+              <div>
+                Pewne rzeczy mogą intuicyjnie nie być traktowane jako implementacja KISS. Co powiecie o w pełni zdockeryzowanym środowisku dla każdego projektu z osobna?
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            DRY
+          </section>
+          <section>
+            <div class="font-bold text-3xl">DRY</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Don't Repeat Yourself</em>, DRY, czyli kolejna akronimowa zasada, tym razem zachęcająca nas do tego, aby nie powtarzać się.
+              </div>
+              <div>Tyczy się przede wszystkim redundancji kodu, ale można również o niej mówić w kontekście baz danych, testów, wdrażania czy dokumentacji.</div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Tak naprawdę DRY w kodzie to budowa funkcji i komponentów, które mogą zostać ponownie wykorzystane.
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">function void saveUser(User user)
+{
+    Connection connection = new Connection("localhost", "3306", "database", "username", "password")
+    connection.update("users", user.id, user.serializeToDatabase())
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">function void saveUser(User user)
+{
+    Connection connection = application().getConnection()
+    connection.update("users", user.id, user.serializeToDatabase())
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                To się oczywiście tyczy również frontendu. Większość frameworków i systemów szablonowania pozwala na budowę reużywalnych komponentów, więc zamiast takiego kodu...
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">&lt;div class="flex justify-center bg-white/50">
+  &lt;div class="m-0.5 flex-none bg-white p-1">
+    &lt;div class="size-4 border border-black p-1 bg-lime-200"
+       @click="emit('updateGrade', gradeColumn.id, student.id, gradeInput.value, true)"/>
+  &lt;/div>
+  &lt;div class="m-0.5 flex-none bg-white p-1">
+    &lt;div class="size-4 border border-black p-1 bg-rose-300"
+       @click="emit('updateGrade', gradeColumn.id, student.id, gradeInput.value, false)"/>
+  &lt;/div>
+  &lt;div class="m-0.5 flex-none bg-white p-1">
+    &lt;div class="size-4 border border-black p-1 bg-white"
+       @click="emit('updateGrade', gradeColumn.id, student.id, gradeInput.value, null)"/>
+  &lt;/div>
+&lt;/div></code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                ... można pewne powtarzające się elementy ożenić z zasadą DRY:
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">&lt;div class="flex justify-center bg-white/50">
+    &lt;GradeCellManipulator background="bg-lime-200"
+        @click="emit('updateGrade', gradeColumn.id, student.id, gradeInput.value, true)" />
+    &lt;GradeCellManipulator background="bg-rose-300"
+        @click="emit('updateGrade', gradeColumn.id, student.id, gradeInput.value, false)" />
+    &lt;GradeCellManipulator background="bg-white"
+        @click="emit('updateGrade', gradeColumn.id, student.id, gradeInput.value, null)" />
+&lt;/div></code></pre>
+              </div>
+
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">&lt;script setup>
+  defineProps({
+    background: String,
+  })
+&lt;/script>
+
+&lt;template>
+  &lt;div class="m-0.5 flex-none bg-white p-1">
+    &lt;div class="size-4 border border-black p-1" :class="background" />
+  &lt;/div>
+&lt;/template></code></pre>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
