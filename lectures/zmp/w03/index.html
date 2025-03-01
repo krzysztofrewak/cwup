@@ -91,7 +91,8 @@
           <section>
             <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
               <div>
-                KISS dotyczy zarówno trywialnych rzeczy, jak i tych bardziej złożonych. Nawet uproszczenie najprostszych struktur zwiększa czytelność i zamiary programisty:
+                KISS dotyczy zarówno trywialnych rzeczy, jak i tych bardziej złożonych. Nawet uproszczenie najprostszych
+                struktur zwiększa czytelność i zamiary programisty:
               </div>
             </div>
 
@@ -119,7 +120,8 @@
           <section>
             <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
               <div>
-                Nawet takie rzeczy jak nazewnictwo klas i zmiennych można upraszczać. Może nie warto wypisywać wszędzie zbędnych informacji?
+                Nawet takie rzeczy jak nazewnictwo klas i zmiennych można upraszczać. Może nie warto wypisywać wszędzie
+                zbędnych informacji?
               </div>
             </div>
 
@@ -147,7 +149,8 @@
           <section>
             <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
               <div>
-                Inna sprawa, że KISS można zastosować też do uproszczenia wykorzystania danej klasy. Jaki jest sens budowania metody <code>getResult()</code>, jeżeli trzeba pamiętać, aby najpierw wywołać <code>calculate()</code>
+                Inna sprawa, że KISS można zastosować też do uproszczenia wykorzystania danej klasy. Jaki jest sens
+                budowania metody <code>getResult()</code>, jeżeli trzeba pamiętać, aby najpierw wywołać <code>calculate()</code>
               </div>
             </div>
 
@@ -174,10 +177,58 @@
           <section>
             <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
               <div>
-                KISS nie tyczy się tylko kodu. To samo możemy powiedzieć na temat testów, dokumentacji, środowiska i wszystkich innych części składowych projektu.
+                KISS nie tyczy się tylko kodu. To samo możemy powiedzieć na temat testów, dokumentacji, środowiska i
+                wszystkich innych części składowych projektu.
               </div>
               <div>
-                Przykładowo: jeżeli możemy umieścić gotowe zmienne środowiskowe (loginy, hasła) do środowiska testowego, zróbmy to. Po co zmuszać inżynierów do wymyślania tych danych na nowo przy każdym stawianiu projektu?
+                Przykładowo: jeżeli możemy umieścić gotowe zmienne środowiskowe (loginy, hasła) do środowiska testowego,
+                zróbmy to. Po co zmuszać inżynierów do wymyślania tych danych na nowo przy każdym stawianiu projektu?
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                (tutaj może trochę kontrowersyjne) Według niektórych KISS to właśnie obcinanie dostępnych z poziomu
+                frameworka konfiguracji. Po co robić zamieszanie i sugerować, że nasz system może działać na pięciu
+                różnych bazach danych?
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">&lt;?php
+
+use Illuminate\Support\Str;
+
+return [
+    'default' => env('DB_CONNECTION', 'sqlite'),
+    'connections' => [
+        'sqlite' => [ <span class="text-gray-500">/** (...) */</span> ],
+        'mysql' => [ <span class="text-gray-500">/** (...) */</span> ],
+        'mariadb' => [ <span class="text-gray-500">/** (...) */</span> ],
+        'pgsql' => [ <span class="text-gray-500">/** (...) */</span> ],
+        'sqlsrv' => [ <span class="text-gray-500">/** (...) */</span> ],
+    ],</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">&lt;?php
+
+use Illuminate\Support\Str;
+
+return [
+    'default' => 'sqlite',
+    'connections' => [
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'database' => env('DB_DATABASE'),
+            'prefix' => '',
+            'foreign_key_constraints' => true,
+            'busy_timeout' => null,
+            'journal_mode' => null,
+            'synchronous' => null,
+        ],
+    ],</code></pre>
               </div>
             </div>
           </section>
@@ -189,10 +240,12 @@
                 Nie ma oczywiście żadnej jednej definicji, co oznacza KISS.
               </div>
               <div>
-                Coś "prostego" może też oznaczać coś całkowicie innego dla pojedynczego programisty, dla zgranego zespołu, dla zopensourcowanej paczki, a jeszcze co innego dla studentów na wykładzie.
+                Coś "prostego" może też oznaczać coś całkowicie innego dla pojedynczego programisty, dla zgranego
+                zespołu, dla zopensourcowanej paczki, a jeszcze co innego dla studentów na wykładzie.
               </div>
               <div>
-                Pewne rzeczy mogą intuicyjnie nie być traktowane jako implementacja KISS. Co powiecie o w pełni zdockeryzowanym środowisku dla każdego projektu z osobna?
+                Pewne rzeczy mogą intuicyjnie nie być traktowane jako implementacja KISS. Co powiecie o w pełni
+                zdockeryzowanym środowisku dla każdego projektu z osobna?
               </div>
             </div>
           </section>
@@ -208,9 +261,12 @@
 
             <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
               <div>
-                <em>Don't Repeat Yourself</em>, DRY, czyli kolejna akronimowa zasada, tym razem zachęcająca nas do tego, aby nie powtarzać się.
+                <em>Don't Repeat Yourself</em>, DRY, czyli kolejna akronimowa zasada, tym razem zachęcająca nas do tego,
+                aby nie powtarzać się.
               </div>
-              <div>Tyczy się przede wszystkim redundancji kodu, ale można również o niej mówić w kontekście baz danych, testów, wdrażania czy dokumentacji.</div>
+              <div>Tyczy się przede wszystkim redundancji kodu, ale można również o niej mówić w kontekście baz danych,
+                testów, wdrażania czy dokumentacji.
+              </div>
             </div>
           </section>
           <section>
@@ -240,7 +296,38 @@
           <section>
             <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
               <div>
-                To się oczywiście tyczy również frontendu. Większość frameworków i systemów szablonowania pozwala na budowę reużywalnych komponentów, więc zamiast takiego kodu...
+                Jedną z mało widowiskowych, ale usprawniających codzienną pracę, implementacji DRY jest usuwanie tzw.
+                <em>magicznych stałych</em>.
+              </div>
+            </div>
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">bool hasLegalDrinkingAge(User user)
+{
+    return user.getAge() >= 18
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">bool hasLegalDrinkingAge(User user)
+{
+    return user.getAge() >= self.LEGAL_DRINKING_AGE
+}</code></pre>
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Zamiast korzystać w kodzie z potencjalnie nic niemówiących liczb jak 18, lepiej je po prostu nazwać i
+                wszędzie korzystać z tego nazwanego bytu. Dzięki temu refaktor będzie o wiele prostszy, a każdy będzie
+                wiedział o co tu tak naprawdę chodzi.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                To się oczywiście tyczy również frontendu. Większość frameworków i systemów szablonowania pozwala na
+                budowę reużywalnych komponentów, więc zamiast takiego kodu...
               </div>
             </div>
 
@@ -294,6 +381,281 @@
     &lt;div class="size-4 border border-black p-1" :class="background" />
   &lt;/div>
 &lt;/template></code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Każda potwarzana wiele razy czynność, bez względu jak dobrze umiemy to robić, za którymś razem może
+                zostać wykonana źle.
+              </div>
+              <div>
+                Samo to powinno w nas ugruntować zaufanie do podejścia DRY.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            YAGNI
+          </section>
+          <section>
+            <div class="font-bold text-3xl">YAGNI</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>You aren't gonna need it!</em>, YAGNI, czyli przypomnienie, żeby nie projektować rzeczy nadmiarowo.
+              </div>
+              <div>Jest to zasada czy też podejście trudne do wytłumaczenia, aby nie wpaść przypadkiem w lenistwo. Tyczy
+                się przede wszystkim nadmiernego wychodzenia naprzód z próbami przewidywania potrzeb klienta oraz
+                wszelkiego rodzaju przedwczesną optymalizacją.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Zobaczmy taki kontroler w aplikacji MVC. Pobiera wpisy do FAQ i wyświetla je na wyrenderowanej stronie.
+                W teorii nic trudnego, ale ktoś postanowił tutaj użyć cache, żeby wszystko przyspieszyć... ale czy to ma
+                sens?
+              </div>
+            </div>
+
+            <div class="mt-4 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public class FaqController extends Controller
+{
+    public HttpResponse get(Request request, Database database, Cache cache)
+    {
+        HttpResponse response = new HttpResponse()
+
+        if (!cache.has("faqs")) {
+            cache.set(database.get("faqs").mapInto(Faq.class).toJson())
+        }
+
+        array&lt;Faq> faqs = cache.get("faqs").fromJson()
+
+        return response.withRenderedView("faq").with("faqs", faqs)
+    }
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public class FaqController extends Controller
+{
+    public HttpResponse get(Request request, Database database)
+    {
+        HttpResponse response = new HttpResponse()
+        array&lt;Faq> faqs = database.get("faqs").mapInto(Faq.class).toJson()
+
+        return response.withRenderedView("faq").with("faqs", faqs)
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Albo z innej strony: planujemy pobierać pogodę z IMGW i w kontrolerze będziemy uruchamiać serwis ją
+                zbierający.
+              </div>
+            </div>
+
+            <div class="mt-4 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public class WeatherController extends Controller
+{
+    public HttpResponse get(Request request, ImgwService weather)
+    {
+        HttpResponse response = new HttpResponse()
+
+        return response.withRenderedView("weather").with("weather", weather.get())
+    }
+}</code></pre>
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Niektórzy mogliby tutaj chcieć wstrzyknąć interfejs <code>WeatherServiceContract</code>, a faktyczną
+                klasę <code>ImgwService</code> ustawić na warstwie konfiguracji serwisu zależności... Ale czy nie jest
+                to nadmiar, jeżeli nie mamy żadnych innych klas pobierających pogodę?
+              </div>
+              <div>
+                Testowanie? Przecież można byłoby po prostu rozszerzyć klasę <code>ImgwService</code> i przesłonić
+                metody pobierające dane? Ale czy nie kłóci się to z zasadą OCD?
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czego warto się wystrzegać?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>niepotrzebnych abstrakcji i interfejsów,</li>
+                <li>tworzenia opcji konfiguracyjnych, które nie są wykorzystywane,</li>
+                <li>nadmiernego stosowania wzorców projektowych tam, gdzie nie są potrzebne,</li>
+                <li>dodawania funkcjonalności <em>na przyszłość</em>, która może nigdy nie być użyta,</li>
+                <li>tworzenia skomplikowanego kodu, który utrudnia rozwój i debugowanie.</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Spójrzmy na opisane Gherkinem zadanie INT-0023:
+              </div>
+            </div>
+
+            <div class="mt-4 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">Feature: INT-0023
+  Guest should be able to log into the system
+
+  Scenario: Happy path authentication
+    Given I am unauthenticated guest
+    And there is user "login" with hashed "password" password in database
+    When I try to log in with "login" login and "password" password
+    Then I should receive authentication token
+
+  Scenario: Incorrect credentials
+    Given I am unauthenticated guest
+    And there is user "login" with hashed "password" password in database
+    When I try to log in with "login" login and "incorrect-password" password
+    Then I should receive error message
+    And I should receive "401" error code
+
+  Scenario: Non-existing user
+    Given I am unauthenticated guest
+    And there is user "login" with hashed "password" password in database
+    When I try to log in with "other-login" login and "password" password
+    Then I should receive error message
+    And I should receive "401" error code</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Czy ten kod realizuje zadanie?
+              </div>
+            </div>
+
+            <div class="mt-4 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public class AuthenticationController extends Controller
+{
+    public HttpResponse authenticate(Request request, UsersRepository users, JwtTokenGenerator jwt, HasherService hash)
+    {
+        string login = request.get("login")
+        string password = request.get("password")
+
+        ?User user = users.where("login", login).first()
+
+        if (user === null || hash.check(user.password, password)) {
+            return new JsonResponse("Invalid credentials.", 401)
+        }
+
+        string token = jwt.generate(user)
+
+        return (new JsonResponse()).withJsonField("token", token)
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                A może ten jest lepszy?
+              </div>
+            </div>
+
+            <div class="mt-4 w-full flex flex-col">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public class AuthenticationController extends Controller
+{
+    public HttpResponse authenticate(ValidatedAuthenticationRequest request, UserAuthenticationAction authenticate) throws UserNotAuthenticatedException
+    {
+        string login = request.get("login")
+        string password = request.get("password")
+
+        authenticate.try(login, password)
+
+        return (new JsonResponse()).withJsonField("token", authenticate.getToken())
+    }
+}</code></pre>
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                YAGNI nigdy nie powinno być wymówką na tworzenie złego kodu. Powinno być przestrogą przed tworzeniem niepotrzebnego kodu, który zaciemnia projekt i zwiększa pole do pojawienia się błędów.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            GRASP
+          </section>
+          <section>
+            <div class="font-bold text-3xl">GRASP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>General Responsibility Assignment Software Patterns</em>, GRASP, to kolejny zestaw wzorców odnoszących się do <em>poprawnego</em> projektowania systemów opartych o paradygmat obiektowy.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zasady GRASP</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <strong>Information Expert</strong>, czyli odpowiedzialność powinna być przypisana klasie, która ma dostęp do potrzebnych danych.
+              </div>
+              <div>
+                <strong>Creator</strong>, czyli klasa powinna być odpowiedzialna za tworzenie instancji innej klasy, jeżeli (a) zawiera lub agreguje obiekty tej klasy, (b) używa ich intensywnie lub (c) ma dane niezbędne do ich inicjalizacji.
+              </div>
+              <div>
+                <strong>Controller</strong>, czyli wybrana klasa powinna odpowiadać za obsługę wejściowych żądań od użytkownika lub systemu
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zasady GRASP (2)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <strong>Low Coupling</strong>, czyli klasy powinny mieć jak najmniej zależności od innych klas, aby zmiany w jednej nie wymagały wielu modyfikacji w innych.
+              </div>
+              <div>
+                <strong>High Cohesion</strong>, czyli klasy powinny mieć dobrze określony i ograniczony zakres odpowiedzialności. Należałoby unikać klas realizujących zbyt wiele niezwiązanych ze sobą zadań.
+              </div>
+              <div>
+                <strong>Polymorphism</strong>, czyli zachowanie może być różne w zależności od implementacji interfejsu lub klasy bazowej.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zasady GRASP (3)</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <strong>Pure Fabrication</strong>, czyli dozwolone jest tworzenie klasy, która nie reprezentuje żadnego elementu dziedziny problemu, ale poprawia spójność i luźne powiązanie.
+              </div>
+              <div>
+                <strong>Indirection</strong>, czyli stosowanie pośredników w celu zmniejszenia bezpośrednich zależności między komponentami.
+              </div>
+              <div>
+                <strong>Protected Variations</strong>, czyli izolowanie elementów systemu od zmian poprzez zastosowanie abstrakcji i enkapsulacji.
               </div>
             </div>
           </section>
