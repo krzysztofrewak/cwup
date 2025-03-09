@@ -1,0 +1,206 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">12 factor</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">4</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>12 aspektów / 12 factor</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <div class="font-bold text-3xl">12 factor</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Aplikacje typu Software-as-a-Service, często skracane do SaaS, na stałe zadomowiły się w branży technologicznej.
+              </div>
+              <div>
+                Jest to model dostarczania oprogramowania, w którym aplikacje są hostowane w chmurze i udostępniane użytkownikom przez Internet. Użytkownicy nie muszą instalować ani zarządzać oprogramowaniem na swoich komputerach - wystarczy im przeglądarka internetowa i dostęp do sieci.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Wedle twórców, 12 aspektów aplikacji SaaS jest metodologią budowania aplikacji, które będą zautomatyzowane, przenoszalne, gotowe do wdrażania, przygotowane pod CI/CD oraz skalowalne.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Codebase</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Jedno źródło kodu śledzone systemem kontroli wersji, wiele wdrożeń.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Zależności</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Jawnie zadeklaruj i wydziel zależności.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Konfiguracja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Przechowuj konfigurację w środowisku.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Usługi wspierające</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Traktuj usługi wspierające jako przydzielone zasoby.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Buduj, publikuj, uruchamiaj</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Oddzielaj etap budowania od uruchamiania.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Procesy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Uruchamiaj aplikację jako jeden lub więcej bezstanowych procesów.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Przydzielanie portów</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Udostępniaj usługi przez przydzielanie portów.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Współbieżność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Skaluj przez odpowiednio dobrane procesy.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Zbywalność</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Zwiększ elastyczność pozwalając na szybkie uruchamianie i zatrzymywanie aplikacji.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Jednolitość środowisk</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Utrzymuj konfigurację środowisk jak najbardziej zbliżoną do siebie.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Logi</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Traktuj logi jako strumień zdarzeń.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">Zarządzanie aplikacją</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Uruchamiaj zadania administracyjne jako jednorazowe procesy.</div>
+            </div>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>używanie deklaratywnego formatu pomaga zautomatyzować konfigurację aplikacji w celu zmniejszenia czasu i kosztów dołączenia nowych programistów do projektu;</li>
+                <li>czysty kontrakt z systemem operacyjnym umożliwia jak największą możliwość przenoszenia pomiędzy środowiskami, w których działają;</li>
+                <li>dopasowane do wdrożenia na nowoczesne chmury obliczeniowe zapobiega potrzebie użycia serwerów i administracji systemu;</li>
+                <li>minimalizacja rozbieżności pomiędzy środowiskami developerskimi i produkcyjnymi umożliwiają nieustanne wdrażanie aplikacji, by zmaksymalizować prędkość zmian;</li>
+                <li>aplikacje powinny skalować się bez większej zmiany narzędzi, architektury, czy sposobu pracy zespołu.</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li><a href="https://12factor.net/pl/" target="_blank">12 aspektów po polsku</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
