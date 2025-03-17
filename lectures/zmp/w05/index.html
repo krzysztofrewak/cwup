@@ -1,0 +1,541 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Czysty kod, część I</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">5</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Czysty kod</li>
+              <li>Znaczące nazwy</li>
+              <li>Funkcje</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Czysty kod
+          </section>
+          <section>
+            <span class="italic">Czysty kod</span>
+          </section>
+          <section>
+            <div class="flex justify-center items-center">
+              <div class="flex-1">
+                <div class="font-bold text-3xl">Czysty kod</div>
+                <hr class="border-orange-400 border-opacity-50 my-12">
+
+                <div class="flex flex-col gap-4 mx-auto text-lg">
+                  <div class="text-gray-400">Tytuł <span class="text-gray-700 font-bold italic">Czysty kod. Podręcznik dobrego programisty</span></div>
+                  <div class="-mt-4 text-gray-400"><span class="text-gray-600 font-bold italic">(Clean Code: A Handbook of Agile Software Craftsmanship)</span></div>
+                  <div class="text-gray-400">Autor <span class="text-gray-700 font-bold">Robert C. Martin</span></div>
+                  <div class="text-gray-400">Rok wydania <span class="text-gray-700 font-bold">2009</span></div>
+                  <div class="text-gray-400">Wydawnictwo <span class="text-gray-700 font-bold">Helion</span></div>
+                  <div class="text-gray-400">Stron <span class="text-gray-700 font-bold">424</span></div>
+                </div>
+              </div>
+              <div class="flex-1 flex items-center justify-center">
+                <img class="w-2/3" src="../../../images/zmp/czystykod.webp" alt="">
+              </div>
+            </div>
+          </section>
+          <section>
+            Definicja czystego kodu
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Lubię, gdy mój kod jest elegancki i efektywny. Logika kodu powinna być prosta, aby nie mogły się w niej kryć błędy, zależności minimalne dla uproszczenia utrzymania, obsługa błędów kompletna zgodnie ze zdefiniowaną strategią, a wydajność zbliżona do optymalnej, aby nikogo nie kusiło psucie kodu w celu wprowadzenia niepotrzebnych optymalizacji. Czysty kod wykonuje dobrze jedną operację.
+              </p>
+              <div>Bjarne Stroustrup, twórca C++ oraz autor <em>The C++ Programming Language</em></div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Czysty kod jest prosty i bezpośredni. Czysty kod czyta się jak dobrze napisaną prozę. Czysty kod nigdy nie zaciemnia zamiarów projektanta; jest pełen trafnych abstrakcji i prostych ścieżek sterowania.
+              </p>
+              <div>Grady Booch, autor <em>Object Oriented Analysis and Design with Applications</em></div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Czysty kod może być czytany i rozszerzany przez innego programistę niż jego autor. Posiada on testy jednostkowe i akceptacyjne. Zawiera znaczące nazwy. Oferuje jedną, a nie wiele ścieżek wykonania jednej operacji. Posiada minimalne zależności, które są jawnie zdefiniowane, jak również zapewnia jasne i minimalne API. Kod powinien być opisywany przy jednoczesnej zależności od języka — nie wszystkie potrzebne informacje mogą być wyrażane bezpośrednio w kodzie.
+              </p>
+              <div>Dave Thomas, założyciel OTI, ojciec chrzestny strategii Eclipse</div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Mógłbym wymieniać wszystkie cechy, jakie zauważam w czystym kodzie, ale istnieje jedna, która prowadzi do pozostałych. Czysty kod zawsze wygląda, jakby był napisany przez kogoś, komu na nim zależy. Nie ma w nim nic oczywistego, co mógłbyś poprawić. Autor kodu pomyślał o wszystkim i jeżeli próbujemy sobie wyobrazić usprawnienia, prowadzą one nas tam, skąd zaczęliśmy, co pozwala nam docenić kod, który ktoś dla nas napisał — kod, który napisał ktoś, kto naprawdę przejmuje się swoimi zadaniami.
+              </p>
+              <div>Michael Feathers, autor <em>Working Effectively with Legacy Code</em></div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Wiemy, że pracujemy na czystym kodzie, jeżeli każda procedura okazuje się taką, jakiej się spodziewaliśmy. Można nazywać go również pięknym kodem, jeżeli wygląda, jakby ten język został stworzony do rozwiązania danego problemu.
+              </p>
+              <div>Ward Cunningham, wynalazca Wiki, wynalazca Fit, współautor eXtreme Programming</div>
+            </div>
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Pozostaw obóz czyściejszym, niż go zastałeś.
+              </p>
+              <div>skauci amerykańscy</div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Znaczące nazwy
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy przedstawiające intencje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Nazwy zmiennych, klas, plików, przestrzeni nazw i wszystkich innych elementów kodu powinny być zrozumiałe dla wszystkich innych użytkowników kodu.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">int p = 0</code></pre>
+              </div>
+              <div class="flex-1 fragment">
+                <pre class="p-4"><code class="text-sm">int pointsEarned = 0</code></pre>
+              </div>
+              <div class="flex-1 fragment">
+                <pre class="p-4"><code class="text-sm">int pointsEarned = static::initialPointsEarned</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Nawet proste struktury z głupimi nazwami zmiennych mogą być trudne do zrozumienia.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">array&lt;Task> ar = []
+foreach (Task t in a) {
+    if (t.tagsc() == 0) {
+        ar.push(t)
+    }
+}</code></pre>
+              </div>
+              <div class="flex-1 fragment">
+                <pre class="p-4"><code class="text-sm">array&lt;Task> untaggedTasks = []
+foreach (Task task in tasks) {
+    if (!task.isTagged()) {
+        untaggedTasks.push(task)
+    }
+}</code></pre>
+              </div>
+              <div class="flex-1 fragment">
+                <pre class="p-4"><code class="text-sm">array&lt;Task> untaggedTasks = tasks.filter(Task task => !task.isTagged())</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Niekiedy oczywiście lepiej jest użyć skrótowców... pod warunkiem, że mają sens. Tak będzie przy modelowaniu matematycznych lub fizycznych rozwiązań.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">a2 = G * (m1 / pow(r))
+<span class="text-gray-400"># secondObjectAcceleration = gravitationalConstant * (firstObjectMass / pow(distanceBetweenTwoMasses))</span></code></pre>
+              </div>
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Albo oczywiście bardzo proste iteratory w pętlach:
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">for(int i; i <= limit; i++) {
+<span class="text-gray-400"># for(int iterable; iterable <= limit; iterable++) {</span></code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy bez dezinformacji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Nazwy zawsze powinny odpowiadać temu, co faktycznie znajduje się w kodzie.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">array&lt;Task> emails = []</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">array&lt;Task> tasksList = []</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">array&lt;Task> tasksCount = []</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Może mniej oczywistym, ale ciekawym zagadnieniem może być wprowadzanie dezorientacji przez wpisywanie zmiennych
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">if (user = UsersQuery.whereName(name).first() && user.isAdmin()) {</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">User user = UsersQuery.whereName(name).first()
+if (user && user.isAdmin()) {</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy z wyraźnymi różnicami</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Oczywiście nie można powtarzać nazw wewnątrz jednego zakresu. Nie powinno nas to jednak rozleniwiać.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public void assignParent(Person a, Person b)
+{
+    a.relations().create(new Relation(a, b, "parent"))
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public void assignParent(Person child, Person parent)
+{
+    child.relations().create(new Relation(child, parent, "parent"))
+    <span class="fragment text-gray-500"># child.relations().create(new ParentRelation(child, parent))</span>
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy, które da się wymówić</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                To już drobnostka, ale...
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public int dsUntlEoY()
+public string str2ymdhis(string date)</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public int daysUntilEndOfYear()
+public string dayFormat(string date)</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy, które da się wyszukać</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                O tym już mówiliśmy:
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public bool hasLegalDrinkingAge(User user)
+{
+    return user.getAge() >= 18
+}</code></pre>
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public bool hasLegalDrinkingAge(User user)
+{
+    return user.getAge() >= self.LEGAL_DRINKING_AGE
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy bez zbędnego kodowania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Kiedyś popularna była tzw. notacja węgierska, która dzisiaj raczej wzbudza uśmiech politowania. Nie ma już potrzeby dodawać do nazw informacji na temat typów zmiennych.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class JsonExtractor implements IExtractor
+{
+    public bool bReady = false
+    public int nLinesOfCode
+    public string szContent
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Nazwy zgodne z częściami mowy</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Nazwy klas zdecydowanie powinny być rzeczownikami, a nazwy metod - czasownikami lub formami odczasownikowymi. Dzięki temu kod czyta się o wiele wygodniej i łatwiej zrozumieć stojące za nim pomysły i idee.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Pozostałe dobre praktyki</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>używaj jednego słowa per pojęcie</li>
+                <li>nie bądź dowcipny i nie twórz kalamburów</li>
+                <li>mądrze korzystaj z nazw domenowych rozwiązania i problemu</li>
+                <li>wiedz kiedy dodawać kontekst</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Funkcje
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Małe funkcje</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Według Martina, pierwsza zasada dotycząca konstruowania funkcji jest taka, że powinny być małe. Druga zasada mówi, że powinny być mniejsze, niż są.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class BookController
+{
+    public HttpResponse invoke(HttpRequest request, BooksRepository books, ResponseFactory response)
+    {
+        return response.asJson("book", books.getBySlug(request.get(slug)))
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jedna czynność per funkcja</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Według Martina, funkcje powinny wykonywać jedną operację, powinny to robić dobrze i powinny robić tylko to.
+              </div>
+              <div>
+                Tutaj można cofnąć się do wykładu drugiego i sekcji <em>Single responsibility principle</em>.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Jeden poziom abstrakcji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Według Martina, mieszanie poziomów abstrakcji w jednej funkcji zawsze jest mylące.
+              </div>
+              <div>
+                Tutaj ponownie można cofnąć się do wykładu drugiego i sekcji <em>Dependency inversion principle</em>.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czytanie od góry do dołu</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Według Martina, powinniśmy chcieć móc czytać kod od góry do dołu. Nazywa to zasadą zstępującą.
+              </div>
+              <div>
+                Wystarczy popatrzeć na fragment kodu poniżej. O ile łatwiej byłoby czytać tę metodę, gdyby oczekiwany wynik był ostatnią linijką metody, a rzucanie wyjątku znalazłoby się przed nim?
+              </div>
+              <div>
+                <pre class="p-4"><code class="text-xs">class InternalRequestMiddleware implement HttpMiddleware
+{
+    public HttpResponse handle(HttpRequest request, Closure next)
+    {
+        if (this.authenticator.validateRequest(request)) {
+            return next(request)
+        }
+
+        throw new ExternalRequestNotAllowedException()
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Instrukcje switch</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                W skrócie, według Martina instrukcje switch często łatwo zamienić sensownym wykorzystaniem polimorfizmu.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Argumenty</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Według Martina, idealna liczba argumentów dla funkcji to... zero. Następnie jeden, dwa i trzy, a więcej to już proszenie się o kłopoty.
+              </div>
+              <div>
+                Oczywiście nie można ograniczać czegoś dla samego ograniczania, ale czasami programiści projektują "głupie argumenty", czyli argumenty znacznikowe lub zbyt uproszczone dane wejściowe.
+              </div>
+              <div>
+                <pre class="p-4"><code class="text-xs">class Canvas
+{
+    public void drawCircle(int x, int y, Color color, boolean filled)
+
+    <span class="text-gray-500">public void drawCircle(Point center, Color color)</span>
+    <span class="text-gray-500">public void drawFilledCircle(Point center, Color color)</span>
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Efekty uboczne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Efekty uboczne są kłamstwem. Funkcja obiecuje, że wykonuje jedną operację, ale oprócz tego realizuje inną w sposób ukryty.</em>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Separacja poleceń i zapytań</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Funkcje powinny coś wykonywać lub odpowiadać na jakieś pytanie, ale nie powinny robić tych dwóch operacji jednocześnie.</em>
+              </div>
+              <div>
+                <pre class="p-4"><code class="text-xs">interface BooksRepository
+{
+    public Book save(array&lt;string> data)
+
+    <span class="text-gray-500">public void save(array&lt;string> data)</span>
+    <span class="text-gray-500">public Book get(string id)</span>
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Rzucanie wyjątków</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                <em>Zwracanie kodów błędów z funkcji poleceń jest subtelnym naruszeniem rozdzielenia poleceń i zapytań.</em>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">DRY</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Tutaj można cofnąć się do wykładu trzeciego i sekcji <em>Don't repeat yourself</em>.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Programowanie strukturalne</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Według Edserera Dijkstry, <em>w funkcji powinna być jedna instrukcja <code>return</code>, w pętli nie należy stosować elementów <code>break</code> ani <code>continue</code> i nigdy, przenigdy nie wolno korzystać z instrukcji <code>goto</code>.</em>
+              </div>
+              <div>
+                Jeżeli jednak nasze funkcje są odpowiednio małe, nie powinno to robić problemu.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>"czysty kod" to filozofia tworzenia "dobrego" oprogramowania</li>
+                <li>wszystkie nazwy w kodzie powinny mieć sens</li>
+                <li>funkcje powinny byc krótkie i czytelne</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>Martin, Robert M., <em>Czysty kod</em></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
