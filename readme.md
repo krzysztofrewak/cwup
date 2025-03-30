@@ -71,7 +71,7 @@ Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym se
 1. [KISS, DRY, YAGNI, GRASP i inne](https://krzysztofrewak.github.io/cwup/lectures/zmp/w03/index.html)
 1. [12 factor](https://krzysztofrewak.github.io/cwup/lectures/zmp/w04/index.html)
 1. [Czysty kod, część I](https://krzysztofrewak.github.io/cwup/lectures/zmp/w05/index.html)
-1. Czysty kod, część II
+1. [Czysty kod, część II](https://krzysztofrewak.github.io/cwup/lectures/zmp/w06/index.html)
 1. Czysty kod, część III
 1. Onboarding projektowy
 1. Praktyczny polimorfizm
