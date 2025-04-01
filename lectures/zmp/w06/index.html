@@ -425,6 +425,98 @@ return this.session.registerUser(user).getSessionId()
 
         <section>
           <section>
+            Obiekty i struktury danych
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Abstrakcja i asymetria danych i obiektów</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div class="italic">
+                Obiekty ukrywają dane, tworząc abstrakcje, i udostępniają funkcje operujące na tych danych. Struktury danych udostępniają ich dane i nie mają znaczących funkcji.
+              </div>
+              <div>
+                Robert C. Martin
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Prawo Demeter</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Prawo Demeter, zwane też zasadą minimalnej wiedzy, mówi, że metoda danego obiektu może odwoływać się do metody należących do a) tego samego obiektu, b) dowolnego argumentu do niej przekazanego, c) dowolnego obiektu przez nią stworzonego lub d) dowolnego składnika klasy, do której należy metoda.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public string getAddress()
+{
+    return this.getUser()?.getProfile()?.getAddress()?.getFirstLine() ?? "unknown"
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">DTO</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Data Transfer Objects, DTO, to najprostsza forma przekazywania informacji poprzez struktury danych. Są to klasy bez żadnych funkcji, z prostymi typami pól, najlepiej bez możliwości zmiany danych wprowadzonych przez konstruktor.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">final readonly class Starfigher
+{
+    public string make
+    public string model
+    public int maxSpeed
+    public int ftlClass
+
+    public Starfigher(string make, string model, int maxSpeed, int ftlClass)
+    {
+        this.make = make
+        this.model = model
+        this.maxSpeed = maxSpeed
+        this.ftlClass = ftlClass
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Obsługa błędów
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wyjątki zamiast kodów powrotu</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Dzięki rzucaniu wyjątków możemy odseparować logikę biznesową od obsługi błędów.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">throw new Exception()</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>rzucanie wyjątków zamiast kodów powrotu/błędu</li>
+                <li>rozsądnie wykorzystanie try-catch-finally</li>
+                <li>niekontrolowane wyjątki w Javie</li>
+                <li>kontekst w wyjątkach</li>
+                <li>niezwracanie i nieprzekazywanie nulli</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
             Podsumowanie
           </section>
           <section>
@@ -433,9 +525,11 @@ return this.session.registerUser(user).getSessionId()
 
             <div class="text-lg w-2/3 mx-auto">
               <ul>
-                <li>"czysty kod" to filozofia tworzenia "dobrego" oprogramowania</li>
-                <li>wszystkie nazwy w kodzie powinny mieć sens</li>
-                <li>funkcje powinny byc krótkie i czytelne</li>
+                <li>czytelny kod jest lepszy niż komentarz</li>
+                <li>komentarze mają sens tylko, gdy dodają wartość</li>
+                <li>formatowanie kodu wpływa na jego zrozumiałość</li>
+                <li>prawo Demeter = mniej zależności, prostszy kod</li>
+                <li>używaj wyjątków mądrze</li>
               </ul>
             </div>
           </section>
