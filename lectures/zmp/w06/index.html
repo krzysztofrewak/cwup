@@ -1,0 +1,559 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Czysty kod, część II</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">6</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Komentarze</li>
+              <li>Formatowanie</li>
+              <li>Obiekty i struktury danych</li>
+              <li>Obsługa błędów</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Komentarze
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Nie komentuj złego kodu - popraw go. </p>
+              <div>Brian W. Kernighan i P.J. Plaugher</div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Czytelne nazwy > komentarze</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Z poprzedniego wykładu już wiemy, że nazewnictwo to jedna z podstaw czystego kodu. Za każdym razem
+                lepiej nazwana funkcja czy klasa będzie lepsza niż opisujący ją komentarz. Wystarczy popatrzeć na
+                poniższy przykład:
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">if (t.tagsc() == 0) ar.push(t) // adds unntagged tasks to array</code></pre>
+                <pre class="p-4"><code class="text-xs">
+if (!task.isTagged()) {
+    untaggedTasks.push(task)
+}</code></pre>
+              </div>
+            </div>
+            <div class="flex-1 w-2/3 mx-auto text-base">
+              Martin twierdzi, że czytelny kod nie potrzebuje komentarzy.
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Kiedy komentować?</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Komentarze prawne czy informacyjne nie powinny nikogo oburzyć.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">return [
+    "ttl" => 86400, <span class="text-gray-500"># 60s * 60min * 24h = 1 day</span>
+    <span class="text-gray-500"># "ttl" => 60 * 60 * 24,</span>
+]</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Komentarze TODO</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="mt-8 w-full flex flex-col">
+              <div class="flex-1 w-2/3 mx-auto text-base">
+                Komentarze TODO to specyficzne komentarze, które są rozumiane przez oprogramowanie służące do
+                wytwarzania oprogramowania. Zarówno IDE, jak i platformy z repozytoriami kodu powinny je odpowiednio
+                indeksować i interpretować.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public bool authorize()
+{
+    <span class="text-gray-500"># TODO: add proper authorization after PRJ-023</span>
+    return true
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Dokumentacja API</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Javadoc czy phpdoc pozwalają na tworzenie bezpośrednio w kodzie dokumentacji projektowej. Liczne zalety
+                i wady tego rozwiązania prowadzą do tego, że zazwyczaj zespół decyduje się na korzystanie z docblocków
+                na podstawie osobistych preferencji programistów.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs"><span class="text-gray-500">/**
+  * This method indexes all project resources ordered alphabetically
+  * by default and scoped for requesting user's permissions.
+  *
+  * @param HttpRequest&lt;PermissionIndex> request
+  * @return HttpResponse&lt;array&lt;Permission>> response
+  */</span>
+public HttpResponse index(HttpRequest request)
+{
+    <span class="text-gray-500"># (...)</span>
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wyjaśnienia, ostrzeżenia i wzmocnienia</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>
+                Martin sugeruje, że wyjaśnienia zamierzeń, ostrzeżenia przed konsekwencjami czy wzmocnienia wagi
+                operacji mogą być również opisane komentarzami.
+              </div>
+              <div>
+                Dobrze mieć jednak dobre uzasadnienia dodawania nawet takich komentarzy.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Złe komentarze</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Bełkot, nadmiar, logi, podpisy, komentarze z HTML, informacje nielokalne, nadmiar informacji,
+                nieoczywiste połączenia, nagłówki funkcji, docsy w niepubilcznym kodzie... Martin wymienia kilkanaście
+                złych praktyk w odniesieniu do komentarzy.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs"><span class="text-gray-500">/**
+  * @log 2025-03-31 changed local port to 7654
+  * @log 2025-01-12 method created
+  *
+  * @author john.doe@example.com
+  * @info created in Notepad++
+  *
+  * &lt;p>This function increments counter stored in Redis/local cache driver. It accepts no argument or numeric value.&lt;/p>&lt;p>It's very important to our client.&lt;/p>
+  *
+  * @param int step
+  */</span>
+public void increment(int step = 1)
+{
+    <span class="text-gray-500"># (...)</span>
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Opisywanie oczywistego kodu</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Jeżeli tworzymy kod, którego nazwy są w pełni czytelne... po co to dodatkowo komentować?
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs"><span class="text-gray-500"># this method assigns provided tags to the instance of task</span>
+public void assignTags(array&lt;Tag>)
+{
+    <span class="text-gray-500"># (...)</span>
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wprowadzanie w błąd</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Znalezienie komentarza, który opisuje coś innego niż rzeczywistość, pozostawia pewien niesmak. Gorzej,
+                jeżeli ktoś zaufa tej informacji i spędzi godziny na szukaniu rozwiązania swojego problemu.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public bool authorize(Request request)
+{
+    <span class="text-gray-500"># always returns true</span>
+    return request.user() && request.user().is(UserRole::Admin)
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Szum informacyjny</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Domyślnie nasz mózg stara się czytać wszystko na ekranie. Dlatego niektóre zapiski to najzwyklejszy szum
+                informacyjny i można sobie i innym oszczędzić mocy przerobowych na jego interpretacje.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">final class Task
+{
+    <span class="text-gray-500"># default constructor</span>
+    public Task() {
+        <span class="text-gray-500"># creates new id for new task</span>
+        this.id = IdGenerator.generateFor(this.class)
+        <span class="text-gray-500"># sets now as creation date for new task</span>
+        this.createdAt = Time.now()
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Znaczniki pozycji</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Czasami niektórym może wydawać się, że dodanie wielu komentarzy "poprawia widoczność". Lepiej takie
+                rzeczy przedyskutować z zespołem.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs"><span class="text-gray-500">####################################
+## Application
+##
+## APP_NAME - set desired name
+## APP_ENV - don't set 'testing' or 'local' in production
+## APP_KEY - generated by php artisan key:generate
+## APP_DEBUG - set false in production
+## APP_URL - base url for app
+####################################</span>
+
+APP_NAME=Project
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+APP_FRONTEND=http://localhost:1111</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zakomentowany kod</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Kod nigdy nie powinien być zakomentowany. Jeżeli jest już niepotrzebny, należy go usunąć. Jeżeli ma
+                dopiero być włączony - można opisać to lepiej i użyć na przykład wzorca strategii. Jeżeli się jeszcze
+                przyda - przecież zawsze jest dostępny w systemie kontroli wersji.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class UserRegistrar implements UserRegistrarContract
+{
+    public User register(string email, string password, bool agreementsApproved)
+    {
+<span class="text-gray-500">#       if (!agreementsApproved) {
+#           throw new AgreementsNotApprovedException()
+#       }
+#
+#       if (this.database.select(User.class).where("email", email).count() > 0) {
+#           throw new UserAlreadyExistsException()
+#       }</span>
+
+        User user = new User
+        user.email = email
+        user.password = this.hasher.hash(password).toString()
+
+        this.database.commit(user)
+<span class="text-gray-500">#       this.mailer.send(new UserRegistered(user))</span>
+
+        return user
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Formatowanie
+          </section>
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <p class="italic">
+                Formatowanie kodu jest ważne. Jest zbyt ważne, aby je ignorować, i zbyt ważne, aby traktować je
+                dogmatycznie. Formatowanie kodu ma zapewnić komunikację, a dobra komunikacja jest pierwszą zasadą
+                biznesu zawodowego programisty. </p>
+              <div>Robert C. Martin</div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Formatowanie pionowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 mx-auto text-lg">
+              <div class="mx-auto w-3/4">
+                Choć może wydawać się to dziwne, puste linie w kodzie bardzo mocno zwiększają jego czytelność. Fachowo
+                nazywa się to "gęstością pionową" i odpowiada na grupowanie linii kodu związanych wedle założonych
+                związków.
+              </div>
+              <div class="flex-1">
+                  <pre class="p-4"><code class="text-xs">class UserRegistrar implements UserRegistrarContract
+{
+    public User register(string email, string password, bool agreementsApproved)
+    {
+        if (!agreementsApproved) throw new AgreementsNotApprovedException()
+        if (this.database.select(User.class).where("email", email).count() > 0) throw new UserAlreadyExistsException()
+        User user = new User
+        user.email = email
+        user.password = this.hasher.hash(password).toString()
+        this.database.commit(user)
+        this.mailer.send(new UserRegistered(user))
+        return user
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Formatowanie poziome</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 mx-auto text-lg">
+              <div class="mx-auto w-3/4">
+                Dawniej starano się, ze względów technicznych, aby liczba znaków w linii kodu nie przekraczała 80. Ile
+                byśmy nie chcieli stawiać limitów, powinniśmy zawsze sensownie formatować kod pod względem wcięć, które
+                oszczędzają nasz czas przy zrozumieniu intencji autora kodu.
+              </div>
+              <div class="flex-1 flex w-full">
+                <div class="flex-1 w-1/2">
+
+                <pre class="p-4"><code>class UserAuthenticator implements UserAuthenticatorContract
+{
+public string authenticate(User user, string password)
+{
+?User user = this.database.select(User.class).where("email", email).first()
+
+if (user === null) {
+this.hasher.hash(rand())
+throw new UserNotFoundException()
+}
+
+bool result = this.hasher.verify(password, user.password)
+
+if (!result) {
+throw new WrongPasswordException()
+}
+
+return this.session.registerUser(user).getSessionId()
+}
+}
+                </code></pre>
+                </div>
+                <div class="flex-1 w-1/2">
+                <pre class="p-4"><code>class UserAuthenticator implements UserAuthenticatorContract
+{
+    public string authenticate(User user, string password)
+    {
+        ?User user = this.database.select(User.class).where("email", email).first()
+
+        if (user === null) {
+            this.hasher.hash(rand())
+            throw new UserNotFoundException()
+        }
+
+        bool result = this.hasher.verify(password, user.password)
+
+        if (!result) {
+            throw new WrongPasswordException()
+        }
+
+        return this.session.registerUser(user).getSessionId()
+    }
+}
+                </code></pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Zasady zespołowe</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Każdy język ma swoje style formatowania, a niektóre nie narzucają żadnych reguł lub pozostawiają ich dobór programistom. Nie wszystko można zautomatyzować, ale podstawowe autoformatowanie jest bardzo dobrym elementem szyny CI/CD (o czym już kiedyś mówiliśmy).
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Obiekty i struktury danych
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Abstrakcja i asymetria danych i obiektów</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div class="italic">
+                Obiekty ukrywają dane, tworząc abstrakcje, i udostępniają funkcje operujące na tych danych. Struktury danych udostępniają ich dane i nie mają znaczących funkcji.
+              </div>
+              <div>
+                Robert C. Martin
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Prawo Demeter</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Prawo Demeter, zwane też zasadą minimalnej wiedzy, mówi, że metoda danego obiektu może odwoływać się do metody należących do a) tego samego obiektu, b) dowolnego argumentu do niej przekazanego, c) dowolnego obiektu przez nią stworzonego lub d) dowolnego składnika klasy, do której należy metoda.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public string getAddress()
+{
+    return this.getUser()?.getProfile()?.getAddress()?.getFirstLine() ?? "unknown"
+}</code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">DTO</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Data Transfer Objects, DTO, to najprostsza forma przekazywania informacji poprzez struktury danych. Są to klasy bez żadnych funkcji, z prostymi typami pól, najlepiej bez możliwości zmiany danych wprowadzonych przez konstruktor.
+              </div>
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">final readonly class Starfigher
+{
+    public string make
+    public string model
+    public int maxSpeed
+    public int ftlClass
+
+    public Starfigher(string make, string model, int maxSpeed, int ftlClass)
+    {
+        this.make = make
+        this.model = model
+        this.maxSpeed = maxSpeed
+        this.ftlClass = ftlClass
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Obsługa błędów
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Wyjątki zamiast kodów powrotu</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-3/4 mx-auto text-lg">
+              <div>
+                Dzięki rzucaniu wyjątków możemy odseparować logikę biznesową od obsługi błędów.
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">throw new Exception()</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>rzucanie wyjątków zamiast kodów powrotu/błędu</li>
+                <li>rozsądnie wykorzystanie try-catch-finally</li>
+                <li>niekontrolowane wyjątki w Javie</li>
+                <li>kontekst w wyjątkach</li>
+                <li>niezwracanie i nieprzekazywanie nulli</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Highlights</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>czytelny kod jest lepszy niż komentarz</li>
+                <li>komentarze mają sens tylko, gdy dodają wartość</li>
+                <li>formatowanie kodu wpływa na jego zrozumiałość</li>
+                <li>prawo Demeter = mniej zależności, prostszy kod</li>
+                <li>używaj wyjątków mądrze</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Źródła i do dalszego poczytania</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="text-lg w-2/3 mx-auto">
+              <ul>
+                <li>Martin, Robert M., <em>Czysty kod</em></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            Dziękuję za uwagę
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
