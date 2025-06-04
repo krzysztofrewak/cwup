@@ -1,0 +1,266 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Programowanie ekstremalne</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">14</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Programowanie ekstremalne</li>
+              <li>Zalecenia XP</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Programowanie ekstremalne
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Definicja
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Z angielskiego <em>Extreme Programming</em> – lekka metodyka tworzenia oprogramowania z nurtu Agile, skoncentrowana na jakości kodu i szybkim reagowaniu na zmiany wymagań.</div>
+              <div>XP opiera się na krótkich iteracjach, stałej współpracy z klientem i praktykach inżynierskich zapewniających szybkie sprzężenie zwrotne.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Geneza
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Metodykę sformułował Kent Beck w latach 1996–1999 podczas projektu Chrysler C3.</div>
+              <div>XP było odpowiedzią na rozbudowane, dokumentacyjne procesy typu waterfall, promując prostotę, adaptację i ciągłe dopasowanie do zmieniających się potrzeb biznesu.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Kluczowe założenia
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <ul class="list-disc list-inside space-y-2">
+                <li><strong>prostota</strong> – implementuj tylko to, co potrzebne dziś.</li>
+                <li><strong>komunikacja</strong> – zespół rozwiązuje problemy razem, bez barier.</li>
+                <li><strong>feedback</strong> – testy i częste wydania dostarczają natychmiastowych informacji zwrotnych.</li>
+                <li><strong>odwaga</strong> – refaktoryzuj śmiało, nie bój się usuwać zbędnego kodu.</li>
+                <li><strong>szacunek</strong> – wszyscy członkowie zespołu pracują w atmosferze wzajemnego zaufania.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Rola ludzi i komunikacji
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>XP kładzie nacisk na bliską współpracę w zespole oraz obecność <em>On‑Site Customer</em>, czyli przedstawiciela klienta dostępnego na co dzień.</div>
+              <div>Praktyki takie jak <em>pair programming</em> czy <em>collective code ownership</em> wzmacniają wymianę wiedzy i zapobiegają tworzeniu silosów kompetencyjnych.</div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Zalecenia
+          </section>
+          <section>
+            <div class="font-bold text-3xl">
+              Gra planistyczna (Planning Game)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Zespół deweloperski i klient wspólnie określają zakres kolejnej iteracji, równoważąc wartość biznesową i wysiłek implementacyjny.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Małe wydania (Small Releases)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Aplikacja trafia do użytkowników w krótkich odstępach (tygodnie, nie miesiące), co pozwala szybko zweryfikować kierunek rozwoju.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Metafora systemu (System Metaphor)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Wspólna, prosta analogia opisująca sposób działania systemu, ułatwiająca komunikację między zespołem a interesariuszami.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Prosty design (Simple Design)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Kod powinien być najprostszym, który spełnia wszystkie aktualne wymagania – bez zbędnej złożoności na przyszłość.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Testowanie (Testing / TDD)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Programiści piszą testy jednostkowe przed kodem produkcyjnym, co daje bezpieczeństwo przy zmianach i szybki feedback.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Refaktoryzacja (Refactoring)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Ciągłe upraszczanie struktury kodu bez zmiany zachowania, aby ułatwić rozwój i zmniejszyć dług techniczny.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Programowanie w parach (Pair Programming)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Dwie osoby pracują na jednym komputerze: jedna pisze kod, druga go recenzuje w czasie rzeczywistym, co zwiększa jakość i dzielenie się wiedzą.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Własność zbiorowa (Collective Ownership)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Każdy członek zespołu może modyfikować dowolny fragment kodu, eliminując wąskie gardła i zwiększając poczucie odpowiedzialności.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Integracja ciągła (Continuous Integration)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Zespół integruje zmiany kodu wiele razy dziennie, a automatyczne testy natychmiast wykrywają błędy integracji.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Zrównoważone tempo (40‑hour Week)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Praca w stałym, zdrowym rytmie – po dwóch kolejnych tygodniach nadgodzin zespół wstrzymuje nadgodziny, aby zapobiegać wypaleniu.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Klient na miejscu (On‑Site Customer)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Przedstawiciel biznesu jest stale dostępny w zespole, odpowiada na pytania i priorytetyzuje wymagania na bieżąco.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Standardy kodowania (Coding Standards)
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Wspólny zbiór zasad stylu kodu zapewnia spójność, czytelność i ułatwia współpracę nad bazą kodu.</div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Bibliografia i ciekawe źródła
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-10">
+              <li><a href="https://en.wikipedia.org/wiki/Extreme_programming" class="text-blue-500">Extreme programming - Wikipedia</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Extreme_programming_practices" class="text-blue-500">XP practices - Wikipedia</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Dziękuję za uwagę!
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+          </section>
+        </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>
