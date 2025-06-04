@@ -1,0 +1,411 @@
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zaawansowane metody programowania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js" integrity="sha512-sw9iNG3nZSCdLzwV7wuxWovgFA+FnYUlMy5AQn9K+C1QxVvG75mWiX8mXUbwmQ9axu1cqeGIF1wUzejP6xRZOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" integrity="sha512-6OOowvyM6Wl3NXfUTUn/mriLicQy5IoKsrlagy6/YJgd/hYpz4LxVlsV/DBghjcbWwKV4jyheUInWZUjagYVKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css" integrity="sha512-RRWSpiIK5YG93Pg5fbZs/Rrs3iD4l4RHkQURh9mMmGEOhxA1IhVMjy63ehWXuUYtjzwXs/CPGUzjIaSmNumedw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h5 class="text-5xl">Praktyczny polimorfizm</h5>
+            <h5 class="text-2xl">Zaawansowane metody programowania</h5>
+            <h5 class="text-2xl">wykład <span class="text-orange-400">9</span> z 15</h5>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="w-full flex gap-4">
+              <div class="w-2/5 flex-row flex justify-end items-end">
+                <img src="../../../images/witelon.png" class="w-24" alt="Collegium Witelona">
+              </div>
+              <div class="flex flex-col text-left justify-center leading-tight">
+                <div class="text-xl">mgr inż. <span class="font-semibold">Krzysztof Rewak</span>
+                </div>
+                <div class="text-sm mt-2">Zakład Informatyki, Wydział Nauk Technicznych i Ekonomicznych</div>
+                <div class="text-sm">Collegium Witelona Uczelnia Państwowa</div>
+                <div class="text-sm mt-2">Blumilk sp. z o.o.</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="font-bold text-3xl">Agenda</div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ol class="text-lg leading-10">
+              <li>Polimorfizm</li>
+              <li>Polimorfizm <em>ad hoc</em></li>
+              <li>Polimorfizm uniwersalny</li>
+              <li>Podsumowanie</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Polimorfizm
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Definicja
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Z greki <em>wielopostaciowość</em>, polimorfizm to umożliwienie jednym sposobem dostępu do wielu
+                różnych <em>wartości</em>.
+              </div>
+              <div>Wykorzystanie polimorfizmu może być jednym z podstawowych narzędzi refaktoryzacji kodu w celu
+                uzyskania tzw. czystego kodu.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Polimorfizm <em>ad hoc</em>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Definicja
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Polimorfizm <em>ad hoc</em> to sposób na wywoływanie określonych funkcji na argumentach wybranego
+                typu.
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Przeciążanie operatorów
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Jednym z narzędzi polimorfizmu <em>ad hoc</em> jest przeciążanie operatorów, o którym była mowa na
+                zajęciach z Projektowania i programowania obiektowego I.
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public string hello()
+{
+    return "hello" + "world"
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public Matrix recalculate(Matrix a, Matrix b, int scalar)
+{
+    Matrix t = Matrix::transpose(a)
+
+    return scalar * t * b
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">Area area = new Area(1000)
+
+if (event.intercepted("increased") {
+    area++
+    print(area)
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">&lt;?php
+
+echo 4E3 + 4E2;</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Przeciążanie operatorów
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Przeciążanie operatorów to tzw. <em>składniowy lukier</em> - istnieje wyłącznie dla wygody programisty.
+              </div>
+              <div>Ale czy lukier jest zdrowy?</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Przeciążanie funkcji
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Niektóre języki pozwalają na tworzenie funkcji o tej samej nazwie, różniących się implementacją w
+                zależności od typów parametrów.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm">public int area(int width)
+{
+    return width * width
+}
+
+public int area(double width)
+{
+    return width * width
+}
+
+public int area(double width, double height)
+{
+    return width * height
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Koercja
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              Większość języków dopuszcza rzutowanie typów. Czy wymuszona konwersja jest formą polimorfizmu?
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-sm"><span class="text-gray-400">// opakowanie i rozpakowanie</span>
+Integer i = new Integer(44);
+int j = i.intValue();
+
+<span class="text-gray-400">// koercja automatyczna</span>
+Integer i = 44;
+int j = i;</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Definicja
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Czym zatem jest polimorfizm <em>ad hoc</em>? I dlaczego właśnie <em>ad hoc</em>?</div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Polimorfizm uniwersalny
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Definicja
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Polimorfizm uniwersalny pozwala pisać ogólne struktury danych i algorytmy bez precyzowania typów oraz
+                implementacji dla każdego przypadku.</div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Polimorfizm parametryczny
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              Typy generyczne umożliwiają operowanie na danych bez względu na ich dokładny typ, bazując na
+              zaimplementowanym interfejsie.
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">public class Entry&lt;KeyType, ValueType> {
+
+    private final KeyType key;
+    private final ValueType value;
+
+    public Entry(KeyType key, ValueType value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public KeyType getKey() {
+        return key;
+    }
+
+    public ValueType getValue() {
+        return value;
+    }
+
+    public String toString() {
+        return "(" + key + ", " + value + ")";
+    }
+
+}
+</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              Czy takie rozwiązanie różni się od wcześniej przedstawionych przykładów?
+            </div>
+          </section>
+
+          <section>
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              Jak można wykorzystać polimorfizm do refaktoryzacji kodu?
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">class Bird {
+
+    public function getSpeed() {
+        switch ($this->type) {
+            case 'EUROPEAN':
+                return $this->getBaseSpeed();
+
+            case 'AFRICAN':
+                return $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts;
+
+            case 'NORWEGIAN_BLUE':
+                return ($this->isNailed) ? 0 : $this->getBaseSpeed($this->voltage);
+        }
+
+        throw new Exception("Should be unreachable");
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="mt-8 w-full flex">
+              <div class="flex-1">
+                <pre class="p-4"><code class="text-xs">abstract class Bird {
+    abstract function getSpeed(): float;
+}
+
+class European extends Bird {
+    public function getSpeed(): float {
+        return $this->getBaseSpeed();
+    }
+}
+
+class African extends Bird {
+    public function getSpeed(): float {
+        return $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts;
+    }
+}
+
+class NorwegianBlue extends Bird {
+    public function getSpeed(): float {
+        return ($this->isNailed) ? 0 : $this->getBaseSpeed($this->voltage);
+    }
+}
+
+$speed = $bird->getSpeed();
+</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Polimorfizm parametryczny
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <div class="flex flex-col gap-8 w-2/3 mx-auto text-lg">
+              <div>Drugie rozwiązanie ilustruje metodę <em>Tell, Don't Ask</em> oraz spełnia zasadę <em>Open/Closed
+                Principle</em>.</div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            Podsumowanie
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Bibliografia i ciekawe źródła
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+            <ul class="text-lg leading-10">
+              <li><a href="https://en.wikipedia.org/wiki/Parametric_polymorphism" class="text-blue-500">Parametric
+                Polymorphism - Wikipedia</a></li>
+              <li><a href="https://refactoring.guru/replace-conditional-with-polymorphism" class="text-blue-500">Replace
+                Conditional with Polymorphism</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <div class="font-bold text-3xl">
+              Dziękuję za uwagę!
+            </div>
+            <hr class="border-orange-400 border-opacity-50 my-12">
+
+          </section>
+        </section>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+      })
+    </script>
+  </body>
+</html>

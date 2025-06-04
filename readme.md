@@ -73,13 +73,13 @@ Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym se
 1. [Czysty kod, część I](https://krzysztofrewak.github.io/cwup/lectures/zmp/w05/index.html)
 1. [Czysty kod, część II](https://krzysztofrewak.github.io/cwup/lectures/zmp/w06/index.html)
 1. [Czysty kod, część III](https://krzysztofrewak.github.io/cwup/lectures/zmp/w07/index.html)
-1. Onboarding projektowy
-1. Praktyczny polimorfizm
-1. Wzorce projektowe: kreacyjne
-1. Wzorce projektowe: strukturalne
-1. Wzorce projektowe: operacyjne
-1. Wzorce projektowe: antywzorce
-1. Programowanie ekstremalne
+1. [Onboarding projektowy](https://krzysztofrewak.github.io/cwup/lectures/zmp/w08/index.html)
+1. [Praktyczny polimorfizm](https://krzysztofrewak.github.io/cwup/lectures/zmp/w09/index.html)
+1. [Wzorce projektowe: kreacyjne](https://krzysztofrewak.github.io/cwup/lectures/zmp/w10-13/index.html)
+1. [Wzorce projektowe: strukturalne](https://krzysztofrewak.github.io/cwup/lectures/zmp/w10-13/index.html)
+1. [Wzorce projektowe: operacyjne](https://krzysztofrewak.github.io/cwup/lectures/zmp/w10-13/index.html)
+1. [Wzorce projektowe: antywzorce](https://krzysztofrewak.github.io/cwup/lectures/zmp/w10-13/index.html)
+1. [Programowanie ekstremalne](https://krzysztofrewak.github.io/cwup/lectures/zmp/w14/index.html)
 1. Praktyczne code review
 
 
