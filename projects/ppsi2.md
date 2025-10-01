@@ -18,7 +18,7 @@ Oddanie pracy projektowej wymaga obecności całego zespołu, a warunkiem koniec
 #### Praca projektowa
 
 Należy zaprojektować, zaimplementować i wdrożyć system internetowy w ramach przypisanego do grupy tematu. Warunki zaliczenia kształtują się następująco:
-- projekt jest wykonywany w trójkach lub czwórkach:
+- projekt jest wykonywany w czwórkach lub piątkach:
   - w przypadku niedobrania grupy, grupę wyznacza prowadzący zajęcia; w takim przypadku grupa otrzyma modyfikator $-0.5$ do oceny końcowej za projekt;
 - skład grup i temat projektów zostaną dobrane na pierwszych zajęciach projektowych;
 - link do publicznego repozytorium lub repozytoriów projektu, temat projektu, podział prac w zespole oraz wypis stosu technologicznego powinny zostać zdefiniowane na początku pracy i być zgłoszone prowadzącemu zajęcia najpóźniej do drugich zajęć projektowych; w przeciwnym razie każdy członek grupy otrzyma modyfikator $-0.5$ do oceny końcowej za projekt; 
@@ -55,4 +55,4 @@ Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształt
 Należy przestawić całym zespołem efekty swojej pracy. Prezentacja musi odbyć się w formie przedstawienia działającej i wdrożonej aplikacji.
 
 #### Tematy prac projektowych
-Temat należy wybrać z listy dostępnej [tutaj](./ppsi2/2024.md). Dobrane grupy będą wybierały tematy w kolejności wybranej przez prowadzącego.
+Temat należy wybrać z listy dostępnej [tutaj](./ppsi2/2025.md). Dobrane grupy będą wybierały tematy w kolejności wybranej przez prowadzącego.
