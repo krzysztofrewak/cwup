@@ -66,7 +66,7 @@ Warto zwrócić uwagę, że to sama sygnatura bez ciała metody, a więc jedynie
 
 Każda klasa implementująca opisany sygnaturami metod interfejs musi implementować te metody. Zatem jeżeli interfejs `Vehicle` ma sygnaturę `public String identify()`, klasa `Car implements Vehicle` będzie musiała faktycznie mieć taką metodę i zapewne zwróci markę samochodu lub jego VIN czy też numer rejestracyjny. Oczywiście inne metody mogą byc implementowane zgodnie z potrzebami.  
 
-Stąd też wywodzi się słowo pomocnicze "kontakt", które chyba najlepiej opisuje, co tutaj tak naprawdę zachodzi. Jeżeli jeden obiekt "spotka" inny, którego klasa implementuje dany kontrakt, nie musi "wiedzieć" z kim rozmawia, a jedynie jak rozmawiać. Interfejs będzie tutaj podawał listę dostępnych publicznych metod, które zawsze będzie można wywołać w ten sam sposób, bez względu jakiej klasy byłby to obiekt. I na przykładzie: jeżeli parkingowy zapisuje w zeszycie każdy wjazd na parking to:
+Stąd też wywodzi się słowo pomocnicze "kontrakt", które chyba najlepiej opisuje, co tutaj tak naprawdę zachodzi. Jeżeli jeden obiekt "spotka" inny, którego klasa implementuje dany kontrakt, nie musi "wiedzieć" z kim rozmawia, a jedynie jak rozmawiać. Interfejs będzie tutaj podawał listę dostępnych publicznych metod, które zawsze będzie można wywołać w ten sam sposób, bez względu jakiej klasy byłby to obiekt. I na przykładzie: jeżeli parkingowy zapisuje w zeszycie każdy wjazd na parking to:
 * samochody zapewne spisze po marce i numerze rejestracyjnym,
 * ludzi zaznaczy "wchodzi człowiek",
 * rowery oznaczy "wjeżdża rower".
