@@ -6,7 +6,6 @@ Strona kursów prowadzonych przeze mnie na kierunku Informatyka na Wydziale Nauk
 
 Kurs składa się zajęć laboratoryjnych na trzecim semestrze na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia projektu znajdują się [tutaj](./laboratories/po2.md).
 
-
 #### Projektowanie i programowanie systemów internetowych I
 Kurs składa się z serii wykładów oraz zajęć projektowych na czwartym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia projektu znajdują się [tutaj](./projects/ppsi1.md).
 
