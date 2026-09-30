@@ -5,7 +5,7 @@
 
 Zaliczenie zajęć projektowych kursu **Projektowanie i programowanie systemów internetowych II** odbywa się poprzez opracowanie projektu programistycznego i sprawozdania oraz prezentację pracy projektowej. Ocena końcowa $\Omega$ będzie wyliczana w następujący sposób:
 
-$$ \Omega = 0.8k_1 + 0.1k_2 + 0.1k_3 $$
+$$ \Omega = 0.6k_1 + 0.1k_2 + 0.3k_3 $$
 
 gdzie kolejne $k_n$ powinny być rozumiane następująco:
 
@@ -18,27 +18,38 @@ Oddanie pracy projektowej wymaga obecności całego zespołu, a warunkiem koniec
 #### Praca projektowa
 
 Należy zaprojektować, zaimplementować i wdrożyć system internetowy w ramach przypisanego do grupy tematu. Warunki zaliczenia kształtują się następująco:
-- projekt jest wykonywany w czwórkach lub piątkach:
+- projekt jest wykonywany w trójkach lub czwórkach:
   - w przypadku niedobrania grupy, grupę wyznacza prowadzący zajęcia; w takim przypadku grupa otrzyma modyfikator $-0.5$ do oceny końcowej za projekt;
 - skład grup i temat projektów zostaną dobrane na pierwszych zajęciach projektowych;
 - link do publicznego repozytorium lub repozytoriów projektu, temat projektu, podział prac w zespole oraz wypis stosu technologicznego powinny zostać zdefiniowane na początku pracy i być zgłoszone prowadzącemu zajęcia najpóźniej do drugich zajęć projektowych; w przeciwnym razie każdy członek grupy otrzyma modyfikator $-0.5$ do oceny końcowej za projekt; 
 - projekt może być wykonany w dowolnym języku lub językach programowania, z wykorzystaniem dowolnych bibliotek, komponentów lub wtyczek.
 
+Dodatkowe wymagania:
+- projekt musi być skonteneryzowany,
+- projekt musi być wyposażony w testy automatyczne.
+
 #### Skład zespołu
 Każdy zespół musi składać się z:
 * min. 1 programisty backendu - do jego/jej obowiązków należy oprogramowanie backendu aplikacji;
-* min. 1 programisty frontendu - do jego/jej obowiązków należy oprogramowanie frontendu aplikacji;
-* min. 1 testera - do jego/jej obowiązków należy stworzenie scenariuszy testów automatycznych.
+* min. 1 programisty frontendu - do jego/jej obowiązków należy oprogramowanie frontendu aplikacji.
 
 Jedna osoba z zespołu musi przyjąć dodatkową rolę lidera projektu. Do jego/jej obowiązków będzie należało podejmowanie decyzji technicznych w projekcie oraz komunikacja z prowadzącym zajęcia.
 
-Ponadto poszczególni członkowie zepsołu mogą mieć dodatkowe role:
+Ponadto poszczególni członkowie zespołu mogą mieć dodatkowe role:
+* testera - do jego/jej obowiązków należy koordynowanie testów systemu;
 * project managera - do jego/jej obowiązków należy koordynowanie zadań;
-* inżyniera devops - do jego obowiązków należy wdrożenie systemu.
+* inżyniera devops - do jego/jej obowiązków należy wdrożenie systemu.
 
 Jeżeli role dodatkowe nie zostaną przypisane do konkretnych osób, zakres ich odpowiedzialności zostanie rozmyty na cały zespół. Zatem, przykładowo:
 * jeżeli nikt nie zostanie określony devopsem, a projekt na koniec semestru nie zostanie wdrożony, wówczas wszyscy zostaną ocenieni za brak wdrożenia;
 * jeżeli jedna z osób zostanie określona devopsem, a projekt na koniec semestru nie zostanie wdrożony, wówczas ta osoba zostanie oceniona za brak wdrożenia.
+
+Przykładowe ustawienia zespołów:
+* 1 backend + 1 frontend + 1 tester/PM/devops
+* 2 backend + 1 frontend + 1 tester/PM/devops
+* 1 backend/devops + 1 frontend/PM + 1 devops
+* 1 backend + 1 frontend + 1 frontend/tester + 1 PM/devops
+* i tak dalej
 
 #### Sprawozdanie
 Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształtują się następująco:
@@ -55,4 +66,4 @@ Należy opracować sprawozdanie z pracy projektowej. Warunki zaliczenia kształt
 Należy przestawić całym zespołem efekty swojej pracy. Prezentacja musi odbyć się w formie przedstawienia działającej i wdrożonej aplikacji.
 
 #### Tematy prac projektowych
-Temat należy wybrać z listy dostępnej [tutaj](./ppsi2/2025.md). Dobrane grupy będą wybierały tematy w kolejności wybranej przez prowadzącego.
+Temat należy wybrać z listy dostępnej [tutaj](./ppsi2/2026.md). Dobrane grupy będą wybierały tematy w kolejności wybranej przez prowadzącego.

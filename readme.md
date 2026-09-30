@@ -1,24 +1,11 @@
 Strona kursów prowadzonych przeze mnie na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
 
 ### Spis treści
-#### Projektowanie i programowanie obiektowe
-Kurs składa się zajęć laboratoryjnych na trzecim semestrze na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
 
-1. [Wprowadzenie do pracowni programowania obiektowego](./laboratories/ppo/lab01.md)
-1. [Klasy i obiekty](./laboratories/ppo/lab02.md)
-1. [Hermetyzacja](./laboratories/ppo/lab03.md)
-1. [Konstruktory](./laboratories/ppo/lab04.md)
-1. [Dziedziczenie](./laboratories/ppo/lab05.md)
-1. [Interfejsy](./laboratories/ppo/lab06.md)
-1. [Klasy abstrakcyjne](./laboratories/ppo/lab07.md)
-1. [Funkcje anonimowe](./laboratories/ppo/lab08.md)
-1. [Wyjątki](./laboratories/ppo/lab09.md)
-1. [Refleksje](./laboratories/ppo/lab10.md)
-1. Praktyczne wykorzystanie programowania obiektowego, cz. I
-1. Praktyczne wykorzystanie programowania obiektowego, cz. II
-1. Praktyczne wykorzystanie programowania obiektowego, cz. III
-1. Praktyczne wykorzystanie programowania obiektowego, cz. IV
-1. Podsumowanie semestru
+#### Projektowanie obiektowe II
+
+Kurs składa się zajęć laboratoryjnych na trzecim semestrze na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia projektu znajdują się [tutaj](./laboratories/po2.md).
+
 
 #### Projektowanie i programowanie systemów internetowych I
 Kurs składa się z serii wykładów oraz zajęć projektowych na czwartym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia projektu znajdują się [tutaj](./projects/ppsi1.md).
@@ -82,6 +69,39 @@ Kurs składa się z serii wykładów oraz zajęć laboratoryjnych na szóstym se
 1. [Programowanie ekstremalne](https://krzysztofrewak.github.io/cwup/lectures/zmp/w14/index.html)
 1. Praktyczne code review
 
-
 #### Projekt zespołowy
-Kurs składa się z zajęć projektowych na siódmym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.  Zasady zaliczenia projektu znajdują się [tutaj](./projects/pz.md).
+Kurs składa się z zajęć projektowych na siódmym semestrze na specjalności Programowanie aplikacji mobilnych i internetowych (PAM) na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa. Zasady zaliczenia projektu znajdują się [tutaj](./projects/pz.md).
+
+---
+
+### Kursy wycofane
+
+#### Projektowanie i programowanie obiektowe I (kurs wycofany)
+Kurs składał się zajęć laboratoryjnych na trzecim semestrze na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
+
+1. [Wprowadzenie do pracowni programowania obiektowego](./laboratories/ppo/lab01.md)
+1. [Klasy i obiekty](./laboratories/ppo/lab02.md)
+1. [Hermetyzacja](./laboratories/ppo/lab03.md)
+1. [Konstruktory](./laboratories/ppo/lab04.md)
+1. [Dziedziczenie](./laboratories/ppo/lab05.md)
+1. [Interfejsy](./laboratories/ppo/lab06.md)
+1. [Klasy abstrakcyjne](./laboratories/ppo/lab07.md)
+1. [Funkcje anonimowe](./laboratories/ppo/lab08.md)
+1. [Wyjątki](./laboratories/ppo/lab09.md)
+1. [Refleksje](./laboratories/ppo/lab10.md)
+1. Praktyczne wykorzystanie programowania obiektowego, cz. I
+1. Praktyczne wykorzystanie programowania obiektowego, cz. II
+1. Praktyczne wykorzystanie programowania obiektowego, cz. III
+1. Praktyczne wykorzystanie programowania obiektowego, cz. IV
+1. Podsumowanie semestru
+
+#### Projektowanie i programowanie obiektowe II (kurs wycofany)
+Kurs składał się zajęć laboratoryjnych na czwartym semestrze na kierunku Informatyka na Wydziale Nauk Technicznych i Ekonomicznych na Collegium Witelona Uczelnia Państwowa.
+
+1. Wprowadzenie do pracowni programowania obiektowego
+1. UML: diagramy struktur
+1. UML: diagramy zachowań
+1. Techniczna dokumentacja projektu
+1. Użytkowa dokumentacja projektu
+1. Estymowanie i specyfikowanie projektów 
+1. Testowanie aplikacji
