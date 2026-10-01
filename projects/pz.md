@@ -5,7 +5,7 @@
 
 Zaliczenie zajęć projektowych kursu **Projekt zespołowy** odbywa się poprzez opracowanie projektu programistycznego i sprawozdania oraz prezentację pracy projektowej. Ocena końcowa $\Omega$ będzie wyliczana w następujący sposób:
 
-$$ \Omega = 0.3k_1 + 0.5k_2 + 0.2k_3 $$
+$$ \Omega = 0.3k_1 + 0.3k_2 + 0.4k_3 $$
 
 gdzie kolejne $k_n$ powinny być rozumiane następująco:
 
